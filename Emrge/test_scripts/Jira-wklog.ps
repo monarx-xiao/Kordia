@@ -1,0 +1,8 @@
+$client_id = d82cefb7ec4f442894ec5040562683de
+$client_secret = 19a5ac1f5f3548519ce8ff763dacb8a7
+$base64_auth_info = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $client_id,$client_secret)))
+
+$start_at = 0
+$issue_list = (Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64_auth_info)} "https://emergingtechnologypartners.atlassian.net/rest/api/3/search?jql=project=SD&startAt=$($start_at)&maxResults=100").issues
+
+
