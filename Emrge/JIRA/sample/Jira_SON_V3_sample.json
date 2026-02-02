@@ -1,0 +1,96 @@
+{"issues":[{
+    "expand":"renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id":"26357",
+    "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/issue/26357",
+    "key":"SD-8561",
+    "fields":{
+        "summary":"INC0151080 - AzureProduction -  Dst: https://partner.os.southerncross.co.nz/pw002/pw-002-provide impacted",
+        "issuetype":{
+            "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/issuetype/10002",
+            "id":"10002",
+            "description":"Created by Jira Service Desk.",
+            "iconUrl":"https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10513?size=medium",
+            "name":"Service Request",
+            "subtask":false,
+            "avatarId":10513,
+            "hierarchyLevel":0
+                    },
+        "created":"2025-08-27T12:23:33.104+1200",
+        "resolutiondate":null,
+        "worklog":{
+            "startAt":0,
+            "maxResults":20,
+            "total":1,
+            "worklogs":[{
+                "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/issue/26357/worklog/24698",
+                "author":{
+                    "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/user?accountId=712020%3A422e1f1c-1b64-4910-842d-18861c81add7",
+                    "accountId":"712020:422e1f1c-1b64-4910-842d-18861c81add7",
+                    "emailAddress":"rohana.dharmawansa@emrge.co.nz",
+                    "avatarUrls":{
+                        "48x48":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "24x24":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "16x16":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "32x32":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png"
+                                },
+                    "displayName":"Rohana",
+                    "active":true,
+                    "timeZone":"Pacific/Auckland",
+                    "accountType":"atlassian"
+                        },
+                "updateAuthor":{
+                    "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/user?accountId=712020%3A422e1f1c-1b64-4910-842d-18861c81add7",
+                    "accountId":"712020:422e1f1c-1b64-4910-842d-18861c81add7",
+                    "emailAddress":"rohana.dharmawansa@emrge.co.nz",
+                    "avatarUrls":{
+                        "48x48":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "24x24":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "16x16":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png",
+                        "32x32":"https://secure.gravatar.com/avatar/5c53928788f101778fd3cb1491b4facf?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FR-0.png"
+                                },
+                    "displayName":"Rohana",
+                    "active":true,
+                    "timeZone":"Pacific/Auckland",
+                    "accountType":"atlassian"
+                                },
+                "comment":{
+                    "type":"doc",
+                    "version":1,
+                    "content":[{
+                        "type":"paragraph",
+                        "content":[{
+                            "type":"text",
+                            "text":"Checked existing WAF policy configurations. Whitelisted IPs in the DEV & PRD WAF rules."
+                                    }]
+                                }]},
+                "created":"2025-08-28T10:36:52.384+1200",
+                "updated":"2025-08-28T10:36:52.384+1200",
+                "started":"2025-08-28T08:30:00.000+1200",
+                "timeSpent":"45m",
+                "timeSpentSeconds":2700,
+                "id":"24698",
+                "issueId":"26357"}]},
+            "resolution":null,
+            "customfield_10002":[{
+                "id":"26",
+                "name":"Southern Cross",
+                "_links":{
+                    "self":"https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/organization/26"
+                        },
+                "scimManaged":false}],
+            "status":{
+                "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/status/3",
+                "description":"This work item is being actively worked on at the moment by the assignee.",
+                "iconUrl":"https://emergingtechnologypartners.atlassian.net/images/icons/statuses/inprogress.png",
+                "name":"In Progress",
+                "id":"3",
+                "statusCategory":{
+                    "self":"https://emergingtechnologypartners.atlassian.net/rest/api/3/statuscategory/4",
+                    "id":4,
+                    "key":"indeterminate",
+                    "colorName":"yellow",
+                    "name":"In Progress"}
+                    },
+            "labels":[]}}],
+ "nextPageToken":"ChkjU3RyaW5nJlUwUT0lSW50Jk9EVTJNUT09EBAYp_vhy48zIgpwcm9qZWN0PVNE",
+ "isLast":false}

@@ -1,0 +1,1 @@
+https://emergingtechnologypartners.atlassian.net/rest/api/3/search/jql?jql=project=SD&fields=resolution,status,issuetype,created,resolutiondate,customfield_10002,labels,summary,worklog&nextPageToken=ChkjU3RyaW5nJlUwUT0lSW50Jk9EVTJNZz09EA8Y-f7dy48zIgpwcm9qZWN0PVNE&maxResults=1

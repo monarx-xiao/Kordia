@@ -1,0 +1,264 @@
+--drop schema emr_runn;
+Create schema emr_runn;
+
+--drop table emr_runn.runn_actuals;
+create table emr_runn.runn_actuals
+(
+tx_date                              varchar(max) null 
+,person_id                           varchar(max) null
+,project_id                          varchar(max) null
+,billable_minutes                    varchar(max) null
+,nonbillable_minutes                 varchar(max) null
+,billable_note                       varchar(max) null
+,nonbillable_note                    varchar(max) null
+)
+go
+;
+
+--drop table emr_runn.runn_actuals_h;
+create table emr_runn.runn_actuals_h
+(
+tx_date                              varchar(max) null 
+,person_id                           varchar(max) null
+,project_id                          varchar(max) null
+,billable_minutes                    varchar(max) null
+,nonbillable_minutes                 varchar(max) null
+,billable_note                       varchar(max) null
+,nonbillable_note                    varchar(max) null
+,load_date                           date     not null
+)
+go
+;
+
+--drop table emr_runn.runn_assignments;
+CREATE TABLE emr_runn.runn_assignments
+(
+assignment_id                        varchar(20) NULL
+,start_date                          varchar(10) NULL
+,end_date                            varchar(10) NULL
+,minutes_per_day                     varchar(10) NULL
+,total_minutes                       varchar(10) NULL
+,is_billable                         varchar(10) NULL
+,note                                varchar(max) NULL
+,non_working_day                     varchar(10) NULL
+,person_id                           varchar(20) not NULL
+,is_placeholder                      varchar(10) NULL
+,role_id                             varchar(20) NULL
+,project_id                          varchar(20) not NULL
+,client_id                           varchar(20) NULL
+,phase_id                            varchar(100) NULL
+,load_date                           varchar(10) not NULL
+)
+go
+;
+--alter table emr_runn.runn_assignments add constraint emr_runn_pk_01 primary key (person_id,project_id,load_date);
+
+--drop table emr_runn.runn_projects;
+create table emr_runn.runn_projects
+(
+project_id                           varchar(30)  null 
+,project_name                        varchar(200) null
+,archived                            varchar(10)  null
+,wbs_external_id                     varchar(20)  null
+,confirmed                           varchar(10)  null
+,client_name                         varchar(100) null
+,client_id                           varchar(20)  null
+,team_id                             varchar(20)  null
+,budget                              varchar(10)  null
+,price_model                         varchar(50)  null
+,rate_card_id                        varchar(20)  null
+,rate_type                           varchar(10)  null
+,items                               varchar(50)  null
+)
+go
+;
+
+--drop table emr_runn.runn_person;
+create table emr_runn.runn_person
+(
+person_id                            varchar(20)  null                      
+,person_name                         varchar(100) null 
+,archived                            varchar(10)  null                 
+,sap_external_id                     varchar(20)  null 
+,first_name                          varchar(50)  null 
+,last_name                           varchar(50)  null 
+,email                               varchar(100)  null 
+,roleid                              varchar(20)  null 
+,role_id                             varchar(20)  null 
+,role_name                           varchar(100)  null 
+,role_archived                       varchar(10)  null 
+,teamid                              varchar(20)  null 
+,team_id                             varchar(20)  null 
+,team_name                           varchar(100)  null 
+,current_contractid                  varchar(20)  null 
+,current_contract_id                 varchar(20)  null 
+,current_contract_person_id          varchar(20)  null 
+,current_contract_roleid             varchar(20)  null 
+,current_contract_start_date         varchar(10)  null 
+,current_contract_end_date           varchar(10)  null 
+,current_contract_minutes_per_day    varchar(10)  null 
+,current_contract_employment_type    varchar(10)  null 
+,current_contract_rostered_days      varchar(10)  null 
+,current_contract_cost_per_hour      varchar(10)  null 
+,current_contract_role_id            varchar(20)  null 
+,current_contract_role_name          varchar(50)  null 
+,current_contract_role_archived      varchar(10)  null 
+,projects                            varchar(50)  null 
+,skills                              varchar(20)  null 
+,skills_unstable                     varchar(20)  null 
+,tags                                varchar(100)  null 
+,is_placeholder                      varchar(10)  null
+)
+go
+;
+
+--drop table emr_runn.runn_report;
+create table emr_runn.runn_report
+(
+TRANSACTION_DATE                     char(10)     not null
+,SAP_EMPLOYEE_NO                     varchar(max) null
+,REC_ORDER                           varchar(max) null
+,WBS                                 varchar(max) null
+,ABS_ATT_TYPE                        varchar(max) null
+,SCHEDULED_HOURS                     float        not null
+,CATSHOURS                           float        not null
+,x                                   char(1)      null
+,PROJECT_NAME                        varchar(max) null
+,PERSON_NAME                         varchar(max) null
+,TEAM_NAME                           varchar(max) null
+,COMMENTS                            varchar(max) null
+,load_date                           date         not null
+)
+go
+;
+
+
+concat(iifNull(billable_note,''),' ',iifNull(nonbillable_note,''))
+add(billable_minutes,nonbillable_minutes)/60
+concat('Runn_output-',replace(toString(addDays(currentDate('NZST'),-add(dayOfWeek(currentDate('NZST')),5))),'-',''),'-',replace(toString(addDays(currentDate('NZST'),-add(dayOfWeek(currentDate('NZST')),-1))),'-',''),'.csv')
+@concat('v0/actuals?start=',getPastTime(add(dayOfWeek(utcnow()),dataset().days),'day'),      '&end=',getPastTime(add(dayOfWeek(utcnow()),dataset().days),'day'))
+
+@substring(replace(string(getPastTime(add(dayOfWeek(utcnow()),int(variables('day_cnt'))),'day')),'-',''),0,8)
+@substring(replace(string(getPastTime(add(dayOfWeek(utcnow()),int(variables('day_cnt'))),'day')),'-',''),0,8)
+
+?start=2023-09-11&end=2023-09-17
+
+
+--drop table emr_runn.runn_actuals_v1_h;
+create table emr_runn.runn_actuals_v1_h
+(
+        actual_date                              varchar(10)  Not Null
+        ,billable_minutes                        int          Null
+        ,non_billable_minutes                    int          Null
+        ,billable_note                           varchar(max) Not Null
+        ,non_billable_note                       varchar(max) Not Null
+        ,person_id                               varchar(20)  Not Null
+        ,project_id                              varchar(20)  Not Null
+        ,role_id                                 varchar(20)  Not Null
+        ,created_at                              varchar(10)  Not Null
+        ,updated_at                              varchar(10)  Not Null
+)
+go
+;
+
+--drop table emr_runn.runn_projects_v1;
+create table emr_runn.runn_projects_v1
+(
+        project_id                               varchar(20)  Not null
+        ,project_name                            varchar(200) Not Null
+        ,pricing_model                           varchar(10)  Not Null
+        ,rate_type                               varchar(10)  Not Null
+        ,team_id                                 varchar(20)  Not Null
+        ,client_id                               varchar(20)  Not Null
+        ,created_at                              varchar(10)  Not Null
+        ,updated_at                              varchar(10)  Not Null
+        ,externalId                              varchar(20)  Not Null
+        ,isArchived                              varchar(10)  Not Null
+)
+go
+;
+
+--drop table emr_runn.runn_person_v1;
+create table emr_runn.runn_person_v1
+(
+        person_id                                varchar(20) Not Null
+        ,first_name                              varchar(50) Not Null 
+        ,last_name                               varchar(50) Not Null 
+        ,email                                   varchar(100) Not Null 
+        ,teamid                                  varchar(30) Not Null 
+        ,created_at                              varchar(10)  Not Null
+        ,updated_at                              varchar(10)  Not Null
+        ,reference_name                          varchar(max)  Not Null
+        ,sap_external_id                         varchar(30)  Not Null
+        ,tags                                    varchar(max)  Not Null
+        ,manager                                 varchar(50)  Not Null
+        ,isArchived                              varchar(10)  Not Null
+)
+go
+;
+
+--drop table emr_runn.runn_roles_v1;
+create table emr_runn.runn_roles_v1
+(
+        role_id                                  varchar(20) Not Null
+        ,role_name                               varchar(100) Not Null 
+        ,person_id                               varchar(20) Not Null 
+        ,created_at                              varchar(10)  Not Null
+        ,updated_at                              varchar(10)  Not Null
+        ,isArchived                              varchar(10)  Not Null        
+
+)
+go
+;
+
+--drop table emr_runn.runn_teams_v1;
+create table emr_runn.runn_teams_v1
+(
+        team_id                                  varchar(20) Not Null
+        ,team_name                               varchar(100) Not Null 
+        ,created_at                              varchar(10)  Not Null
+        ,updated_at                              varchar(10)  Not Null
+
+)
+go
+;
+
+--drop table emr_runn.runn_person_contracts_v1;
+create table emr_runn.runn_person_contracts_v1
+(
+        contract_id                              varchar(20) Not Null
+        ,employment_type                         varchar(20) Not Null 
+        ,start_at                                varchar(30) Not Null 
+        ,end_at                                  varchar(30) Not Null
+        ,created_at                              varchar(30) Not Null
+        ,updated_at                              varchar(30) Not Null
+        ,person_id                               varchar(20) Not Null
+        ,role_id                                 varchar(20) Not Null
+        ,job_title                               varchar(100) Not Null     
+)
+go
+;
+
+--drop table emr_runn.runn_report_v1;
+create table emr_runn.runn_report_v1
+(
+        TRANSACTION_DATE                         char(10)     not null
+        ,SAP_EMPLOYEE_NO                         varchar(max) null
+        ,REC_ORDER                               varchar(max) null
+        ,WBS                                     varchar(max) null
+        ,ABS_ATT_TYPE                            varchar(max) null
+        ,SCHEDULED_HOURS                         float        not null
+        ,CATSHOURS                               float        not null
+        ,x                                       char(1)      null
+        ,PROJECT_NAME                            varchar(max) null
+        ,PERSON_NAME                             varchar(max) null
+        ,person_id                               varchar(20)  Not Null
+        ,project_id                              varchar(20)  Not null
+        ,role_id                                 varchar(20)  Not Null
+        ,team_id                                 varchar(20)  Not Null       
+        ,TEAM_NAME                               varchar(max) null
+        ,COMMENTS                                varchar(max) null
+        ,load_date                               varchar(10)  not null
+)
+go
+;

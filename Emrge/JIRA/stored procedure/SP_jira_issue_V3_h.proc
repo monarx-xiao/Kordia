@@ -1,0 +1,88 @@
+IF OBJECT_ID ('emr_jira.SP_jira_issue_V3_h') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_issue_V3_h
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_issue_V3_h 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20250907>
+-- Update date: <20250907>
+-- Description:	<SP_jira_issue_V3_h>
+-- Target table: emr_jira.jira_issue_h
+-- Source table: emr_jira.jira_issue
+-- =============================================
+   
+-- Delete latest data for re-run --
+
+   delete from emr_jira.jira_issue_h
+         where load_date = convert(varchar(10),getdate(),23) 
+            or convert(date,load_date) < dateadd(MONTH,-3,getdate())
+;
+
+
+-- Insert all data to target table from source table --
+ 
+   insert into emr_jira.jira_issue_h
+              (
+               issue_id      
+               ,issue_key     
+               ,resolution       
+               ,issue_status       
+               ,issue_type          
+               ,jira_created_date                 
+               ,jira_resolution_date              
+               ,jira_description                  
+               ,organisation                      
+               ,label                             
+               ,resource                        
+               ,worklog_created_at                
+               ,worklog_updated_at              
+               ,worklog_started_at                  
+               ,worklog_time_spent                  
+               ,worklog_comment                     
+               ,load_date                           
+              )
+     SELECT 
+               a.issue_id                                                                               as issue_id
+               ,a.issue_key                                                                             as issue_key
+               ,coalesce(a.resolution,'')                                                               as resolution
+               ,coalesce(a.issue_status,'')                                                             as issue_status
+               ,coalesce(a.issue_type,'')                                                               as issue_type
+               ,SUBSTRING(coalesce(a.jira_created_date,'2999-12-31'), 1, 10)                            as jira_created_date
+               ,SUBSTRING(coalesce(a.jira_resolution_date,'2999-12-31'), 1, 10)                         as jira_resolution_date
+               ,coalesce(a.jira_description,'')                                                         as description
+               ,coalesce(a.organisation,'')                                                             as organisation
+               ,coalesce(a.label,'')                                                                    as label
+               ,coalesce(b.resource,'')                                                                 as resource
+               ,SUBSTRING(b.worklog_created_at, 1, 10)                                                  as worklog_created_at
+               ,SUBSTRING(b.worklog_updated_at, 1, 10)                                                  as worklog_updated_at
+               ,SUBSTRING(coalesce(b.worklog_started_at,'2999-12-31'), 1, 10)                           as worklog_started_at      
+               ,coalesce(convert(float,b.worklog_time_spent)/3600,0)                                    as worklog_time_spent      
+               ,coalesce(b.worklog_comment,'')                                                          as worklog_description
+               ,a.load_date
+          FROM emr_jira.jira_issue a
+     left join emr_jira.jira_worklog b
+            on a.issue_id = b.issue_id
+           and a.load_date = b.load_date
+;               
+
+-- Drop temp table for rerun --       
+ 
+
+;
+
+
+END
+
+
+
+
+
+
+GO
+

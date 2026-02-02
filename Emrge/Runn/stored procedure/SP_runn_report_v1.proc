@@ -1,0 +1,96 @@
+IF OBJECT_ID ('emr_runn.SP_runn_report_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_report_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_report_v1 @txdate varchar(10) 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251125>
+-- Update date: <20251125>
+-- Description:	<SP_runn_report_v1>
+-- Target table: emr_runn.runn_report_v1
+-- Source table: emr_runn.runn_actuals_v1_h
+--               emr_runn.runn_person_v1
+--               emr_runn.runn_projects_v1
+-- =============================================
+   
+-- Delete data of current day in target table for rerun--
+
+    delete from emr_runn.runn_report_v1  
+     where cast(TRANSACTION_DATE as date) = cast(@txdate as date)
+
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_report_v1
+               (
+                TRANSACTION_DATE               
+                ,SAP_EMPLOYEE_NO                
+                ,REC_ORDER                      
+                ,WBS                            
+                ,ABS_ATT_TYPE    
+                ,SCHEDULED_HOURS              
+                ,CATSHOURS  
+                ,x                   
+                ,PROJECT_NAME                    
+                ,PERSON_NAME
+                ,person_id
+                ,project_id
+                ,role_id
+                ,team_id                
+                ,TEAM_NAME                     
+                ,COMMENTS  
+                ,load_date                         
+               )
+         select
+                a.actual_date                                                        as TRANSACTION_DATE    
+                ,coalesce(b.sap_external_id,'')                                      as SAP_EMPLOYEE_NO         
+                ,''                                                                  as REC_ORDER
+                ,coalesce(c.externalId,'')                                           as WBS                               
+                ,'8000'                                                              as ABS_ATT_TYPE                                   
+                ,0                                                                   as SCHEDULED_HOURS
+                ,(cast(a.billable_minutes as float) + cast(a.non_billable_minutes as float))/60 
+                                                                                     as CATSHOURS 
+                ,null                                                                as x
+                ,coalesce(c.project_name,'')                                         as PROJECT_NAME
+                ,coalesce(b.first_name + ' ' + b.last_name,'')                       as PERSON_NAME
+                ,coalesce(b.person_id,'')                                            as person_id
+                ,coalesce(c.project_id,'')                                           as project_id
+                ,coalesce(a.role_id,'')                                              as role_id
+                ,coalesce(e.team_id,'')                                              as team_id
+                ,coalesce(e.team_name,'')                                            as TEAM_NAME
+                ,replace(coalesce(a.billable_note,'') + coalesce(a.non_billable_note,''),char(10),'')      
+                                                                                     as COMMENTS   
+                ,convert(varchar,getdate(),23)                                       as load_date
+           from emr_runn.runn_actuals_v1_h a
+      left join emr_runn.runn_person_v1 b
+             on a.person_id = b.person_id
+            and b.isArchived = 'False'
+      left join emr_runn.runn_projects_v1 c                        
+             on a.project_id = c.project_id                        
+            and c.isArchived = 'False'                                 
+      left join emr_runn.runn_teams_v1 e
+             on b.teamid = e.team_id         
+            where cast(a.actual_date as date) >= cast(@txdate as date)
+              and cast(a.actual_date as date) < dateadd(day,7,cast(@txdate as date))
+            
+;                  
+
+
+      
+
+END
+
+
+
+
+
+
+GO
+

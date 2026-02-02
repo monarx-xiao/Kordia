@@ -1,0 +1,304 @@
+IF OBJECT_ID ('dvrs.SP_sales_dtl') IS NOT NULL
+	DROP PROCEDURE dvrs.SP_sales_dtl
+GO
+
+CREATE PROCEDURE [dvrs].[SP_sales_dtl] 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <27052021>
+-- Update date: <31082021>
+-- Description:	<SP_sales_dtl>
+-- Target table: dvrs.sales_dtl 
+-- Source table: dvrs.sales_load_akl_h 
+--               dvrs.sales_load_chc_h 
+-- =============================================
+
+declare  
+         @last_update_akl                   date
+
+         select @last_update_akl = max(load_date) from dvrs.sales_load_akl_h ;
+         
+
+    delete from dvrs.sales_dtl 
+          where substring(sale_id,1,4) = '1302'
+;    
+
+    insert into dvrs.sales_dtl
+               (
+                sale_id
+                ,valuation_roll_number
+                ,Valuation_Number_Assessment
+                ,Valuation_Number_Suffix
+                ,sale_date
+                ,District_Code
+                ,sale_type
+                ,sales_group
+                ,sale_tenure
+                ,price_value_relationship
+                ,sale_price_gross
+                ,sale_price_net
+                ,sale_price_chattels
+                ,sale_price_other
+                ,capital_value
+                ,land_value
+                ,current_effective_valuation_date
+                ,situation_number
+                ,additional_situation_number
+                ,situation_name
+                ,certificate_of_title
+                ,land_area
+                ,zoning
+                ,actual_property_use
+                ,units_of_use
+                ,off_street_parking
+                ,building_age_indicator
+                ,building_condition_indicator
+                ,building_construction_indicator
+                ,building_site_coverage
+                ,building_total_floor_area
+                ,property_category
+                ,legal_description
+                ,mass_contour
+                ,mass_view
+                ,mass_scope_of_view
+                ,mass_total_floor_area
+                ,mass_deck
+                ,mass_workshop_laundry
+                ,mass_other_improvements
+                ,mass_garage_under_main_roof
+                ,mass_garage_freestanding
+                ,latitude
+                ,longitude
+                ,street_number_prefix
+                ,ownership_type_code
+                ,improvement_value
+                ,shelter_belt_value
+                ,nature_of_improvement
+                ,multiple_ct
+                ,date_advised
+                ,date_price_agreed
+                ,sale_amendment
+                ,buyer_seller_relationship
+                ,gst_included
+                ,percentage_share_of_ownership
+                ,sale_last_updated
+                ,geo
+                ,geohash
+                ,sort_by_sale_date
+
+               )
+         select
+                sale_id
+                ,valuation_roll_number
+                ,Valuation_Number_Assessment
+                ,Valuation_Number_Suffix
+                ,sale_date
+                ,District_Code
+                ,sale_type
+                ,sales_group
+                ,sale_tenure
+                ,price_value_relationship
+                ,sale_price_gross
+                ,sale_price_net
+                ,sale_price_chattels
+                ,sale_price_other
+                ,capital_value
+                ,land_value
+                ,current_effective_valuation_date
+                ,situation_number
+                ,additional_situation_number
+                ,situation_name
+                ,certificate_of_title
+                ,land_area
+                ,zoning
+                ,actual_property_use
+                ,units_of_use
+                ,off_street_parking
+                ,building_age_indicator
+                ,building_condition_indicator
+                ,building_construction_indicator
+                ,building_site_coverage
+                ,building_total_floor_area
+                ,property_category
+                ,legal_description
+                ,mass_contour
+                ,mass_view
+                ,mass_scope_of_view
+                ,mass_total_floor_area
+                ,mass_deck
+                ,mass_workshop_laundry
+                ,mass_other_improvements
+                ,mass_garage_under_main_roof
+                ,mass_garage_freestanding
+                ,null                                                                     as latitude
+                ,null                                                                     as longitude
+                ,null                                                                     as street_number_prefix
+                ,null                                                                     as ownership_type_code
+                ,null                                                                     as improvement_value
+                ,null                                                                     as shelter_belt_value
+                ,null                                                                     as nature_of_improvement
+                ,null                                                                     as multiple_ct
+                ,null                                                                     as date_advised
+                ,null                                                                     as date_price_agreed
+                ,null                                                                     as sale_amendment
+                ,null                                                                     as buyer_seller_relationship
+                ,null                                                                     as gst_included
+                ,null                                                                     as percentage_share_of_ownership
+                ,null                                                                     as sale_last_updated
+                ,null                                                                     as geo
+                ,null                                                                     as geohash
+                ,row_number() over (partition by valuation_roll_number,Valuation_Number_Assessment,Valuation_Number_Suffix order by sale_date desc)             as sort_by_sale_date
+           from dvrs.sales_load_akl_h 
+          where load_date = @last_update_akl
+;                  
+
+    delete from dvrs.sales_dtl where substring(sale_id,1,4) = '5216';    
+
+    insert into dvrs.sales_dtl
+               (
+                sale_id
+                ,valuation_roll_number
+                ,Valuation_Number_Assessment
+                ,Valuation_Number_Suffix
+                ,sale_date
+                ,District_Code
+                ,sale_type
+                ,sales_group
+                ,sale_tenure
+                ,price_value_relationship
+                ,sale_price_gross
+                ,sale_price_net
+                ,sale_price_chattels
+                ,sale_price_other
+                ,capital_value
+                ,land_value
+                ,current_effective_valuation_date
+                ,situation_number
+                ,additional_situation_number
+                ,situation_name
+                ,certificate_of_title
+                ,land_area
+                ,zoning
+                ,actual_property_use
+                ,units_of_use
+                ,off_street_parking
+                ,building_age_indicator
+                ,building_condition_indicator
+                ,building_construction_indicator
+                ,building_site_coverage
+                ,building_total_floor_area
+                ,property_category
+                ,legal_description
+                ,mass_contour
+                ,mass_view
+                ,mass_scope_of_view
+                ,mass_total_floor_area
+                ,mass_deck
+                ,mass_workshop_laundry
+                ,mass_other_improvements
+                ,mass_garage_under_main_roof
+                ,mass_garage_freestanding
+                ,latitude
+                ,longitude
+                ,street_number_prefix
+                ,ownership_type_code
+                ,improvement_value
+                ,shelter_belt_value
+                ,nature_of_improvement
+                ,multiple_ct
+                ,date_advised
+                ,date_price_agreed
+                ,sale_amendment
+                ,buyer_seller_relationship
+                ,gst_included
+                ,percentage_share_of_ownership
+                ,sale_last_updated
+                ,geo
+                ,geohash
+                ,sort_by_sale_date
+               )
+         select
+                sale_id
+                ,valuation_roll                                                           as valuation_roll_number       
+                ,valuation_assessment                                                     as Valuation_Number_Assessment 
+                ,valuation_suffix                                                         as Valuation_Number_Suffix     
+                ,date_settled                                                             as sale_date                   
+                ,land_district                                                            as District_Code               
+                ,sale_type                                                                as sale_type                   
+                ,sales_group                                                              as sales_group                 
+                ,sale_tenure                                                              as sale_tenure                 
+                ,case when price_value_relationship = 'Market - Index'     then 1
+                      when price_value_relationship = 'Market - Non Index' then 2
+                      when price_value_relationship = 'Non Market'         then 3
+                      else ''
+                      end                                                                 as price_value_relationship
+                ,gross_sale_price                                                         as sale_price_gross                 
+                ,net_sale_price                                                           as sale_price_net                   
+                ,chattels                                                                 as sale_price_chattels              
+                ,other_sale_price                                                         as sale_price_other                 
+                ,capital_value                                                            as capital_value                    
+                ,land_value                                                               as land_value                       
+                ,revision_date                                                            as current_effective_valuation_date 
+                ,street_number                                                            as situation_number                 
+                ,full_street_number                                                       as additional_situation_number      
+                ,road_name_full                                                           as situation_name                   
+                ,cert_of_title                                                            as certificate_of_title             
+                ,interest_area                                                            as land_area                        
+                ,planning_zone_code                                                       as zoning                           
+                ,land_use_code                                                            as actual_property_use              
+                ,units                                                                    as units_of_use                     
+                ,parking_available                                                        as off_street_parking               
+                ,building_age_code                                                        as building_age_indicator           
+                ,building_condition_code                                                  as building_condition_indicator     
+                ,building_construction_code                                               as building_construction_indicator
+                ,building_site_code                                                       as building_site_coverage         
+                ,building_floor_area                                                      as building_total_floor_area      
+                ,property_category_code                                                   as property_category              
+                ,legal_description                                                        as legal_description              
+                ,land_slope_code                                                          as mass_contour                   
+                ,view_type_code                                                           as mass_view                      
+                ,view_level_code                                                          as mass_scope_of_view             
+                ,total_lined_floor_area                                                   as mass_total_floor_area          
+                ,deck_exist                                                               as mass_deck                      
+                ,laundry_workshop_exists                                                  as mass_workshop_laundry          
+                ,large_improvements                                                       as mass_other_improvements        
+                ,carparks_under_main_roof                                                 as mass_garage_under_main_roof    
+                ,carparks_under_freestanding_roof                                         as mass_garage_freestanding       
+                ,latitude                                                                 
+                ,longitude                                                                
+                ,street_number_prefix                                                     
+                ,ownership_type_code                                                      
+                ,improvement_value                                                        
+                ,shelter_belt_value                                                       
+                ,nature_of_improvement                                                    
+                ,multiple_ct                                                              
+                ,date_advised                                                             
+                ,date_price_agreed                                                        
+                ,sale_amendment                                                           
+                ,buyer_seller_relationship                                                
+                ,gst_included                                                             
+                ,percentage_share_of_ownership                                            
+                ,sale_last_updated                                                        
+                ,null                                                                     as geo                                                                       
+                ,null                                                                     as geohash  
+                ,row_number() over (partition by valuation_roll,valuation_assessment,valuation_suffix order by date_settled desc)    as sort_by_sale_date
+           from dvrs.sales_load_chc_h 
+
+;    
+
+      
+
+END
+
+
+
+
+
+
+GO
+

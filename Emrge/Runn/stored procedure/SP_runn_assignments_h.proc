@@ -1,0 +1,101 @@
+IF OBJECT_ID ('emr_runn.SP_runn_assignments') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_assignments
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_assignments 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20240304>
+-- Update date: <20240304>
+-- Description:	<SP_runn_assignments>
+-- Target table: emr_runn.runn_assignments 
+-- Source table: emr_runn.runn_assignments_tmp 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_runn.runn_assignments
+          where load_date = convert(varchar(10),getdate(),23) 
+;
+
+     merge into emr_runn.runn_assignments A
+          using emr_runn.runn_assignments_tmp B
+             on (
+                 A.assignment_id = coalesce(B.id,'') 
+                 and A.start_date = coalesce(B.start_date,'') 
+                 and A.end_date = coalesce(B.end_date,'')    
+                 and A.minutes_per_day = coalesce(B.minutes_per_day,'')  
+                 and A.total_minutes = coalesce(B.total_minutes,'')   
+                 and A.is_billable = coalesce(B.is_billable,'')   
+                 and A.note = coalesce(B.note,'')    
+                 and A.non_working_day = coalesce(B.non_working_day,'')  
+                 and A.person_id = coalesce(B.person_id,'')    
+                 and A.is_placeholder = coalesce(B.is_placeholder,'')  
+                 and A.role_id = coalesce(B.role_id,'')          
+                 and A.project_id = coalesce(B.project_id,'')    
+                 and A.client_id = coalesce(B.client_id,'')     
+                 and A.phase_id = coalesce(B.phase_id,'')     
+               )
+        when matched then
+                          update
+                                 set A.load_date = convert(varchar(10),getdate(),23)     
+        when not matched then
+                          insert
+                                (
+                                 assignment_id
+                                 ,start_date
+                                 ,end_date
+                                 ,minutes_per_day
+                                 ,total_minutes
+                                 ,is_billable
+                                 ,note
+                                 ,non_working_day
+                                 ,person_id
+                                 ,is_placeholder
+                                 ,role_id
+                                 ,project_id
+                                 ,client_id
+                                 ,phase_id
+                                 ,load_date               
+                                 )
+                          values
+                                 (
+                                 coalesce(B.id,'')                      
+                                 ,coalesce(B.start_date,'')                 
+                                 ,coalesce(B.end_date,'')                    
+                                 ,coalesce(B.minutes_per_day,'')                    
+                                 ,coalesce(B.total_minutes,'')                     
+                                 ,coalesce(B.is_billable,'')                        
+                                 ,coalesce(B.note,'')                           
+                                 ,coalesce(B.non_working_day,'')                    
+                                 ,coalesce(B.person_id,'')                      
+                                 ,coalesce(B.is_placeholder,'')                   
+                                 ,coalesce(B.role_id,'')                         
+                                 ,coalesce(B.project_id,'')                     
+                                 ,coalesce(B.client_id,'')                       
+                                 ,coalesce(B.phase_id,'')                      
+                                 ,convert(varchar(10),getdate(),23)               
+                                )         
+;
+         
+
+-- Drop temp table for rerun --       
+
+     drop table emr_runn.runn_assignments_tmp 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

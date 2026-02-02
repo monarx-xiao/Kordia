@@ -1,0 +1,69 @@
+IF OBJECT_ID ('emr_jira.SP_clean_jira_tables_V3') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_clean_jira_tables_V3
+GO
+
+CREATE PROCEDURE emr_jira.SP_clean_jira_tables_V3
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date:     <20250905>
+-- Update date:     <20250908>
+-- Description:	<SP_clean_jira_tables_V3>
+-- Source table: emr_jira.jira_issue 
+--               emr_jira.jira_issue
+--               emr_jira.jira_worklog
+--               emr_jira.jira_worklog
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+IF OBJECT_ID ('emr_jira.jira_issue') IS NOT NULL
+     drop table emr_jira.jira_issue
+;
+
+IF OBJECT_ID ('emr_jira.jira_worklog') IS NOT NULL
+     drop table emr_jira.jira_worklog
+;
+
+  CREATE TABLE emr_jira.jira_issue
+              (
+         	   issue_id                        varchar(10)  not null 
+          	   ,issue_key                      varchar(10)  not null
+       		   ,resolution                     varchar(50)  null
+       		   ,issue_status                   varchar(50)  null
+     		   ,issue_type                     varchar(50)  null
+       		   ,jira_created_date              varchar(30)  null
+       		   ,jira_resolution_date           varchar(30)  null
+       		   ,jira_description               varchar(max) null
+       		   ,organisation                   varchar(100) null
+       		   ,label                          varchar(50)  null
+       		   ,resource                       varchar(50)  null
+       		   ,worklog_created_at             varchar(50)  null
+       		   ,worklog_updated_at             varchar(50)  null
+       		   ,worklog_started_at             varchar(50)  null
+       		   ,worklog_time_spent             varchar(10)  null
+       		   ,worklog_comment                varchar(max) null
+       		   ,load_date                      varchar(10)  not null      
+              )
+;
+
+  create table emr_jira.jira_worklog
+			  (
+               issue_id                        varchar(10)  not null 
+               ,resource                       varchar(50)  null
+               ,worklog_created_at             varchar(50)  null
+               ,worklog_updated_at             varchar(50)  null
+               ,worklog_started_at             varchar(50)  null
+               ,worklog_time_spent             varchar(10)  null
+               ,worklog_comment                varchar(max) null
+               ,load_date                      varchar(10)  not null
+			  )
+;
+
+END
+
+go

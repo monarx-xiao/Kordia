@@ -1,0 +1,375 @@
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+    "id": "14099",
+    "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/14099",
+    "key": "SD-4013",
+    "fields": {
+      "statuscategorychangedate": "2023-09-20T03:48:17+00:00",
+      "fixVersions": [
+
+      ],
+      "resolution": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/resolution/10000",
+        "id": "10000",
+        "description": "Work has been completed on this issue.",
+        "name": "Done"
+      },
+      "lastViewed": null,
+      "customfield_10060": null,
+      "customfield_10061": null,
+      "customfield_10062": null,
+      "customfield_10063": null,
+      "customfield_10064": null,
+      "customfield_10065": null,
+      "customfield_10066": null,
+      "customfield_10067": null,
+      "priority": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/priority/2",
+        "iconUrl": "https://emergingtechnologypartners.atlassian.net/images/icons/priorities/high.svg",
+        "name": "2 - High",
+        "id": "2"
+      },
+      "labels": [
+
+      ],
+      "timeestimate": 0,
+      "aggregatetimeoriginalestimate": null,
+      "versions": [
+
+      ],
+      "issuelinks": [
+
+      ],
+      "assignee": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=63365c8f8b75455be457224e",
+        "accountId": "63365c8f8b75455be457224e",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/a06dac12bff18c15e4f3121a698e9e5c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMJ-0.png",
+          "24x24": "https://secure.gravatar.com/avatar/a06dac12bff18c15e4f3121a698e9e5c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMJ-0.png",
+          "16x16": "https://secure.gravatar.com/avatar/a06dac12bff18c15e4f3121a698e9e5c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMJ-0.png",
+          "32x32": "https://secure.gravatar.com/avatar/a06dac12bff18c15e4f3121a698e9e5c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMJ-0.png"
+        },
+        "displayName": "Maruthi Jella",
+        "active": true,
+        "timeZone": "Pacific/Auckland",
+        "accountType": "atlassian"
+      },
+      "status": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/status/5",
+        "description": "A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.",
+        "iconUrl": "https://emergingtechnologypartners.atlassian.net/images/icons/statuses/resolved.png",
+        "name": "Resolved",
+        "id": "5",
+        "statusCategory": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/statuscategory/3",
+          "id": 3,
+          "key": "done",
+          "colorName": "green",
+          "name": "Done"
+        }
+      },
+      "components": [
+
+      ],
+      "customfield_10050": null,
+      "customfield_10051": null,
+      "customfield_10052": null,
+      "customfield_10053": null,
+      "customfield_10054": null,
+      "customfield_10055": null,
+      "customfield_10056": null,
+      "customfield_10057": null,
+      "customfield_10058": null,
+      "customfield_10059": null,
+      "customfield_10049": null,
+      "aggregatetimeestimate": 0,
+      "creator": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=qm%3Ad764603b-b3b7-4477-8dc8-a5042ab73857%3A2b7a0eeb-dc35-46e7-93d6-64e474c6646b",
+        "accountId": "qm:d764603b-b3b7-4477-8dc8-a5042ab73857:2b7a0eeb-dc35-46e7-93d6-64e474c6646b",
+        "emailAddress": "mgunawardana@secops.co.nz",
+        "avatarUrls": {
+          "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png"
+        },
+        "displayName": "mgunawardana@secops.co.nz",
+        "active": true,
+        "timeZone": "Pacific/Auckland",
+        "accountType": "customer"
+      },
+      "subtasks": [
+
+      ],
+      "customfield_10040": {
+        "languageCode": "en",
+        "displayName": "English"
+      },
+      "customfield_10043": null,
+      "reporter": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=qm%3Ad764603b-b3b7-4477-8dc8-a5042ab73857%3A2b7a0eeb-dc35-46e7-93d6-64e474c6646b",
+        "accountId": "qm:d764603b-b3b7-4477-8dc8-a5042ab73857:2b7a0eeb-dc35-46e7-93d6-64e474c6646b",
+        "emailAddress": "mgunawardana@secops.co.nz",
+        "avatarUrls": {
+          "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+          "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png"
+        },
+        "displayName": "mgunawardana@secops.co.nz",
+        "active": true,
+        "timeZone": "Pacific/Auckland",
+        "accountType": "customer"
+      },
+      "aggregateprogress": {
+        "progress": 900,
+        "total": 900,
+        "percent": 100
+      },
+      "customfield_10045": null,
+      "customfield_10046": null,
+      "customfield_10047": null,
+      "customfield_10048": [
+
+      ],
+      "customfield_10038": {
+        "id": "3",
+        "name": "Time to close after resolution",
+        "_links": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/request/14099/sla/3"
+        },
+        "completedCycles": [
+
+        ],
+        "ongoingCycle": {
+          "startTime": {
+            "iso8601": "2023-09-20T03:48:17+00:00",
+            "jira": "2023-09-20T03:48:17.049+00:00",
+            "friendly": "Today 3:48 PM",
+            "epochMillis": 1695181697049
+          },
+          "breachTime": {
+            "iso8601": "2023-09-25T02:48:17+00:00",
+            "jira": "2023-09-25T02:48:17.049+00:00",
+            "friendly": "25/Sep/23 3:48 PM",
+            "epochMillis": 1695610097049
+          },
+          "breached": false,
+          "paused": false,
+          "withinCalendarHours": true,
+          "goalDuration": {
+            "millis": 86400000,
+            "friendly": "24h"
+          },
+          "elapsedTime": {
+            "millis": 2656567,
+            "friendly": "44m"
+          },
+          "remainingTime": {
+            "millis": 83743433,
+            "friendly": "23h 15m"
+          }
+        }
+      },
+      "customfield_10039": {
+        "id": "4",
+        "name": "Time to approve normal change",
+        "_links": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/request/14099/sla/4"
+        },
+        "completedCycles": [
+
+        ]
+      },
+      "progress": {
+        "progress": 900,
+        "total": 900,
+        "percent": 100
+      },
+      "votes": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/SD-4013/votes",
+        "votes": 0,
+        "hasVoted": false
+      },
+      "issuetype": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issuetype/10002",
+        "id": "10002",
+        "description": "Created by Jira Service Desk.",
+        "iconUrl": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10513?size=medium",
+        "name": "Service Request",
+        "subtask": false,
+        "avatarId": 10513,
+        "hierarchyLevel": 0
+      },
+      "timespent": 900,
+      "customfield_10030": null,
+      "customfield_10031": null,
+      "project": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/project/10000",
+        "id": "10000",
+        "key": "SD",
+        "name": "Service Desk",
+        "projectTypeKey": "service_desk",
+        "simplified": false,
+        "avatarUrls": {
+          "48x48": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10324",
+          "24x24": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10324?size=small",
+          "16x16": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10324?size=xsmall",
+          "32x32": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10324?size=medium"
+        }
+      },
+      "customfield_10032": null,
+      "customfield_10033": null,
+      "aggregatetimespent": 900,
+      "customfield_10034": null,
+      "customfield_10035": null,
+      "customfield_10036": null,
+      "customfield_10037": {
+        "id": "2",
+        "name": "Time to first response",
+        "_links": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/request/14099/sla/2"
+        },
+        "completedCycles": [
+          {
+            "startTime": {
+              "iso8601": "2023-09-19T22:52:01+00:00",
+              "jira": "2023-09-19T22:52:01.781+00:00",
+              "friendly": "Today 10:52 AM",
+              "epochMillis": 1695163921781
+            },
+            "stopTime": {
+              "iso8601": "2023-09-20T03:47:42+00:00",
+              "jira": "2023-09-20T03:47:42.542+00:00",
+              "friendly": "Today 3:47 PM",
+              "epochMillis": 1695181662542
+            },
+            "breachTime": {
+              "iso8601": "2023-09-20T02:52:01+00:00",
+              "jira": "2023-09-20T02:52:01.781+00:00",
+              "friendly": "Today 2:52 PM",
+              "epochMillis": 1695178321781
+            },
+            "breached": true,
+            "goalDuration": {
+              "millis": 14400000,
+              "friendly": "4h"
+            },
+            "elapsedTime": {
+              "millis": 17740761,
+              "friendly": "4h 55m"
+            },
+            "remainingTime": {
+              "millis": -3340761,
+              "friendly": "-55m"
+            }
+          }
+        ]
+      },
+      "customfield_10027": null,
+      "customfield_10028": null,
+      "customfield_10029": null,
+      "resolutiondate": "2023-09-20T03:48:16.892+00:00",
+      "workratio": -1,
+      "watches": {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/SD-4013/watchers",
+        "watchCount": 1,
+        "isWatching": false
+      },
+      "created": "2023-09-19T22:52:01.781+00:00",
+      "customfield_10020": null,
+      "customfield_10021": "0|i00oon:",
+      "customfield_10022": null,
+      "customfield_10023": [
+
+      ],
+      "customfield_10024": null,
+      "customfield_10025": null,
+      "customfield_10026": null,
+      "customfield_10016": null,
+      "customfield_10017": {
+        "hasEpicLinkFieldDependency": false,
+        "showField": false,
+        "nonEditableReason": {
+          "reason": "PLUGIN_LICENSE_ERROR",
+          "message": "The Parent Link is only available to Jira Premium users."
+        }
+      },
+      "customfield_10018": "2023-09-20T03:47:42.542+00:00",
+      "customfield_10019": "1_*:*_1_*:*_4451_*|*_3_*:*_1_*:*_8665340_*|*_5_*:*_1_*:*_0_*|*_10002_*:*_1_*:*_9105477",
+      "updated": "2023-09-20T03:48:44.504+00:00",
+      "timeoriginalestimate": null,
+      "description": "Hi Jason, \n\n  \n\nHope you are doing good..! \n\n  \n\nI’m the CDO Lead for Generate & I’m totally agreed with what Jacky mentioned in below..{color:#172B4D}{color} \n\n  \n\nI'm thinking whether we can reach out to Microsoft through an official ticket and inquire about the following scenario. We need clarification on whether \"am_delta_patch_1.397.1161.0\" is an authorized .EXE file from Microsoft and if it is safe for deployment. \n\n  \n\nCan you reach out to Microsoft ? \n\n   \n\nRegards, \n\n  \n\n *{color:#172B4D} *Milinda Gunawardana*{color}* \n\n *{color:#172B4D} *Senior Security Analyst*{color}* \n\n *{color:#172B4D} *M.*{color}* {color:#676766}+64 29 043 50051{color}{color:#FD8106}{color}\n  *{color:#172B4D} *E.*{color}*{color:#172B4D}{color} [{color:#172B4D}mgunawardana@secops.co.nz{color}|mailto:mgunawardana@secops.co.nz]{color:#172B4D}{color} \n\n  \n\n{color:#969696}Kordia | SecOps\n Level 3, 162 Victoria Street, Auckland 1010{color}\n [{color:#969696}kordia.co.nz{color}|https://www.kordia.co.nz/] \n\n!image001.jpg|thumbnail! \n\n!image002.jpg|thumbnail!*  \n\n  \n  \n\n\n \n *\n\n *{color:#172B4D} *CLIENT CONFIDENTIAL*\n {color} From:* Jacky Tse <[jtse@secops.co.nz|mailto:jtse@secops.co.nz]> \n  *Sent:* Tuesday, September 19, 2023 6:15 PM\n  *To:* Jason.Lee <[Jason.Lee@emrge.co.nz|mailto:Jason.Lee@emrge.co.nz]>\n  *Cc:* EMRGE SRE Admin <[sre-admin@emrge.co.nz|mailto:sre-admin@emrge.co.nz]>; Kordia Cyber Defence Operations <[CDO@secops.co.nz|mailto:CDO@secops.co.nz]>; Blanca Mansfield <[bmansfield@secops.co.nz|mailto:bmansfield@secops.co.nz]>; Jack Lau <[jlau@secops.co.nz|mailto:jlau@secops.co.nz]>; Vaasudev Kala <[vkala@secops.co.nz|mailto:vkala@secops.co.nz]>; Joel Harvey <[joel.harvey@kordia.co.nz|mailto:joel.harvey@kordia.co.nz]>\n  *Subject:* RE: [EXTERNAL] Re: Generate - Patient-0 Malicious File Download Alert from the Zscaler Cloud Sandbox \n\n   \n\n  \n\nHi Jason, \n\n  \n\nBy looking at below alert, it seems like an informational message notifying yourself that a file that sent to sandbox, downloaded and classify as benign.  \n\n  \n\nWe confirmed we are receiving events from Zscaler, but we are not setting any rules to trigger that as this is not consider an alert at all, such as the risk score is 0 and no obviously category toward an alert need to be triggered to the team to investigate.  \n\n  \n\nFor example, on two tickets you have raised, MD5 file hash such as \"65bac54e8fc9cb432118891280cdc083\" and \"637bb7807eba8f13c72bb2193523ed57\", they are all classified as sandbox benign and risk score is 0, through the virus total from the hash as well, they are totally normal as usual windows update executable file.  \n\n  \n\nTo answer your question, you can disable the email notification as we can take care of security incident in our side. \n\n  \n\nThanks. \n\n  \n\n  \n\nRegards, \n\n  \n\n *{color:#00B9CB} *Jacky Tse*{color}*\n  *{color:#404040} *Security Automation Practice Manager and Modern Workplace Security Practice Manager*{color}*\n \n  *{color:#404040} *M.*{color}*{color:#404040} +64 27 835 8553{color}\n  *{color:#404040} *E.*{color}*{color:#404040}{color} [jtse@secops.co.nz|mailto:jtse@secops.co.nz]\n \n {color:#969696}Kordia | SecOps\n Level 3, 162 Victoria Street, Auckland 1010{color}\n [{color:#969696}kordia.co.nz{color}|https://www.kordia.co.nz/] \n\n  \n\n!image001.jpg|thumbnail! \n\n  \n\n{color:#959595}This email and attachments: are confidential; may be protected by privilege and copyright; if received in error may not be used, copied, or kept; are not guaranteed to be virus-free; may not express the views of Kordia(R); do not designate an information system; and do not give rise to any liability for Kordia(R).{color} \n\n  \n\n  \n\n  \n  \n\n  \n\n{color:#172B4D}CLIENT CONFIDENTIAL{color} \n\n *From:* Kordia Cyber Defence Operations \n  *Sent:* Tuesday, September 19, 2023 3:59 PM\n  *To:* Jason Lee <[Jason.Lee@emrge.co.nz|mailto:Jason.Lee@emrge.co.nz]>\n  *Cc:* EMRGE SRE Admin <[sre-admin@emrge.co.nz|mailto:sre-admin@emrge.co.nz]>\n  *Subject:* RE: [EXTERNAL] Re: Generate - Patient-0 Malicious File Download Alert from the Zscaler Cloud Sandbox   \n\n  \n\nGood afternoon Jason \n\n  \n\nCould you please provide more information for this alert  \n\nEg: Host, username, source IP  \n\nAs Microsoft defender and MS Sentinel is not giving me much info if I only have MD5 \n\n  \n\n{color:#172B4D}Kind Regards,{color}  \n\n *{color:#00B9CB} {color}* \n\n  *{color:#00B9CB} *Blanca Mansfield*{color}* \n\n *{color:#404040} *CDO Team Lead*{color}*{color:#172B4D}{color}  \n\n  \n\n *{color:#404040} *T.*{color}* 0800 777 780{color:#404040}{color}  \n\n *{color:#404040} *E.*{color}* [{color:blue}bmansfield@secops.co.nz{color}|mailto:bmansfield@secops.co.nz]{color:#172B4D}{color} \n\n {color:#959595}Kordia | Secops{color}  \n\n{color:#959595}Level 3, 162 Victoria Street, Auckland 1010{color}  \n\n +{color:#959595} +kordia.co.nz+{color}++{color:#959595} {color}+ \n\n +{color:#959595} {color}+ \n\n!file:///C:/Users/user/AppData/Roaming/Microsoft/Signatures/BM%20(SOC@secops.co.nz)_files/image001.jpg! \n\n  \n\n!file:///C:/Users/user/AppData/Roaming/Microsoft/Signatures/BM%20(SOC@secops.co.nz)_files/image002.jpg! \n\n  \n\n{color:#959595}This email and attachments: are confidential; may be protected by privilege and copyright; if received in error may not be used, copied, or kept; are not guaranteed to be virus-free; may not express the views of Kordia(R); do not designate an information system; and do not give rise to any liability for Kordia(R).{color} +{color:#959595} {color}+ \n\n  \n\n  \n\n  \n\n  \n\n  \n\n  \n  \n\n *From:* Jason Lee <[Jason.Lee@emrge.co.nz|mailto:Jason.Lee@emrge.co.nz]> \n  *Sent:* Tuesday, September 19, 2023 8:54 AM\n  *To:* Kordia Cyber Defence Operations <[CDO@secops.co.nz|mailto:CDO@secops.co.nz]>\n  *Cc:* EMRGE SRE Admin <[sre-admin@emrge.co.nz|mailto:sre-admin@emrge.co.nz]>\n  *Subject:* [EXTERNAL] Re: Generate - Patient-0 Malicious File Download Alert from the Zscaler Cloud Sandbox   \n\n  \n\nCan you also let us know if you got this alert in sentinel and whether we should keep these alerts coming to us? \n\n  \n \n  \n\n *{color:#172B4D} *From:*{color}* {color:#172B4D}Jason Lee <{color}[{color:#172B4D}Jason.Lee@emrge.co.nz{color}|mailto:Jason.Lee@emrge.co.nz]{color:#172B4D}>\n  *Date:*  Tuesday, 19 September 2023 at 8:47 AM\n  *To:*  Kordia SecOps Cyber Defence Operations <{color}[{color:#172B4D}CDO@secops.co.nz{color}|mailto:CDO@secops.co.nz]{color:#172B4D}>\n  *Cc:*  EMRGE SRE Admin <{color}[{color:#172B4D}sre-admin@emrge.co.nz{color}|mailto:sre-admin@emrge.co.nz]{color:#172B4D}>\n  *Subject:*  Generate - Patient-0 Malicious File Download Alert from the Zscaler Cloud Sandbox{color}  \n\nHi Secops team, \n\n  \n\nWe received the following alert for Generate overnight. Could you please look into it and let us know if there are any actions required? \n\n  \n\n{color:#172B4D}The Cloud Sandbox detected a new malicious file downloaded by one or more of your users.{color} \n \n {color:#172B4D}Your policy for this specific file type and user is to Allow and Scan files that have not been seen (by your or any other organization). Based on that policy the file was delivered to the user and simultaneously submitted to the Sandbox for analysis. \n \n Details follow. \n \n Cloud and Organization: zscaler.net/32628626 \n File MD5 hash: 637bb7807eba8f13c72bb2193523ed57 \n Threat Category: Sandbox Malware \n Threat Name: malicious behavior \n First downloaded: Mon Sep 18 11:27:45 2023 GMT. Since then, it was allowed 1 time(s), quarantined 0 time(s) and blocked 0 time(s). \n Transactions involving this content:{color} [https://admin.zscaler.net/#insights/web/logs/492817|https://urldefense.proofpoint.com/v2/url?u=https-3A__admin.zscaler.net_-23insights_web_logs_492817&d=DwMFAg&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=LPuPPFix3bvQEu3yin1CLb0O_fWonK2vUtRKIfoAgeU&m=MLgt4g6Vr0g8lNB5aATPBZ2sGb72y_0t0s9YEmdHWaF5aul3F4DWIppMwIeCPziU&s=DdBLI1P3toAv1JaklJHsNoexsnmx-iPow9p4sRi9iOw&e=]{color:#172B4D}{color}{color:#172B4D}{color}  \n\n  \n\n{color:#172B4D}Thanks{color} \n\n{color:#172B4D}Jason Lee{color} \n\n    \n\nThis email and attachments: are confidential; may be protected by privilege and copyright; if received in error may not be used, copied, or kept; are not guaranteed to be virus-free; may not express the views of Kordia(R); do not designate an information system; and do not give rise to any liability for Kordia(R).",
+      "customfield_10010": {
+        "_links": {
+          "jiraRest": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/14099",
+          "web": "https://emergingtechnologypartners.atlassian.net/servicedesk/customer/portal/1/SD-4013",
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/request/14099",
+          "agent": "https://emergingtechnologypartners.atlassian.net/browse/SD-4013"
+        },
+        "requestType": {
+          "_expands": [
+            "field"
+          ],
+          "id": "91",
+          "_links": {
+            "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/servicedesk/1/requesttype/91"
+          },
+          "name": "Email Request",
+          "description": "",
+          "helpText": "",
+          "issueTypeId": "10002",
+          "serviceDeskId": "1",
+          "portalId": "1",
+          "groupIds": [
+
+          ],
+          "icon": {
+            "id": "10561",
+            "_links": {
+              "iconUrls": {
+                "48x48": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/SD_REQTYPE/avatar/10561?size=large",
+                "24x24": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/SD_REQTYPE/avatar/10561?size=small",
+                "16x16": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/SD_REQTYPE/avatar/10561?size=xsmall",
+                "32x32": "https://emergingtechnologypartners.atlassian.net/rest/api/2/universal_avatar/view/type/SD_REQTYPE/avatar/10561?size=medium"
+              }
+            }
+          }
+        },
+        "currentStatus": {
+          "status": "Resolved",
+          "statusCategory": "DONE",
+          "statusDate": {
+            "iso8601": "2023-09-20T03:48:17+00:00",
+            "jira": "2023-09-20T03:48:17.049+00:00",
+            "friendly": "Today 3:48 PM",
+            "epochMillis": 1695181697049
+          }
+        }
+      },
+      "customfield_10014": null,
+      "customfield_10015": null,
+      "customfield_10005": null,
+      "customfield_10006": null,
+      "customfield_10007": null,
+      "security": null,
+      "customfield_10008": null,
+      "customfield_10009": null,
+      "summary": "FW: [EXTERNAL] Re: Generate - Patient-0 Malicious File Download Alert from the Zscaler Cloud Sandbox",
+      "customfield_10001": null,
+      "customfield_10002": [
+        {
+          "id": "44",
+          "name": "Generate Investment Holdings",
+          "_links": {
+            "self": "https://emergingtechnologypartners.atlassian.net/rest/servicedeskapi/organization/44"
+          }
+        }
+      ],
+      "customfield_10003": null,
+      "customfield_10004": null,
+      "environment": null,
+      "duedate": null
+    }
+  },
+  

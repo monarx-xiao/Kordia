@@ -1,0 +1,58 @@
+IF OBJECT_ID ('emr_jira.SP_clean_jira_tables') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_clean_jira_tables
+GO
+
+CREATE PROCEDURE emr_jira.SP_clean_jira_tables
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date:     <20230919>
+-- Update date:     <20250311>
+-- Description:	<SP_clean_jira_tables>
+-- Source table: emr_jira.jira_issue_tmp 
+--               emr_jira.jira_worklog_tmp
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+IF OBJECT_ID ('emr_jira.jira_issue_tmp') IS NOT NULL
+     drop table emr_jira.jira_issue_tmp
+;
+
+IF OBJECT_ID ('emr_jira.jira_worklog_tmp') IS NOT NULL
+     drop table emr_jira.jira_worklog_tmp
+;
+
+CREATE TABLE emr_jira.jira_worklog_tmp
+(
+	resource                         varchar(max) NULL
+     ,comment                         varchar(max) NULL
+     ,created_at                      varchar(max) NULL
+     ,updated_at                      varchar(max) NULL
+     ,started_at                      varchar(max) NULL
+     ,timeSpentSeconds                varchar(max) NULL
+     ,issue_Id                        varchar(max) NULL
+)
+
+;
+
+
+truncate table emr_jira.jira_issue
+;
+
+truncate table emr_jira.jira_worklog
+;
+
+
+END
+
+
+
+
+
+
+GO

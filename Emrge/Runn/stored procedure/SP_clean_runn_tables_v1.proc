@@ -1,0 +1,64 @@
+IF OBJECT_ID ('emr_runn.SP_clean_runn_tables_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_clean_runn_tables_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_clean_runn_tables_v1
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251125>
+-- Update date: <20251126>
+-- Description:	<SP_clean_runn_tables_v1>
+-- Source table: emr_runn.runn_actuals_v1_tmp 
+-- Source table: emr_runn.runn_projects_v1_tmp 
+-- Source table: emr_runn.runn_people_v1_tmp 
+-- Source table: emr_runn.runn_roles_v1_tmp
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+IF OBJECT_ID ('emr_runn.runn_actuals_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_actuals_v1_tmp
+;
+
+
+IF OBJECT_ID ('emr_runn.runn_projects_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_projects_v1_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_people_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_people_v1_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_roles_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_roles_v1_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_teams_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_teams_v1_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_person_contracts_v1_tmp') IS NOT NULL
+     drop table emr_runn.runn_person_contracts_v1_tmp
+;
+
+    delete from emr_runn.runn_actuals_v1_h
+          where cast(actual_date as date) < dateadd(month,-3,getdate())
+;
+
+    delete from emr_runn.runn_report_v1
+          where cast(load_date as date) < dateadd(month,-3,getdate())
+;
+
+END
+
+
+
+
+
+
+GO

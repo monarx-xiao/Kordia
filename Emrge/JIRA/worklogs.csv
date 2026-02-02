@@ -1,0 +1,980 @@
+"Organisation","Ticket ID","Ticket Summary","Resource","Started At","Worklog Description","Time Spent (hours)"
+"Kordia","SD-2029","[Kordia Corp] Host Not Reporting for at least 5 minutes on 'WINBKP20'","Bo Xiao","2022/12/13 07:29:58","* confirm with customer","0.25"
+"NSQR","SD-2021","NSQR - fluent-bit liveness probe fails often","Jason Lee","2022/12/12 13:38:55","* investigation","0.25"
+"NZGT","SD-2020","Urgent - FXLogix error - User not able to login to the system ","Jack Lau","2022/12/12 15:16:08","* Check AD account status and settings","0.5"
+"NSQR","SD-2019","NSQR - prod and dev cluster down","Jason Lee","2022/12/12 10:36:00","* troubleshooting, fix and doc update","3"
+"NZHL","SD-2017","NZHL- Resize VM nzhdnlinuxpdaue01 Debt Nav Linux server, currently DS1v2 → B2s ","Maruthi Jella","2022/12/13 06:37:28","","1"
+"NZGT","SD-2014","Non-Prod WAF Test for Client Portal with Prevention mode","Jack Lau","2022/12/09 10:33:58","* Analyse the logs for the testing
+* Troubleshooting the http status code
+* Check App Gateway backend settings
+* Check App Service configuration plan
+* Check NewRelic History
+* Provide info to Wendy","1.5"
+"NZGT","SD-2012","[NZGT] Host Not Reporting for at least 5 minutes on 'NZCRMBSTGCV01' and 'NZCRMFSTGCV01'","Bo Xiao","2022/12/13 07:39:57","* Check and send Email to customer for confirmation","0.25"
+"Farmax","SD-2011","farmax-benchmarking-api-prod logs","Jason Lee","2022/12/09 07:58:53","* research","0.25"
+"Farmax","SD-2011","farmax-benchmarking-api-prod logs","Jason Lee","2022/12/09 10:16:29","* make change","0.25"
+"Sealink","SD-2010","Host Not Reporting for at least 5 minutes on 'SRV-SEA-JRS-00'","Bo Xiao","2022/12/08 09:13:10","* Login server and check.  Confirm by customer","0.5"
+"NZGT","SD-2008","Extend the expiration date for AVD test accounts","Jack Lau","2022/12/07 12:43:01","* Troubleshooting for AVD login issue with test account
+* Emailed Wendy to report the change for extending expiration date to Feb 28th 2023 on Jason’s test account
+* Provide information for Wendy to review if we can extend expiration date for other test accounts","1"
+"NZHL","SD-2006","Decommission nzhdbclipdaue01","Maruthi Jella","2022/12/07 12:00:43","","0.5"
+"The Warehouse Group","SD-2005","TWG-An error occurred while pushing a profile update to Miro app.","Maruthi Jella","2022/12/07 11:03:27","","0.5"
+"NZGT","SD-2004","FW: Test mail","Bo Xiao","2022/12/07 12:01:57","* Issue assessment and perform steps on stage.","1"
+"NZGT","SD-2004","FW: Test mail","Bo Xiao","2022/12/13 06:59:07","* Check firewall policies for SMTP on NZCRMSQLSTG01","1"
+"NZGT","SD-2003","NZGT: WYSE/AVD issues yesterday/today","Jason Lee","2022/12/07 08:08:00","* troubleshooting and reset storage account replication back to RA-GRS","2"
+"NZGT","SD-2003","NZGT: WYSE/AVD issues yesterday/today","Jason Lee","2022/12/08 08:30:00","* troubleshooting, coordinating response","4"
+"NZGT","SD-2003","NZGT: WYSE/AVD issues yesterday/today","Jason Lee","2022/12/12 14:57:12","* Troubleshooting, AVD deployment, research","2"
+"NZGT","SD-2003","NZGT: WYSE/AVD issues yesterday/today","Jason Lee","2022/12/09 08:00:00","* troubleshooting","4"
+"The Warehouse Group","SD-2002","TWG - No user returned for user employee_2842923","Maruthi Jella","2022/12/07 11:03:56","","0.5"
+"Partners Life","SD-2001","SW2 - Revoke certs & licenses from devices - Partners Life","Maruthi Jella","2022/12/09 08:56:23","","1"
+"NZGT","SD-2000","NZGT Decommission NZ-C0001 & NZ-C0002","Jason Lee","2022/12/06 10:09:20","* Planning, customer comms, documentation, execution.","0.75"
+"NZHL","SD-1999","FW: Estimated monthly costs with Reservations","Maruthi Jella","2022/12/13 07:22:51","","0.25"
+"Electra","SD-1994","Implement network policy with Public IP for the PROD app server elbcapppdaue01","Jack Lau","2022/12/05 12:47:06","* Assign Public IP to elbcapppdaue01
+* Set NSG Inbound rules to allow 7077, 7078 ports from TAG API IP address
+* Remove the NSG Outbound rule for any any internet
+* Set NSG Outbound rules to allow http, https and smtp 587
+* Set NSG Outbound rules to allow 7077, 7078 ports to TAG API IP address
+* Set route for internal network 10.0.0.0/8","2"
+"The Warehouse Group","SD-1993","TWG Smartsheet - apiErrorMessage=There are no licenses available on your account.","Jack Lau","2022/12/05 14:33:00","* Follow up with Aaron","0.25"
+"The Warehouse Group","SD-1993","TWG Smartsheet - apiErrorMessage=There are no licenses available on your account.","Jack Lau","2022/12/06 19:24:13","* Following up the status with TWG teams","0.25"
+"NZGT","SD-1992","FW: Aura Audit Report - NZGT vendor followup","Jack Lau","2022/12/06 21:23:35","* Review the configuration info from Trico
+* Check AVD Pool settings","0.5"
+"NZGT","SD-1992","FW: Aura Audit Report - NZGT vendor followup","Jack Lau","2022/12/08 15:04:49","* Review AVD settings
+* Discuss with Simon about the UAT test
+* Provide info and comments on New AVD settings to Wendy","1.5"
+"Southern Cross","SD-1991","Southern cross - Cloudflare alerts in descending order of frequency for Http 500 errors","Jack Lau","2022/12/05 08:13:14","* Checked alerts on Cloudflare
+* Checked the Southern cross website. The website looks okay.
+* Emailed Mike about the alerts","0.5"
+"Southern Cross","SD-1985","New Change CHG0056196 - SiteCore WAFs settings replication from Prod to Pre-Prod","Jack Lau","2022/12/02 15:44:10","* Check and confirm the change details
+* Provide the change details to Mike","1"
+"Southern Cross","SD-1985","New Change CHG0056196 - SiteCore WAFs settings replication from Prod to Pre-Prod","Jack Lau","2022/12/06 17:16:17","* Implement the WAF change
+* Enable the Protection mode
+* Check and verify the operational status","1"
+"Southern Cross","SD-1985","New Change CHG0056196 - SiteCore WAFs settings replication from Prod to Pre-Prod","Jack Lau","2022/12/09 11:17:11","* Follow up the status and close the ticket","0.25"
+"Southern Cross","SD-1984","CHG0056191 - Reverse LinkedIn Cookie change on SiteCore Azure WAFs","Jack Lau","2022/12/02 15:56:50","* Confirm the change with the team
+* Document the change details
+* Provide the change details to Mike","1"
+"Southern Cross","SD-1984","CHG0056191 - Reverse LinkedIn Cookie change on SiteCore Azure WAFs","Jack Lau","2022/12/06 17:48:29","* Implement the WAF change
+* Check and verify the operational status","0.5"
+"Southern Cross","SD-1984","CHG0056191 - Reverse LinkedIn Cookie change on SiteCore Azure WAFs","Jack Lau","2022/12/09 11:15:34","* Follow up the status and close the ticket","0.25"
+"The Warehouse Group","SD-1983","Deploy cloudflare sentinel connector for TWG ","Jason Lee","2022/12/07 13:29:28","","1"
+"Southern Cross","SD-1982","RE: Request for Change CHG0056036","Jack Lau","2022/12/01 09:11:13","* Check WAF Policy and confirm the change","0.75"
+"Southern Cross","SD-1982","RE: Request for Change CHG0056036","Jack Lau","2022/12/01 13:17:20","* Implement the WAF change
+* Check the provision result","0.5"
+"NZGT","SD-1980","Change NZGT storage accounts with file shares from RA-GRS to LRS- Replication change","Maruthi Jella","2022/12/01 09:52:01","","2"
+"NZGT","SD-1979","FW: Scheduled maintenance for 2 networks in organization ""NZGT""","Jason Lee","2022/12/02 14:30:30","","0.25"
+"Electra","SD-1978","Enable SQL Assessments on SQL VM","Jack Lau","2022/11/30 21:00:08","* Enable and configure SQL Assessments on SQL VM
+* Test the SQL Assessment","1.5"
+"Electra","SD-1977","Decommission Ednar vm (elednarpdaue01) and resources - Electra","Maruthi Jella","2022/11/30 13:28:54","","0.5"
+"NZGT","SD-1976","Adding Deloittes new CIC to Tricors existing Firewall policy to setup TLS between Tricor and Deloitte’s new DR site.","Maruthi Jella","2022/11/30 13:00:34","","0.5"
+"NZGT","SD-1976","Adding Deloittes new CIC to Tricors existing Firewall policy to setup TLS between Tricor and Deloitte’s new DR site.","Jason Lee","2022/11/30 15:39:57","* review change discussed change and approved.","0.5"
+"Metlifecare","SD-1975","Metlifecare Exchange & SharePoint Backup tasks failed","Jack Lau","2022/11/30 07:37:01","* Check the backup server
+* Re-run the backup tasks
+* Emailed Lydia. Still got the error message after the backup retry","0.5"
+"Metlifecare","SD-1975","Metlifecare Exchange & SharePoint Backup tasks failed","Jack Lau","2022/12/01 10:31:32","* Update Veeam Ticket. Case # 05749917
+* Review logs and send send logs to the support","0.75"
+"Metlifecare","SD-1975","Metlifecare Exchange & SharePoint Backup tasks failed","Jack Lau","2022/12/02 16:06:11","* Follow up with Veeam support
+* Troubleshooting and apply fix to the server","1"
+"Metlifecare","SD-1975","Metlifecare Exchange & SharePoint Backup tasks failed","Jack Lau","2022/12/07 15:06:32","* PST restore tests
+* Verify PST files
+* Remove PST files
+* Clean up the tests","1.5"
+"Kordia","SD-1974","FW: Opsgenie Alert: Fortigate HA Failover Alert","Jack Lau","2022/11/29 15:59:09","* Done some initial check
+* Escalated to MSSP","0.5"
+"Kordia","SD-1974","FW: Opsgenie Alert: Fortigate HA Failover Alert","Jack Lau","2022/12/07 17:10:15","* Investigate and check logs on Mellanox Switch
+* Investigate and check logs on Fortigate","2.5"
+"NZGT","SD-1972","[NZGT] FW: A Vulnerability Assessment scan has completed on your server 'core-test-aue-gts1'","Bo Xiao","2022/12/01 10:43:47","* check account in test VMs","0.5"
+"NZGT","SD-1972","[NZGT] FW: A Vulnerability Assessment scan has completed on your server 'core-test-aue-gts1'","Jack Lau","2022/12/06 17:28:31","* Plan the database decommissioning with Bo","1"
+"NZGT","SD-1971","T20221129.0122 - Certificate in the connection expired","Jason Lee","2022/11/30 13:41:37","","0.25"
+"NZGT","SD-1971","T20221129.0122 - Certificate in the connection expired","Jason Lee","2022/12/02 14:19:45","","0.25"
+"NZGT","SD-1970","NZ-BACKUP03 Daily Report- Backup retention	error","Bo Xiao","2022/12/07 08:53:05","* Open and log Veeam ticket.  Capture diagnostic log file. ","1"
+"Metlifecare","SD-1969","ALARM: ""METEC2VBO01-Veeam.Archiver.RESTful.Service-Status"" in Asia Pacific (Sydney)","Jack Lau","2022/11/29 15:48:07","* Check disk space
+* Disk space consumed by New downloaded patch files
+* Run disk clean up","0.75"
+"Partners Life","SD-1968","Partners Life - SecureW2 certificates for AirMedia devices","Jack Lau","2022/12/06 17:26:11","* Generate Client certificates
+* Provide the root and intermediate CA certs
+* Update Client Cert password in lastpass","1"
+"Kordia","SD-1966","[Kordia Corp] Datto SQL database backup failed on WINDBP40 ","Bo Xiao","2022/11/30 13:34:48","* Solved","0.25"
+"Sealink","SD-1965","[Sealink] Memory Used % &gt; 90.0 for at least 10 minutes on &apos;SRV-SEA-JRS-00&apos;","Bo Xiao","2022/11/29 19:07:07","* check and assessment memory usage and contact customer","1"
+"NZHL","SD-1964","FW: RE:Need to access Microsoft Azure Support -  Performance Issues","Jack Lau","2022/11/28 12:37:18","* Communicated with Deloitte about the issue
+* Raised a ticket to Microsoft","1"
+"NZHL","SD-1964","FW: RE:Need to access Microsoft Azure Support -  Performance Issues","Jack Lau","2022/11/30 09:53:00","* Review and follow up the status","0.5"
+"NZHL","SD-1962","Enable M365 Online Email Archiving","Jack Lau","2022/11/25 16:51:42","* Check M365 license status
+* Follow up Steve’s account on E5 license
+* Raised a ticket to Microsoft","1"
+"NZHL","SD-1962","Enable M365 Online Email Archiving","Jack Lau","2022/11/28 19:53:06","* Enable and configure Online Exchange Archiving on Emrge account
+* Review the retention policy","1.5"
+"NZHL","SD-1962","Enable M365 Online Email Archiving","Jack Lau","2022/11/30 14:41:45","* Check and review the Exchange Retention policy
+* Emailed Steve","1.5"
+"Southern Cross","SD-1959","New Change SX Ref CHG0056036","Jack Lau","2022/11/24 13:54:16","* Review the change request
+* Review the current WAF policy","0.5"
+"Southern Cross","SD-1959","New Change SX Ref CHG0056036","Jack Lau","2022/11/25 15:09:19","* Review the WAF policy
+* Provide the change details to Mike","1"
+"Southern Cross","SD-1959","New Change SX Ref CHG0056036","Jack Lau","2022/11/28 09:28:25","* Implement the change","0.75"
+"Kordia","SD-1958","[Kordia Corp] SQL server 2017 patching November","Bo Xiao","2022/11/24 09:51:23","* create ticket for patching","0.25"
+"Kordia","SD-1958","[Kordia Corp] SQL server 2017 patching November","Bo Xiao","2022/11/30 18:37:13","* Patching","2"
+"Kordia","SD-1957","[Kordia Corp] SQL server 2017 patching on test, DEV","Bo Xiao","2022/11/23 17:25:31","* Contacted owner, create CR, perform Patching","4"
+"NZHL","SD-1956","[NZHL] Memory % . Average > 85.0 for at least 15 minutes on 'nzh-core-pd-aue-01-plan","Bo Xiao","2022/11/28 12:45:11","* assessment","0.25"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Jack Lau","2022/11/23 09:10:11","* Investigating the CRM websites issue with Wendy and Fusion5
+* Check and review the logs on NZCRMFPRDCT01
+* NZCRMFPRDCV01
+* Follow up the SQL Server with Bo NZCRMPRDPRORT01
+* NZCRMSQLPRD02","3"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Bo Xiao","2022/11/23 10:52:28","","1.5"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Jack Lau","2022/11/25 16:42:09","* Raised two tickets to Microsoft","0.75"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Jack Lau","2022/11/28 18:44:15","* Follow up with Microsoft Support","1"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Jack Lau","2022/12/02 16:04:39","* Provide info to Microsoft Support
+* Follow up with Microsoft Support","1"
+"Kordia","SD-1955","FW: INX0569927 - T20221123.0028 - URGENT - NZGT Issue - Unable to access the CTSA Platform ","Jack Lau","2022/12/08 15:08:04","* Troubleshooting session with Microsoft Support Re DCOM error messages","1"
+"Farmax","SD-1954","Remove Donny and Jacky from Farmax Azure subs","Jack Lau","2022/11/22 16:26:52","* Request PIM access
+* Removed the guest accounts from azure ","0.5"
+"ProCare","SD-1951","ProCare update the Access keys issue","Jack Lau","2022/11/23 19:17:54","* Troubleshooting for the secret key alert.","1"
+"ProCare","SD-1951","ProCare update the Access keys issue","Maruthi Jella","2022/11/25 06:22:54","","4"
+"NZGT","SD-1949","[NZGT] SQL patching for SQL server 2017","Bo Xiao","2022/11/24 18:58:04","* patching","2"
+"Sealink","SD-1947","M365 Backups for Sealink","Jason Lee","2022/11/30 14:44:47","* Research and planning","0.75"
+"NZGT","SD-1944","FW: Aura Audit Report - Low risk - Tentative schedule","Jack Lau","2022/11/21 15:27:00","* Review and analyse the requirements
+* Estimate the effort","1"
+"NZGT","SD-1944","FW: Aura Audit Report - Low risk - Tentative schedule","Jack Lau","2022/11/22 16:00:38","* Review and analyse the requirements
+* Estimate the effort","0.5"
+"NZGT","SD-1943","FW: [Tricor NZ] New TLS connection for Deloitte CIC DR","Maruthi Jella","2022/11/25 09:58:49","","0.5"
+"NZGT","SD-1943","FW: [Tricor NZ] New TLS connection for Deloitte CIC DR","Maruthi Jella","2022/12/01 06:32:13","","1"
+"Southern Cross","SD-1938","403 Errors on SiteCore Azure WAF","David Woon","2022/11/18 09:04:24","","2"
+"Southern Cross","SD-1938","403 Errors on SiteCore Azure WAF","David Woon","2022/12/03 02:36:34","* PIR","0.5"
+"Southern Cross","SD-1937","FW: WAF change for Kordia - CHG0055931","Jack Lau","2022/11/21 16:30:49","* Review ticket status with Mike","0.25"
+"Southern Cross","SD-1937","FW: WAF change for Kordia - CHG0055931","Jack Lau","2022/11/22 12:51:17","* Implement the change
+* Provide screenshot and confirm the change is complete.","0.5"
+"Southern Cross","SD-1936","Add a Firewall Whitelisting CHG0055925","Jack Lau","2022/11/22 11:25:02","* Review the firewall settings
+* Provide and confirm the new firewall rules","1.5"
+"Southern Cross","SD-1936","Add a Firewall Whitelisting CHG0055925","Jack Lau","2022/11/22 12:52:26","* Implement the change
+* Provide the test results and findings to the client
+* Confirm the change is complete","0.5"
+"Farmax","SD-1935","Farmax-batch-api Pipeline","Jason Lee","2022/11/17 13:27:53","* Troubleshoot and refresh token","1"
+"NZGT","SD-1934","[NZGT] Memory Used % > 90.0 for at least 5 minutes on 'NZGTSage'","Bo Xiao","2022/11/16 13:04:06","* send alert to Wendy","0.25"
+"LIC","SD-1930","Investigate failed Linux server patching - LIC","Maruthi Jella","2022/12/07 07:31:31","","2"
+"NZGT","SD-1927","NZGT: Tricor change of SOC from Deloittes to Kroll","Jason Lee","2022/11/17 14:23:22","","0.25"
+"NZGT","SD-1927","NZGT: Tricor change of SOC from Deloittes to Kroll","David Woon","2022/11/23 15:00:00","* initial research, and meeting","1"
+"NZGT","SD-1923","FW: 2 things in NZ DCs","David Woon","2022/11/15 09:20:49","","0.5"
+"Electra","SD-1922","Backup warning: The associated backup policy is inconsistent.","Jack Lau","2022/11/14 20:08:57","* Review the backup warning message
+* Raise a ticket to Azure","0.5"
+"Electra","SD-1922","Backup warning: The associated backup policy is inconsistent.","Jack Lau","2022/11/16 13:59:12","* Applied the workaround suggested by Microsoft and emailed Drew. ","0.5"
+"NZGT","SD-1921","FW: IIS SMTP relay for CRM email agreed with Tricor IT","Jack Lau","2022/11/15 08:01:23","* Review the SMTP requirements","0.25"
+"NZGT","SD-1921","FW: IIS SMTP relay for CRM email agreed with Tricor IT","Jack Lau","2022/11/25 17:15:04","* Follow up the status with Wendy","0.25"
+"NZGT","SD-1921","FW: IIS SMTP relay for CRM email agreed with Tricor IT","Jack Lau","2022/12/06 21:22:28","* Review the comments from Fusion5","0.5"
+"NZGT","SD-1921","FW: IIS SMTP relay for CRM email agreed with Tricor IT","Jack Lau","2022/12/07 16:13:17","* Review and discuss Fusion5’s comments with the team
+* Provide feedback to Wendy","1"
+"Metlifecare","SD-1920","FW: Veeam Managed Services Report for October 2022","Jack Lau","2022/11/14 16:22:22","* Check Report and backup history
+* Check 365 portal","0.5"
+"Metlifecare","SD-1920","FW: Veeam Managed Services Report for October 2022","Jack Lau","2022/11/17 15:46:42","* Review and check the mailbox backup policy
+* Review the unprotected mailbox report
+* Emailed Lydia for the question of shared mailbox count.","1"
+"NZHL","SD-1917","P3 | NZHL-47 | Unusual number of failed sign-in attempts","Jack Lau","2022/11/14 19:57:39","* Review alert messages from SecOps
+* Enable PIM request and investigate the security events in the client environment
+* Identify the security issues
+* Provide information to Deloitte to fix the security issues of the VM
+* Provide update to the client and the vendor Deloitte about the security events","2"
+"NZHL","SD-1917","P3 | NZHL-47 | Unusual number of failed sign-in attempts","Jack Lau","2022/11/18 12:36:00","* Follow up with SecOps
+* Review the NSG rules","1"
+"NZHL","SD-1917","P3 | NZHL-47 | Unusual number of failed sign-in attempts","Jack Lau","2022/11/29 13:08:00","* Provide the security event status to the client","0.5"
+"Southern Cross","SD-1916","HTTP timeout occurred on southercross.co.nz and southerncrosslife.co.nz","Jack Lau","2022/11/11 10:00:00","* Check alerts and Cloudflare
+* Emailed Mike about the alerts","0.5"
+"Southern Cross","SD-1916","HTTP timeout occurred on southercross.co.nz and southerncrosslife.co.nz","Jack Lau","2022/11/11 16:36:56","* Check the Cloudflare status
+* Emailed Mike about the latest status","0.25"
+"LIC","SD-1915","LIC Alert A106450: LICNEWNUTCL01.MSAD.LIVESTOCK.ORG.NZ: Warning: Incorrect Kerberos Setup","Jack Lau","2022/11/11 07:00:00","* Review the alert message
+* Escalate to the team","0.5"
+"Southern Cross","SD-1914","WAF is not running on the app gateways (z-mysc-portal-ag-ase-pr1 & z-mysc-portal-ag-ae-pr1)","Jack Lau","2022/11/10 15:57:28","* Check App Gateway and report issues to the client","0.5"
+"Southern Cross","SD-1914","WAF is not running on the app gateways (z-mysc-portal-ag-ase-pr1 & z-mysc-portal-ag-ae-pr1)","Jack Lau","2022/11/16 13:00:05","* Follow up the status
+* Already reported to the client. They will handle it.","0.25"
+"Southern Cross","SD-1913","FW: WAF change for Kordia - CHG0055794","Jack Lau","2022/11/11 20:05:07","* Review the change request
+* Emailed to Jules to follow up","0.5"
+"Southern Cross","SD-1913","FW: WAF change for Kordia - CHG0055794","Jack Lau","2022/11/14 21:24:57","* Review change request from Mike","0.5"
+"Southern Cross","SD-1913","FW: WAF change for Kordia - CHG0055794","Jack Lau","2022/11/16 09:32:29","* Review the change
+* Implement the change
+* Verify the update status on the WAF policy
+* Message Mike that the change is complete","0.75"
+"Southern Cross","SD-1913","FW: WAF change for Kordia - CHG0055794","Jack Lau","2022/11/21 16:31:22","* Review ticket status with Mike","0.25"
+"NZGT","SD-1911","FW: [Security Alert - 09 Nov 2022] VMware - Vulnerabilities in Workspace ONE Assist [CVE-2022-31685] [CVE-2022-31686][CVE-2022-31687]","Jason Lee","2022/11/10 09:21:26","* assess and reply to customer","0.25"
+"NZGT","SD-1910","FW: [Security Alert - 09 Nov 2022] Microsoft Exchange - ProxyNotShell zero-days Fixes [CVE-2022-41040] [CVE-2022-41082]","Jason Lee","2022/11/10 09:22:21","* assess and reply to customer","0.25"
+"NZGT","SD-1909","FW: [Security Alert - 09 Nov 2022] vm2 - Critical RCE Flaw in JavaScript Sandbox [CVE-2022-36067]","Jason Lee","2022/11/10 09:24:15","* assess and reply to customer","0.25"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/09 19:28:00","* Provide WAF doc to Jules and the team","3"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/10 21:28:36","* Review WAF config with Jules and the team","1"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/08 21:29:00","* Follow up the issue with SC team","1"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/21 16:44:08","* Follow up the status with Mike","0.25"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/23 14:57:33","* Investigating Prod and Pre-Prod WAF policies in Sitecore subs","1.5"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/25 15:07:57","* Analysing WAF logs","1"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/25 16:17:11","* Analysed the log file
+* Emailed Joel with suggestion for exclusion rules.","0.5"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/11/29 09:43:34","* Review comment from Joel
+* Analyse the log file
+* Plan the change
+* Provide the change details to Joel and Mike","1.5"
+"Southern Cross","SD-1907","FW: 403 response on www.southerncross.co.nz dropdown filter request CHG0055925","Jack Lau","2022/12/01 12:42:44","* Implement the change
+* Check the provision result","0.5"
+"NZGT","SD-1906","NZGT: Update DNS Server on Meraki Wireless AP for Local Auth","David Woon","2022/11/09 11:48:57","","1"
+"NZGT","SD-1905","[NZGT]: SentinelOne -Latest Application Risks","Bo Xiao","2022/11/08 12:34:57","* vulnerabilities assessment","1"
+"NZGT","SD-1902","SentinelOne flagged NZ-AVD-ProdSH05 as infected","Jack Lau","2022/11/08 11:03:03","* Check AVD host
+* Review S1 and initiate disk scan","1"
+"NZGT","SD-1902","SentinelOne flagged NZ-AVD-ProdSH05 as infected","Jack Lau","2022/11/14 14:22:46","* Review S1 virus alert.
+* Check AVD host that no python software is installed.
+* Reply the client with findings about the infected file.","0.5"
+"NZGT","SD-1902","SentinelOne flagged NZ-AVD-ProdSH05 as infected","Jack Lau","2022/11/15 17:04:11","* Check infected AVD host
+* Check host 03 which is connecting to the user profile Mykola","0.5"
+"NZHL","SD-1899"," [New Relic] Dtu Consumption % . Average > 85 for at least 15 minutes on 'linksdatabases'","Jack Lau","2022/11/07 10:20:09","* Review the alert
+* Emailed the client and communicated about the alert","0.5"
+"NZHL","SD-1898","Missing firewall rules in Azure Cosmos DB accounts","Jack Lau","2022/11/04 19:01:08","* Follow up the firewall rule settings with Paul and Deloitte
+* Provide recommendations and current configuration to the client","2"
+"NZHL","SD-1898","Missing firewall rules in Azure Cosmos DB accounts","Jack Lau","2022/12/02 15:23:33","* Review the current settings and the comments from Deloitte","1"
+"NZHL","SD-1897","Implement Security Advisor to enforce HTTPS on Deloitte Function Apps","Jack Lau","2022/11/02 19:27:00","* Communicated with Deloitte and NZHL
+* Implemented the HTTPS to Deloitte function apps
+* Emailed NZHL and Deloitte","1.5"
+"NZGT","SD-1895","FW: Re: [EXTERNAL] Re: App service cannot seem ... - TrackingID#2210050030001450","Jack Lau","2022/11/04 16:48:16","* Troubleshooting with Fusion5","0.5"
+"NZGT","SD-1895","FW: Re: [EXTERNAL] Re: App service cannot seem ... - TrackingID#2210050030001450","Jack Lau","2022/11/09 11:47:02","* Follow up with Fusion5 to confirm that Conway has the access.","0.25"
+"NZGT","SD-1894","NZGT Update storage account contactapiproduction to use private endpoints","Jason Lee","2022/11/04 07:09:00","* planning","0.75"
+"NZGT","SD-1894","NZGT Update storage account contactapiproduction to use private endpoints","Jason Lee","2022/11/06 07:51:00","* Change and testing","1.75"
+"LIC","SD-1892","Service Desk Ticket Edited: T20221103.0089 - Add P01593 to licazebatchp01 crontab for user jobctlp1 (Livestock Improvement Corporation)","Jason Lee","2022/11/09 12:50:49","* writing up CR. Liasing with customer about requirements","1.5"
+"LIC","SD-1892","Service Desk Ticket Edited: T20221103.0089 - Add P01593 to licazebatchp01 crontab for user jobctlp1 (Livestock Improvement Corporation)","Jason Lee","2022/11/15 14:17:21","","0.5"
+"The Warehouse Group","SD-1891","Monitoring - Okta_CL has stopped sending log for more than 4 hours (INC0191570)","Jack Lau","2022/11/03 14:36:37","* Check Okta API token status
+* Emailed Aaron","0.5"
+"The Warehouse Group","SD-1891","Monitoring - Okta_CL has stopped sending log for more than 4 hours (INC0191570)","Jack Lau","2022/11/07 19:37:14","* Follow up with Aaron to generate the token
+* Provide secops the temporary token","0.75"
+"The Warehouse Group","SD-1891","Monitoring - Okta_CL has stopped sending log for more than 4 hours (INC0191570)","Jack Lau","2022/11/10 22:17:28","* Follow up with SecOps","0.25"
+"The Warehouse Group","SD-1891","Monitoring - Okta_CL has stopped sending log for more than 4 hours (INC0191570)","Jason Lee","2022/11/30 15:34:48","* support call with Jackie","0.5"
+"KiwiRail","SD-1890","FW: Megaport token for the monitoring","Jason Lee","2022/11/03 13:03:13","* Research and respond to customer","1"
+"KiwiRail","SD-1890","FW: Megaport token for the monitoring","Jason Lee","2022/11/04 11:34:07","* set up user account","0.25"
+"KiwiRail","SD-1890","FW: Megaport token for the monitoring","Jason Lee","2022/11/08 09:27:45","* Test and reply to customer","0.5"
+"KiwiRail","SD-1890","FW: Megaport token for the monitoring","Jason Lee","2022/11/09 11:54:17","* video call support for customer to use the token then enquiry with megaport about the token validity period.","1"
+"Sealink","SD-1888","Sealink high memory usage on SRV-SEA-JRS-00","Jason Lee","2022/11/03 07:36:56","* Diagnose issue, email customer","0.5"
+"Soar Communications","SD-1886","[ICG] Azure AD app permissions","Bo Xiao","2022/11/02 15:42:19","* Check and fix the issue.","0.5"
+"Soar Communications","SD-1886","[ICG] Azure AD app permissions","Bo Xiao","2022/11/03 07:07:10","* Find and enable APT permission.","0.5"
+"NZGT","SD-1880","NZGT: Add firewall rule for P drive for new VDI subnets","David Woon","2022/11/02 12:01:28","","0.5"
+"LIC","SD-1879","LIC september monthly report metrics missing some data for QueenSt cluster","Jason Lee","2022/11/01 14:05:07","","0.5"
+"Sealink","SD-1876","Apply Azure Advisor security recommendations on Sealink-prod Database","Maruthi Jella","2022/11/02 11:58:00","","0.5"
+"Sealink","SD-1876","Apply Azure Advisor security recommendations on Sealink-prod Database","Maruthi Jella","2022/11/18 10:30:00","","0.25"
+"NZGT","SD-1875","[NZGT]: Give permissions for tricor-dom\svc_nzgt_ssis_iManPCS to access SQL","Bo Xiao","2022/11/02 07:46:01","* grant access to login for stage and prod02 server access.","0.5"
+"NZGT","SD-1875","[NZGT]: Give permissions for tricor-dom\svc_nzgt_ssis_iManPCS to access SQL","Bo Xiao","2022/11/09 12:43:21","* 2/11/2022 ask Wendy for confirmation ","0.25"
+"NZGT","SD-1875","[NZGT]: Give permissions for tricor-dom\svc_nzgt_ssis_iManPCS to access SQL","Bo Xiao","2022/11/09 12:43:54","* 8/11/2022 ask Wendy for confirmation ","0.25"
+"NZGT","SD-1874","[NZGT] FW: A Vulnerability Assessment scan has completed on your server 'ctsa-identity-authority-stage'","Bo Xiao","2022/11/10 12:32:46","* reply to Wendy","0.25"
+"NZGT","SD-1874","[NZGT] FW: A Vulnerability Assessment scan has completed on your server 'ctsa-identity-authority-stage'","Bo Xiao","2022/11/15 09:51:45","* fix vulnerability issue.","1"
+"Soar Communications","SD-1873","remove users icg-avd-pd-aue-01-ws ","Maruthi Jella","2022/10/31 13:30:00","","0.25"
+"Soar Communications","SD-1872","additional user icg-avd-pd-aue-01-ws ","Maruthi Jella","2022/10/31 01:30:00","","0.25"
+"NZGT","SD-1867","T20221028.0095 - Getting ""Please wait"" when logging in to the WYSE terminal","Jason Lee","2022/10/28 09:52:37","","0.25"
+"Atlas Gentech","SD-1866","Unable to FTP diagnostic PCaps form the ETP-SM-UTIL01","Jason Lee","2022/10/31 13:45:32","* Review error and reply to customer, review access for wireshark server.","0.5"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jason Lee","2022/10/27 13:46:17","* review logs","0.5"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/10/27 13:51:09","* Review the log file and current config","0.75"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/10/31 09:36:08","* Review the log files
+* Review WAF policy
+* Update the exclusion list","1"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/10/27 10:14:00","* Review log files with the team","0.5"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/11/01 13:23:25","* Troubleshooting & Reviewing logs","1"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/11/07 14:28:50","* Review App Service error messages provided by the client
+* Capture logs from App Gateway
+* Communicate with the client about the issues","1.5"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/11/21 16:41:53","* Follow up the status with Mike","0.25"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/11/24 09:31:45","* Review the change request with Mike","0.5"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/12/06 21:43:54","* Following up the status with Mike","0.25"
+"Southern Cross","SD-1862","CHG0056035 (INC0096936) - intermittent 403 errors in MySC when trying to call micro service in open shift","Jack Lau","2022/12/12 15:18:16","* Review the change requests
+* Check the WAF policies
+* Provide the change details to Mike","1"
+"Sealink","SD-1861","Changes to existing SKU's - Sealink","Maruthi Jella","2022/10/28 08:57:00","","2"
+"ProCare","SD-1858","Procare releases failing on devuat cluster","Jason Lee","2022/10/26 09:30:00","* troubleshooting and fix","5"
+"NZGT","SD-1856","[NZGT]: Unable to run report from CRM Prod","Jack Lau","2022/10/26 05:40:00","* Review the SSRS logs
+* Check upgrade path and follow up with Microsoft support
+* Deploy Developer Edition with PAYG as a temporary fix
+* Deploy SQL IAAS extension for PAYG licensing
+* Test and confirm with the client","5"
+"NZGT","SD-1856","[NZGT]: Unable to run report from CRM Prod","Bo Xiao","2022/10/27 05:40:48","","5"
+"NZGT","SD-1855","NZGT: SentinelOne identified SQL Server risks","Bo Xiao","2022/10/25 19:48:38","* check all the SQL vulnerabilities and fixed patch","0.5"
+"NZGT","SD-1854","NZGT: NZCRMSQLPRD02 what's on here?","Bo Xiao","2022/10/25 13:21:09","* reply question","0.25"
+"NZGT","SD-1854","NZGT: NZCRMSQLPRD02 what's on here?","Jason Lee","2022/10/25 14:52:38","","0.25"
+"NZGT","SD-1853","NZGT: Vulnerabilities 25/10/2022","Jack Lau","2022/10/27 17:17:37","* Review the scan report
+* Check VMs and patching status
+* Review Microsoft info for the security concerns about Windows Speculative Execution
+* Emailed Wendy the status","1.5"
+"NZGT","SD-1848","[NZGT] Install New Relic mssql integration on Prods","Bo Xiao","2022/10/25 09:09:37","* Plan and ask for approval for NR installation","0.25"
+"NZGT","SD-1848","[NZGT] Install New Relic mssql integration on Prods","Bo Xiao","2022/11/02 05:24:00","* Install New Relic mssql integration on Prod01","1"
+"Electra","SD-1846","FW: Microsoft 3402 Compliance Report","Jack Lau","2022/10/19 11:04:34","* Review the compliance report on Microsoft website
+* Provide the link to download the required report","0.75"
+"Partners Life","SD-1845","FW: PLL - additional Bravura test environments","Jack Lau","2022/10/21 12:47:44","* Update the redirect URIs
+* Email the client","0.5"
+"Partners Life","SD-1845","FW: PLL - additional Bravura test environments","Jack Lau","2022/10/21 10:30:00","* Follow up with the vendor
+* Clarify the app id","0.5"
+"Partners Life","SD-1845","FW: PLL - additional Bravura test environments","Jack Lau","2022/10/27 17:08:12","* Follow up the status with the vendor. The change has been implemented on Oct 21.","0.25"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/10/19 09:11:27","* Review the backup report
+* Check backup status
+* Emailed Lydia","0.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/10/19 13:07:08","* Follow up Lydia’s question on Sharepoint licensing
+* Provide information and example for non-exchange backup user in Personal Sharepoint backup","0.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/10/25 12:55:00","* Follow up with Lydia on backup licensing for Personal Sharepoint","0.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/11/01 15:12:43","* Review the backup logs
+* Follow up with Lydia","0.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/11/08 14:04:17","* Review the backup status and update Lydia
+* Capture the log file and send to Veeam support","0.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/11/08 15:06:41","* Troubleshooting with Veeam Engineer","1"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/11/11 18:59:59","* Remote session with Veeam Engineer","1.5"
+"Metlifecare","SD-1843","M365 backup for Personal SharePoint. License limit has been exceeded by 213 users.","Jack Lau","2022/11/16 12:38:47","* Emailed Lydia with current license status and Veeam information.","0.5"
+"NZGT","SD-1842","Deallocate NZGPOW10TST01 (Base2 support VM) to reduce unnecessary spend","Jack Lau","2022/10/27 12:39:09","* Set auto shutdown schedule","0.5"
+"NZGT","SD-1841","Add SentinelOne to the Sage server","Jack Lau","2022/11/10 20:42:40","* Check backup for Sage
+* Install S1
+* Restart the Sage Server
+* Verify the install on S1 portal
+* Test backup with Sage Server","1"
+"NZGT","SD-1841","Add SentinelOne to the Sage server","Jack Lau","2022/11/01 20:44:00","* Check Sage exclusion requirement
+* Follow up the exclusion setup with Trico","1"
+"Electra","SD-1838","[New Relic] Memory Used % > 90.0 for at least 15 minutes on 'elbcdbdvaue01'","Jack Lau","2022/10/18 08:32:02","* Review the running processes on the VM
+* Emailed the client","0.5"
+"Electra","SD-1838","[New Relic] Memory Used % > 90.0 for at least 15 minutes on 'elbcdbdvaue01'","Jack Lau","2022/10/19 07:26:19","* Check the server memory usage
+* The memory issue has been resolved after the server reboots in the patching maintenance.
+* Emailed the client","0.25"
+"Metlifecare","SD-1837","Onedrive virus alert - Charlotte Dysart","Jack Lau","2022/10/17 14:33:58","* Check backup reports
+* Emailed the client","0.5"
+"Metlifecare","SD-1837","Onedrive virus alert - Charlotte Dysart","Jack Lau","2022/10/17 09:14:00","* Check backup status
+* Follow up with Lydia","0.5"
+"Metlifecare","SD-1837","Onedrive virus alert - Charlotte Dysart","Jack Lau","2022/10/25 10:02:03","* Checked the backup report
+* Emailed the client","0.5"
+"Electra","SD-1836","Review Firewall settings on Key Vault & Networks rules on Storage accounts - Disable External Access","Jack Lau","2022/10/27 13:07:02","* Disable External access on Storage accounts","0.5"
+"Electra","SD-1836","Review Firewall settings on Key Vault & Networks rules on Storage accounts - Disable External Access","Jack Lau","2022/11/03 23:25:00","* Review the Keyvault config
+* Test it with Terraform","1"
+"Electra","SD-1836","Review Firewall settings on Key Vault & Networks rules on Storage accounts - Disable External Access","Jack Lau","2022/11/28 19:09:00","* Disabled the public network access
+* Updated confluence","1"
+"Electra","SD-1835","Enable prevention mode on PROD WAF - Electra","Jack Lau","2022/10/31 17:31:46","* Update Terraform
+* Implement change","1"
+"NZGT","SD-1833","NZGT - users cannot log into AVD from Wellington with WYSE terminals","Jason Lee","2022/10/17 10:19:42","* gathering info/troubleshooting","1"
+"NZGT","SD-1830","RE: Test - SSID: NZGT Mobile – WiFi ","David Woon","2022/11/17 15:00:00","* testing with wendy","1"
+"NZGT","SD-1830","RE: Test - SSID: NZGT Mobile – WiFi ","David Woon","2022/12/03 02:07:32","","1"
+"LIC","SD-1828","licazsbatchd02 - decommissioned in 2020 - purge disconnected disks sitting in Azure","Jason Lee","2022/10/28 08:03:01","","0.5"
+"LIC","SD-1828","licazsbatchd02 - decommissioned in 2020 - purge disconnected disks sitting in Azure","Jason Lee","2022/11/03 07:54:19","* review case, follow up","0.25"
+"LIC","SD-1828","licazsbatchd02 - decommissioned in 2020 - purge disconnected disks sitting in Azure","Jason Lee","2022/11/16 13:58:16","","0.25"
+"NZGT","SD-1827","[NZGT] Add FW Rule for contactapifileshare due to AVD Issue","David Woon","2022/10/14 11:31:56","","0.5"
+"NZGT","SD-1822","[NZGT] Memory usage high on NZCRMSQLDEV01","Bo Xiao","2022/10/12 08:31:36","* Checked and truble -shoot the memory usage on NZCRMSQLDEV01","0.25"
+"Metlifecare","SD-1821","Update the patch release on Veeam VBO server","Jack Lau","2022/10/17 16:20:57","* Create snapshot 
+* Install patch
+* Test the restore explorer
+* Update the client
+* Update the confluence page","1"
+"NZGT","SD-1820","RE: NZGT Computer domain join process","David Woon","2022/10/12 13:15:19","","0.5"
+"NZGT","SD-1820","RE: NZGT Computer domain join process","David Woon","2022/10/12 13:18:23","* For SD-1779 which can’t add my time anymore.","0.5"
+"NZGT","SD-1820","RE: NZGT Computer domain join process","David Woon","2022/10/25 15:53:42","* check SecureW2 and Intune","0.5"
+"Sealink","SD-1809","Data Migration Assistant Assessment","Maruthi Jella","2022/10/17 15:49:00","* Did some research on how to run this Data migration Assessment tool against Srv -00 SQL Server and liaised with    ","1"
+"Sealink","SD-1809","Data Migration Assistant Assessment","Bo Xiao","2022/11/01 06:43:16","* Online study for using DMA. Setup test environment. Perform the assessment.","3"
+"NZGT","SD-1807","T20221010.0056 - unable to sign in and slow wyse sessions","Jason Lee","2022/10/10 07:40:00","* troubleshooting","4"
+"NZGT","SD-1807","T20221010.0056 - unable to sign in and slow wyse sessions","Jason Lee","2022/10/11 08:00:00","* troubleshooting","5"
+"NZGT","SD-1807","T20221010.0056 - unable to sign in and slow wyse sessions","Jason Lee","2022/10/12 12:02:46","* trying azure support suggestions on staging","0.25"
+"NZGT","SD-1807","T20221010.0056 - unable to sign in and slow wyse sessions","Jason Lee","2022/10/13 09:45:00","* troubleshooting","4"
+"NZGT","SD-1807","T20221010.0056 - unable to sign in and slow wyse sessions","Jason Lee","2022/10/14 07:16:01","* troubleshooting","5.5"
+"NZGT","SD-1795","FW: [Security Alert - 5 Oct 2022] Suspicious cyber activity on IP address [ 149.154.167.99 ]. Please Block.","Jack Lau","2022/10/06 15:59:29","* Check Internet-facing resources on Azure
+* Communicate with the team and the client
+* Follow up the update from Trico team","2"
+"Metlifecare","SD-1794","Investigate alarm on METEC2VBO01-C-Freespace","Jack Lau","2022/10/10 07:16:00","* Clean up the disk
+* Set up Schedule task to clean up Windows update components","1"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/10/10 17:54:28","* Review the firewall rules for BC TAG API
+* Capture and analyse the logs
+* Send the findings to the client","1.5"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/10/25 19:12:00","* Review WAF logs
+* Prepare Test plan","1"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/10/26 18:14:00","* Test with Drew
+* Capture and analyse Wireshark logs","2"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/10/19 18:16:00","* Troubleshooting
+* Fix the network routing with public ip
+* Test the API","3"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","David Woon","2022/11/07 10:48:50","* assist troubleshooting and analysis","0.5"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/07 13:57:15","* Discuss with the client
+* Review the Vent settings
+* Move VM to firewall
+* Update the firewall bypass list","2"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/09 09:37:00","* Troubleshooting
+* Analyse firewall and Wireshark logs","3"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/10 11:08:35","* Test and review configs with the client","1.5"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/21 15:14:11","* Review the Network Policy with the client
+* Discuss the change plan","1.5"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/22 14:05:16","* Implement the NSG rules
+* Assign a public IP address
+* Test network and NSG rules","2"
+"Electra","SD-1793","Test public IP instead of firewall for connection issue","Jack Lau","2022/11/30 14:14:49","* Follow up the Non-Prod test result
+* Plan the change for Prod","2"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","Jason Lee","2022/10/06 07:21:43","* troubleshooting","4"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","Jason Lee","2022/10/07 10:14:56","* troubleshooting","4"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","David Woon","2022/10/07 16:48:46","* assist with troubleshooting and research ","1.5"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","David Woon","2022/10/06 16:19:00","* assist with troubleshooting and research ","1.5"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","Jason Lee","2022/11/03 08:00:52","* review customer email and schedule prod change","0.25"
+"NZGT","SD-1792","Fwd: Issue# 431794 Priority 1 - Client Portal unable to upload documents ","Jason Lee","2022/11/09 14:03:56","* PIR updated with RCA","0.5"
+"NZGT","SD-1786","upgrade specs of UAT session host to load it up with users","Simon Turner","2022/10/05 07:42:40","* completed","0.5"
+"NZGT","SD-1784","FW: Costs for Azure Files & Roaming profiles","Maruthi Jella","2022/11/29 09:52:00","* Checked what storage accounts needs to be changed to LRS. Created a change plan","2"
+"NZGT","SD-1783","Change avdroamingprofile backup to use VBA snapshots","Jason Lee","2022/10/04 12:12:00","* VBA upgrade troubleshooting","1"
+"NZGT","SD-1783","Change avdroamingprofile backup to use VBA snapshots","Jason Lee","2022/10/05 10:13:05","* VBA upgrade and troubleshooting.  Setting up new jobs","4"
+"NZGT","SD-1778","[NZGT] Install New Relic agents on NZCRMSQLDEV01","Bo Xiao","2022/10/18 12:47:38","* Install New Relic mssql integration on NZCRMSQLDEV01","1"
+"NZGT","SD-1777","FW: Help for retriving old spreadsheets","Jason Lee","2022/09/29 17:06:41","","0.5"
+"NZGT","SD-1776","NZGT Veeam VBR unable to rescan NAS repo.","Jason Lee","2022/10/04 13:31:00","* troubleshooting","2"
+"NZGT","SD-1776","NZGT Veeam VBR unable to rescan NAS repo.","Jason Lee","2022/12/07 11:42:08","* follow up with Veeam","0.25"
+"Sealink","SD-1775","Investigate security recommendations on SQL database - Sealink ","Bo Xiao","2022/09/29 11:02:37","","0.5"
+"Sealink","SD-1775","Investigate security recommendations on SQL database - Sealink ","Bo Xiao","2022/11/01 08:40:48","* Investigate the recommendations and check current databases' environment. ","1"
+"Sealink","SD-1775","Investigate security recommendations on SQL database - Sealink ","Maruthi Jella","2022/11/29 13:31:20","","0.5"
+"Sealink","SD-1775","Investigate security recommendations on SQL database - Sealink ","Maruthi Jella","2022/11/29 15:05:00","* Did some research on how to go with applying the recommendations as required.","1"
+"ProCare","SD-1773","Procare - prod kubernetes cluster reporting node unavailable and prod down","Jason Lee","2022/09/28 15:11:15","","1"
+"LIC","SD-1772","Please Investigate feasible options for SNMP Monitoring on Nutanix Cluster for Umbrellar","Jason Lee","2022/10/11 13:10:00","* review nutanix config","0.25"
+"LIC","SD-1772","Please Investigate feasible options for SNMP Monitoring on Nutanix Cluster for Umbrellar","Jason Lee","2022/11/15 11:52:02","* Reset snmp user detials and test","1"
+"LIC","SD-1772","Please Investigate feasible options for SNMP Monitoring on Nutanix Cluster for Umbrellar","Jason Lee","2022/12/02 14:13:39","","0.25"
+"LIC","SD-1772","Please Investigate feasible options for SNMP Monitoring on Nutanix Cluster for Umbrellar","Jason Lee","2022/12/13 08:37:52","* sent details for Queen St cluster","0.5"
+"NZGT","SD-1770","2022-09 NZGT Prod Monthly Patching","Jack Lau","2022/09/28 06:32:12","* Prepare Change Plan
+* Review the VM list with the team
+* Configure Patching deployment
+* Handle the patching for multiple cumulative security patch backlogs
+* Review the patch results and report the status to the client","5"
+"NZGT","SD-1769","Replace Ultra disk on NZCRMSQLPRD01 with P15 256GB Premium SSD","Jack Lau","2022/10/19 20:58:49","* Implement the change
+* Test backup","2.5"
+"NZGT","SD-1768","Screenshots of Connection issues with WYZEWMS ","Jack Lau","2022/09/27 11:08:52","* Check VM on Azure
+* Test the VM login with AVD
+* Email Base2 to Remote Desktop through AVD","0.5"
+"NZGT","SD-1768","Screenshots of Connection issues with WYZEWMS ","Jack Lau","2022/09/27 11:30:00","* Assist Base2 to get access to WYZE terminal management console","1"
+"NZGT","SD-1767"," 'High-Files-Policy.vstore' on repository 'Immutable_SOBR' is not synchronized with the DB","Jack Lau","2022/09/27 09:13:14","* Check and review backup job log
+* Re-scan the repo
+* Re-run the backup jobs","0.5"
+"NZHL","SD-1765","Azure AD B2C CA policy change","Jack Lau","2022/09/29 12:52:59","* Added MFA policy for B2C portal","0.5"
+"NZGT","SD-1763","Review app service license certificates expiry & auto-renewal ","Jack Lau","2022/10/06 21:15:00","* Review and check the managed certs in App Services","1"
+"NZGT","SD-1763","Review app service license certificates expiry & auto-renewal ","Jack Lau","2022/10/11 21:43:23","* Review and Check Certs in App Services
+* Double check with Microsoft Support
+* Troubleshoot the cert errors
+* Email the client about the cert issues","3"
+"Farmax","SD-1761","Request for help with Batch API","Jason Lee","2022/09/27 08:30:57","","0.75"
+"Farmax","SD-1761","Request for help with Batch API","Jason Lee","2022/09/28 08:33:22","","0.5"
+"NZGT","SD-1757","T20220921.0111 - Issues with accessing CRM","Jason Lee","2022/09/21 13:27:26","","1"
+"NZGT","SD-1757","T20220921.0111 - Issues with accessing CRM","Jason Lee","2022/09/22 16:14:00","","0.05"
+"NZGT","SD-1756","Re: NZGT: Help with options for email out of Dynamics","Simon Turner","2022/09/22 15:00:00","* discussions with Wendy and Ian from Fusion5","1.5"
+"NZGT","SD-1756","Re: NZGT: Help with options for email out of Dynamics","Simon Turner","2022/09/30 15:19:00","* discussions with Tricor","1"
+"NZGT","SD-1756","Re: NZGT: Help with options for email out of Dynamics","Simon Turner","2022/10/06 14:00:00","* some research, then discussion with Wendy on options, then discussion with Danny and Fred form Tircor to agree on approach","2.5"
+"NZGT","SD-1752","Any idea what this is?","Jack Lau","2022/09/21 16:44:23","* Investigate the IP address and provide information to Wendy.","0.5"
+"NZHL","SD-1751","Notice","Jack Lau","2022/10/27 22:04:00","* Follow up with Paul","0.5"
+"NZGT","SD-1750","New NZ Clear Cert for AVDs","Jack Lau","2022/11/11 20:04:04","* Check access for implementing New host to the OU","0.5"
+"NZGT","SD-1748","NZGT: Address Virtual Desktop security review findings","Simon Turner","2022/09/29 13:00:00","* reviewed current config against findings and emailed Wendy a response","2"
+"NZGT","SD-1744","Enable & Configure Vulnerability assessment settings and setup Periodic scans","Jack Lau","2022/09/19 09:46:52","* Configure 3 Azure SQL Servers
+* Enable email notification
+* Store the report in the storage account","1"
+"LIC","SD-1743","Nutanix Cluster Patching - 22nd Sep 2022","Jason Lee","2022/09/22 09:24:10","","5"
+"LIC","SD-1743","Nutanix Cluster Patching - 22nd Sep 2022","Jack Lau","2022/09/22 10:00:00","* Pre-check for the change","1.5"
+"LIC","SD-1743","Nutanix Cluster Patching - 22nd Sep 2022","Jack Lau","2022/09/22 22:01:38","* Implement change to Newstead Hyper-V Hosts","5"
+"NZHL","SD-1742","Investigate current Mailbox archiving policies - NZHL","Jack Lau","2022/10/18 10:20:00","* Check and review Exchange Policy
+* Provide information and advice to the client for Email archiving","3"
+"LIC","SD-1741","FW: [EMRGE] CVE-2022-22047 Elevation of Privilege Vulnerability affecting all Microsoft servers (Livestock Improvement Corporation)","Jason Lee","2022/09/29 14:12:28","* providing andy with requested proof that these are installed","0.75"
+"NZHL","SD-1740","Add labels/tags to resources - NZHL","Jack Lau","2022/09/30 12:14:00","* Testing and investigating the filter options with Tags","1"
+"NZHL","SD-1740","Add labels/tags to resources - NZHL","Jack Lau","2022/10/21 17:36:59","* Review the Billing data export
+* Building new PowerBI pages for Deloitte projects","3"
+"NZHL","SD-1740","Add labels/tags to resources - NZHL","Jack Lau","2022/10/27 18:10:18","* Create separate Power BI report for Deloitte projects","2"
+"NZHL","SD-1739","Recalled email report","Jack Lau","2022/09/16 13:34:28","* Review the recall message
+* Generate the 365 report for the recall message","1"
+"NZGT","SD-1738","Upgrade vnet-perimeter-auseast-002-bastion from Basic to Standard - NZGT ","Jack Lau","2022/10/31 23:23:00","* Deploy bastion standard
+* Config and test IP based connection with vWAN","1"
+"NZGT","SD-1738","Upgrade vnet-perimeter-auseast-002-bastion from Basic to Standard - NZGT ","Jack Lau","2022/11/02 22:26:00","* Config and test IP based connection with vWAN","2"
+"NZGT","SD-1738","Upgrade vnet-perimeter-auseast-002-bastion from Basic to Standard - NZGT ","David Woon","2022/11/07 10:46:13","* troubleshooting vnet to vnet","0.5"
+"NZGT","SD-1738","Upgrade vnet-perimeter-auseast-002-bastion from Basic to Standard - NZGT ","Jack Lau","2022/12/02 16:33:01","* Troubleshooting with Maruthi","0.5"
+"NZGT","SD-1737","Urgent - User not able to login YiYang ","Jason Lee","2022/09/16 09:33:14","","1.5"
+"Soar Communications","SD-1736","ICG all backups failing","Jason Lee","2022/09/21 14:31:32","","0.25"
+"Soar Communications","SD-1736","ICG all backups failing","Jack Lau","2022/10/06 05:47:00","* Review the config and log files
+* Troubleshooting and test the server","3"
+"Soar Communications","SD-1736","ICG all backups failing","Jack Lau","2022/10/03 06:48:00","* Review the config and log files
+* Troubleshooting and test the server","2"
+"Soar Communications","SD-1736","ICG all backups failing","Jack Lau","2022/10/19 21:06:13","* Test Backup
+* Clean up the Veeam resource","2"
+"Soar Communications","SD-1736","ICG all backups failing","Jack Lau","2022/10/06 21:09:00","* Troubleshoot the issue
+* Fix the backup","2"
+"Soar Communications","SD-1736","ICG all backups failing","Jack Lau","2022/10/03 21:39:00","* Troubleshoot the backup issue","1.5"
+"NZGT","SD-1734","T20220908.0106 - Excel Issues","Jason Lee","2022/09/15 14:57:32","","0.25"
+"Sealink","SD-1733","Host Not Reporting for at least 5 minutes on 'seadcpdaue02'","Jack Lau","2022/09/14 17:22:00","* Handle the alert
+* Resolve the VM issue
+* Report to the customer","0.75"
+"Sealink","SD-1732","Sealink help accessing externally SQL database","Jason Lee","2022/09/15 13:13:32","","1.5"
+"Sealink","SD-1732","Sealink help accessing externally SQL database","Jason Lee","2022/09/20 16:00:14","","1"
+"Sealink","SD-1732","Sealink help accessing externally SQL database","Jason Lee","2022/09/21 14:59:36","","1"
+"NZGT","SD-1730","Urgent issues with NZGT User ","Jason Lee","2022/09/21 12:35:45","","2"
+"NZGT","SD-1730","Urgent issues with NZGT User ","Jason Lee","2022/09/16 13:35:00","","1"
+"NZGT","SD-1730","Urgent issues with NZGT User ","Jason Lee","2022/10/06 15:39:46","* updating fslogix on the last host and put it back in the pool","0.25"
+"NZGT","SD-1728","FW: [Security Alert - 13 Sep 2022] Chromium browser (Google Chrome/Microsoft Edge)  (CVE-2022-3075) – Google Chromium Insufficient Data Validation (Zero Day)","Jack Lau","2022/09/14 22:19:20","* Remove Chrome Browser from 
+* nz-avd-prodSH02
+* Check Edge version on all and hosts (
+* nz-avd-prodSH02-05)","0.75"
+"Partners Life","SD-1727","Fwd: CAPS - client secret expired for Test client","Jack Lau","2022/09/14 15:06:16","* Check Azure App client secret status","0.5"
+"Partners Life","SD-1727","Fwd: CAPS - client secret expired for Test client","Jack Lau","2022/09/14 13:57:00","* Provide information for the Sonata Prod app
+* Check Azure App for B2C UAT environment","0.5"
+"Partners Life","SD-1727","Fwd: CAPS - client secret expired for Test client","Jack Lau","2022/09/15 13:59:12","* Generate new client secret for B2C UAT app
+* Provide information to Maarouf","0.5"
+"NZGT","SD-1724","FW: T20220907.0069 - URGENT Reactivation of Prior User: Stewart Lockhart","Jack Lau","2022/09/12 11:03:04","* Double check AD Groups
+* Send instructions to Base2","0.5"
+"LIC","SD-1720","Investigate warnings/events on licazebatchp01 | ASR - LIC","Jason Lee","2022/10/06 15:10:52","","0.25"
+"ProCare","SD-1719","Procare - clean up old images from ACR ","Jason Lee","2022/09/28 11:01:20","","4"
+"NZHL","SD-1718","Firewall change - nzhdnlinuxpdaue01 - KB IPs","Jack Lau","2022/09/09 15:16:27","* Review the NSG rules
+* Update Terraform and apply to Azure","1"
+"NZGT","SD-1717","T20220908.0116 - Missed heartbeat threshold exceeded issue","Jason Lee","2022/09/12 09:45:18","","1"
+"Partners Life","SD-1715","[Partners Life] SecureW2 Query - DigiCert is ending support for CBC ciphers in TLS connections","David Woon","2022/09/08 14:57:10","","0.25"
+"Southern Cross","SD-1714","[SCHS] Enable Cloudflare rule for ""ASP.NET - Deserialization - CVE:CVE-2019-18935"" on Logging mode","David Woon","2022/09/08 12:42:44","","1"
+"Electra","SD-1713","[Electra] Update Static Routes (UDRs) for Prod Spoke VNet within Hub VNet gateway and server subnet route table","David Woon","2022/09/07 07:32:00","","1.5"
+"NZGT","SD-1712","SKU changes for NZGT","Jack Lau","2022/09/28 00:46:47","* Upgrade VM size for Prod VMs","1.5"
+"NZGT","SD-1712","SKU changes for NZGT","Jack Lau","2022/09/29 22:50:21","* Communicate with Base2 to schedule the change
+* Upgrade the SKU","0.5"
+"NZGT","SD-1712","SKU changes for NZGT","Jack Lau","2022/10/19 22:57:02","* Update SKU for NZCRMSQLPRD01","0.5"
+"NZGT","SD-1711","Restart VM NZCRMSQLSTG01 for SentinelOne activation","Jack Lau","2022/09/07 18:25:52","* Check the backup status
+* Restart the VM
+* Upgrade the Sentinel version
+* Test VM
+* Inform Brett to test VM","0.75"
+"Electra","SD-1710","VPN Network traffic to prod BC servers","Jack Lau","2022/09/07 10:04:00","* Troubleshooting the S2S VPN","1"
+"Electra","SD-1708","RE: Unhealthy alerts for the Backend server from Prod App Gateway","David Woon","2022/09/15 08:00:00","","1"
+"Electra","SD-1708","RE: Unhealthy alerts for the Backend server from Prod App Gateway","David Woon","2022/09/16 08:00:00","","1"
+"Electra","SD-1708","RE: Unhealthy alerts for the Backend server from Prod App Gateway","David Woon","2022/09/19 05:00:00","","4"
+"Electra","SD-1708","RE: Unhealthy alerts for the Backend server from Prod App Gateway","Jack Lau","2022/09/20 11:21:00","* Review WAF logs
+* Provide update to Drew","2"
+"NZGT","SD-1706","NZGT: Reboot window for NZ DC 002","Jason Lee","2022/09/05 14:17:08","","0.25"
+"NZGT","SD-1705","URGENT NZGT: SentinelOne not present on some Servers","Jack Lau","2022/09/07 11:55:14","* Provide exclusion list for Trico’s review","1"
+"NZGT","SD-1705","URGENT NZGT: SentinelOne not present on some Servers","Jack Lau","2022/09/07 11:26:09","* Check Antivirus requirements for Veeam servers
+* Configure the exclusion rules on Sentinel
+* Install Sentinel on NZ-BACKUP01","1.5"
+"NZGT","SD-1705","URGENT NZGT: SentinelOne not present on some Servers","Jack Lau","2022/11/10 20:16:14","* Check backup for NZ-Backup03
+* Check S1 version for ubuntu OS
+* Transfer the install package to ubuntu OS
+* Install the package
+* Restart the server
+* Verify the install on S1 portal
+* Test backup task","1.5"
+"NZGT","SD-1705","URGENT NZGT: SentinelOne not present on some Servers","Jack Lau","2022/11/11 19:55:27","* Review the limitations for the hardened appliance","0.75"
+"NZGT","SD-1705","URGENT NZGT: SentinelOne not present on some Servers","Jack Lau","2022/11/14 21:25:45","* Provide comments for Firewall appliance and Veeam hardened appliance
+* Follow up the status with Wendy","0.5"
+"NZGT","SD-1702","FW: Aura Audit Report - follow-up 8.5 SQL Server Auditing is disabled","Jack Lau","2022/09/16 22:04:45","* Review the request
+* Enable the audit
+* Check Log Analytics workspace","1"
+"Electra","SD-1700","Add subnet to el-ho-ss-01-lgw","Jack Lau","2022/09/02 17:12:43","* Check Azure Route Table
+* Update Terraform
+* Deploy and test the route table","0.75"
+"Electra","SD-1700","Add subnet to el-ho-ss-01-lgw","Jack Lau","2022/09/05 10:49:06","* Test elbcdbdvaue01 (10.50.48.132)
+* Check Firewall and capture logs
+* Contact the client to discuss
+* Provide logs and on-prem firewall template to the client","1.5"
+"Sealink","SD-1698","Sealink - change powershell language mode on SRV-SL-00 to fulllanguage","Jason Lee","2022/09/01 09:15:13","* Research and planning","1"
+"Southern Cross","SD-1686","[SCHS] Sitecore Azure WAF Prod - enable Prevention mode","David Woon","2022/08/30 17:24:21","","0.25"
+"NZGT","SD-1685","T20220823.0110 - Leaver: Kelly Yu 26/08/2022","Jack Lau","2022/09/07 17:21:44","* Check the account status
+* Check the 365 backup status","0.25"
+"NZGT","SD-1684","nz-filebeat01 not reporting in NZGT","Jason Lee","2022/08/30 12:24:08","","0.25"
+"NZGT","SD-1684","nz-filebeat01 not reporting in NZGT","Jason Lee","2022/09/05 13:34:31","","0.25"
+"Soar Communications","SD-1682","Investigate failed backups on ictharstern01 - ICG","Jason Lee","2022/09/09 12:17:54","","0.75"
+"Electra","SD-1680","[Electra] VM Size Upgrade","David Woon","2022/08/30 16:57:49","","0.5"
+"Soar Communications","SD-1678","ICG Host Not Reporting for at least 5 minutes on 'icavdpdaue-0","Jason Lee","2022/08/30 12:25:07","","0.25"
+"NZGT","SD-1677","Decommission NZ-C0001 and NZ-C0002","Jason Lee","2022/08/30 15:35:11","","0.25"
+"NZGT","SD-1677","Decommission NZ-C0001 and NZ-C0002","Jason Lee","2022/09/06 09:45:59","","0.25"
+"NZGT","SD-1677","Decommission NZ-C0001 and NZ-C0002","Jason Lee","2022/09/06 09:46:07","","0.25"
+"Electra","SD-1676","elbcappdvaue01 not responding","Jason Lee","2022/08/29 12:50:40","","0.75"
+"LIC","SD-1675","Install Syncsort license in dev, accpt, prod","Jason Lee","2022/08/30 09:39:29","* Planning, test and update ansible scripts","3"
+"LIC","SD-1675","Install Syncsort license in dev, accpt, prod","Jason Lee","2022/09/05 07:39:00","","0.5"
+"NZGT","SD-1674","T20220829.0005 - NEW STARTER SAGE ACCPAC ACCESS FOR TODAY ","Jason Lee","2022/08/29 09:51:56","","0.75"
+"NZGT","SD-1673","Transactional logs SQL backups - NZGT ","Jason Lee","2022/09/06 08:53:15","","0.25"
+"Southern Cross","SD-1671","[SCHS] WAF configuration for Adviser Gateway (Admin login)","David Woon","2022/08/26 08:59:00","","1"
+"LIC","SD-1669","Service Desk Ticket Edited: T20220826.0055 - EMRGE -  SYNCSORT License Key update <IMPORTANT> (Livestock Improvement Corporation)","Jason Lee","2022/08/26 13:24:57","","0.5"
+"NZGT","SD-1668","NZGT VBR Backup error with Secondary file backup copy","Jason Lee","2022/09/01 10:58:10","","0.75"
+"NZGT","SD-1668","NZGT VBR Backup error with Secondary file backup copy","Jason Lee","2022/09/20 14:44:50","","2"
+"NZHL","SD-1667","Review Soft Delete policy on storage accounts - NZHL ","Jack Lau","2022/08/25 20:24:12","* Enable and standardise the files soft delete policy = 7 days
+* Check the results with Advisor ","2"
+"NZHL","SD-1666","Investigate Azure policy to enforce requiring incoming client certificates - NZHL ","Jack Lau","2022/08/25 20:39:55","* Troubleshoot the nzhl-websites-staging
+* Need to discuss with the client how they want the end users to authenticate with the website.","1"
+"NZGT","SD-1665","FW: [Security Alert - 23 Aug 2022] Multiple security vulnerability advisory (known exploited) - Google Chrome, Microsoft Windows","Jason Lee","2022/08/25 14:28:55","","0.25"
+"NZGT","SD-1665","FW: [Security Alert - 23 Aug 2022] Multiple security vulnerability advisory (known exploited) - Google Chrome, Microsoft Windows","Jason Lee","2022/09/06 09:47:22","","0.25"
+"LIC","SD-1664","FW: LIC Server Decommission - LICNEWDA02 - APPROVED    [ ref:_00D6F1gDOd._5006F3A0EUY:ref ]","Jason Lee","2022/08/25 14:29:33","","0.25"
+"LIC","SD-1664","FW: LIC Server Decommission - LICNEWDA02 - APPROVED    [ ref:_00D6F1gDOd._5006F3A0EUY:ref ]","Jason Lee","2022/08/31 10:54:35","","0.75"
+"NZGT","SD-1662","AVD session host alert- nz-avd-prodSH03","Jack Lau","2022/08/25 21:48:28","* Follow up the Microsoft Support","2"
+"NZGT","SD-1662","AVD session host alert- nz-avd-prodSH03","Jack Lau","2022/08/23 20:50:00","* Isolate the session host
+* Analyse log and troubleshoot
+* Collect logs and raise a ticket to Microsoft
+* Troubleshooting with Microsoft Support","3"
+"NZGT","SD-1662","AVD session host alert- nz-avd-prodSH03","Jack Lau","2022/08/24 21:52:00","* Check the session host health status
+* Review the current AVD capacity with the team
+* Update the client about the status
+* Follow up with Microsoft Support","3"
+"NZGT","SD-1660","Fwd: Patch update of NZGT DCs","Jack Lau","2022/08/24 16:22:00","* Review the patching plan for DCs
+* Make suggestions to the plan","0.5"
+"NZGT","SD-1660","Fwd: Patch update of NZGT DCs","Jack Lau","2022/09/07 16:23:00","* Check the DC VMs status
+* Check with the client about the patching status","0.5"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/08/24 19:38:39","* Check WAF and Key Vaults
+* Provide information to Wendy","0.5"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/09/28 13:11:51","* Check and follow up for getting certificate from Freeparking","0.5"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/10/04 13:12:00","* Follow up with Freeparking and NZGT for Freeparking access
+* Follow up with Freeparking and NZGT for Ordering SSL certificates","2"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/10/05 13:14:14","* Follow up the order status with Freeparking
+* Provide information and generate CSR files for Freeparking","2"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/10/09 18:35:21","* Update Keyvault
+* Update App Gateway from Terraform
+* Test client portals","1"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/10/08 18:06:00","* Update Keyvault
+* Update App Gateway from Terraform
+* Test client portals","1.5"
+"NZGT","SD-1659","FW: Digital Certificate Request Denial Warning","Jack Lau","2022/10/07 17:37:00","* Follow up the Cert generation with Freeparking
+* Check the check and export to the Cert format for Azure
+* Review the Keyvault configuration and prepare the change
+* Update the change plan with Wendy","2.5"
+"Soar Communications","SD-1657","Remove TharsternPOC-RG ","Jack Lau","2022/08/24 17:48:26","* Check Firewall being used in other Resource Groups
+* Stopped and deallocated VM and Firewall","0.5"
+"Soar Communications","SD-1657","Remove TharsternPOC-RG ","Jack Lau","2022/09/02 16:17:41","* Remove the Resource Group","0.25"
+"Southern Cross","SD-1655","[SCHS] Sitecore Azure WAF Upgrades and Exclusions","David Woon","2022/08/19 07:15:00","","2.5"
+"Southern Cross","SD-1655","[SCHS] Sitecore Azure WAF Upgrades and Exclusions","David Woon","2022/08/22 05:45:00","","4"
+"Southern Cross","SD-1655","[SCHS] Sitecore Azure WAF Upgrades and Exclusions","David Woon","2022/08/23 05:45:00","","4"
+"Southern Cross","SD-1655","[SCHS] Sitecore Azure WAF Upgrades and Exclusions","David Woon","2022/08/26 07:45:00","","2"
+"Southern Cross","SD-1655","[SCHS] Sitecore Azure WAF Upgrades and Exclusions","David Woon","2022/09/01 11:00:00","* looked into httponly cookie issue. checked details about the issue, WAF, App Gateway, Cloudflare,","3"
+"Electra","SD-1654","Re: Unhealthy alerts for the Backend server from Prod App Gateway","Jack Lau","2022/08/25 23:37:22","* Follow up with Kagan","0.5"
+"Electra","SD-1654","Re: Unhealthy alerts for the Backend server from Prod App Gateway","Jack Lau","2022/08/23 23:08:00","* Review the error message
+* Follow up with Drew","1"
+"NZHL","SD-1653","SQL DB vulnerability checks didn't note the drift from the baselines set","Jack Lau","2022/08/22 23:19:35","* Check and Review the current passed baselines
+* Create ticket to Microsoft support
+* Support request ID	2208220030001589","0.5"
+"NZHL","SD-1653","SQL DB vulnerability checks didn't note the drift from the baselines set","Jack Lau","2022/10/17 23:10:50","* Test and check the assessment rule","0.5"
+"NZHL","SD-1652","Incorrect number of SQL vulnerability results on Azure Portal","Jack Lau","2022/08/22 22:58:39","* Analyse the problem and messages on the portal
+* Create ticket to Microsoft Support
+* Support request ID 2208220030001531","0.5"
+"NZHL","SD-1652","Incorrect number of SQL vulnerability results on Azure Portal","Jack Lau","2022/09/07 09:01:41","* Troubleshooting with Microsoft Support","0.75"
+"NZHL","SD-1652","Incorrect number of SQL vulnerability results on Azure Portal","Jack Lau","2022/09/02 09:17:00","* Follow up the ticket with Microsoft Support","0.5"
+"NZHL","SD-1652","Incorrect number of SQL vulnerability results on Azure Portal","Jack Lau","2022/09/13 22:41:00","* Provide the troubleshooting result to Paul that known issue with Dashboard will be fixed with Microsoft new release by mid of October.","0.5"
+"Soar Communications","SD-1648","[ICG] New Relic alert: Disk Used % > 85.0 for at least 5 minutes on 'icavdpdaue-0 (C:)'","Jack Lau","2022/09/06 16:00:47","* Review and test the plan on Emrge lab environment with Bo","1"
+"NZGT","SD-1647","T20220822.0100 - Outlook issues","Jack Lau","2022/08/22 14:25:58","* Troubleshooting the AVD sessions","0.5"
+"NZGT","SD-1647","T20220822.0100 - Outlook issues","Jack Lau","2022/08/22 20:37:31","* Test Outlook on the session host
+* Release the session host to the pool.","0.25"
+"NZGT","SD-1645","Re: NZ Clear Migration - Visual Studio","Jack Lau","2022/08/19 18:37:36","* Troubleshooting with Visual Studio Integration tools with SQL Server
+* Review the Account settings on NZCRMSQLPRD02
+* Set up windows account
+* Test the SQL Authentication","1.5"
+"NZGT","SD-1639","FW: <Security Alert> Windows standalone security patch (KB5012170 - Security update for Secure Boot DBX) update causing BitLocker recovery screens, boot issues.","Jason Lee","2022/09/05 12:07:40","","1"
+"NZGT","SD-1639","FW: <Security Alert> Windows standalone security patch (KB5012170 - Security update for Secure Boot DBX) update causing BitLocker recovery screens, boot issues.","Jason Lee","2022/09/06 09:56:49","","0.25"
+"Soar Communications","SD-1638","Migrate VM's from EA to CSP Subscription - ICG ","Jack Lau","2022/09/06 09:00:00","* Dependency check","1"
+"Soar Communications","SD-1638","Migrate VM's from EA to CSP Subscription - ICG ","Jack Lau","2022/09/29 19:57:35","* Move VMs and dependent resources e.g. vent, nsg to another subs
+* Fix dependency issues
+* Fix VM SKU outdated","3"
+"Southern Cross","SD-1634","[SCHS] Issue with duplicate POST when ws.southerncross.co.nz going via Cloudflare","David Woon","2022/08/01 09:21:00","","0.5"
+"Southern Cross","SD-1634","[SCHS] Issue with duplicate POST when ws.southerncross.co.nz going via Cloudflare","David Woon","2022/10/14 10:51:06","","0.5"
+"Electra","SD-1632","Electra Azure DC's - Patching Error","Jack Lau","2022/08/18 11:08:30","* Test on other VMs. It looks good.
+* Check firewall rules
+* Analyse the log messages","1"
+"Farmax","SD-1630","Access to Devops","Jason Lee","2022/08/19 09:39:18","","1"
+"HDC","SD-1629","HDC Change request email per department","Jason Lee","2022/11/03 05:19:53","* research, testing on test accounts","3"
+"HDC","SD-1629","HDC Change request email per department","Jason Lee","2022/11/03 09:33:32","* testing variables in email","2"
+"Electra","SD-1628","[New Relic] Unhealthy Host Count . Average > 0 for at least 5 minutes on 'el-spoke-pd-aue-01-agw'","Jack Lau","2022/08/16 18:36:28","* Check error message on Azure
+* The alert was triggered by the backend servers not the WAF.
+* Contact the client. The client was installing services on the backend servers.","0.5"
+"NZGT","SD-1626","Issues with login into AVD hosts - Joanne Lu | NZGT","Jack Lau","2022/08/15 14:25:25","* Analyse log messages
+* Troubleshoot the problem with end user","2"
+"NZGT","SD-1623","Plan move of existing zones to Azure DNS - NZGT","Jack Lau","2022/10/27 13:08:21","* Follow up with Freeparking if DNS records can be exported.","0.5"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/08/12 18:00:00","* Analyse the log
+* Evaluate new Exclusion rules","2"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/08/16 08:16:25","* Update non-prod app gateway","0.5"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/08/16 16:59:14","* Analyse the log messages
+* Add new rules to Dev WAF","1.5"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/08/18 20:32:34","* Review Dev App log messages
+* Create a ticket to Microsoft Support for a cookie issue with exclusion rule","1"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","David Woon","2022/08/12 07:29:00","* dev WAF issue, and work out rules to copy to prod","2"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","David Woon","2022/08/15 08:29:00","* Dev WAF exclusion","1"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","David Woon","2022/08/22 08:30:00","* Dev App Gateway WAF Issue - exclusion analysis and research","1"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","David Woon","2022/08/26 08:31:00","* Troubleshoot TAG Dev Issue - meeting, research, check VM metrics","1"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/09/29 09:35:00","* Analysed the traffic log
+* Review the comments from Microsoft support
+* Update the WAF rules","2"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/09/30 10:06:32","* Update WAF rules for Dev WAF
+* Update the client about the status","1"
+"Electra","SD-1622","DEV App Gateway/WAF Exclusion","Jack Lau","2022/10/04 15:55:49","* Review and analyse the logs for past 2 days
+* Update the rule set
+* Implement the change to “Prevention mode” and resolve the issues during the change","4"
+"NZGT","SD-1621","NZGT: Does anyone have access to our FreeParking","Jack Lau","2022/10/04 07:52:00","* Follow up with Craig to set up the access","1"
+"Southern Cross","SD-1618","[SCHS] Test Maintenance Page Redirection in CloudFlare - Pets PreProd","David Woon","2022/08/10 07:55:00","","2"
+"Southern Cross","SD-1618","[SCHS] Test Maintenance Page Redirection in CloudFlare - Pets PreProd","David Woon","2022/08/11 07:55:00","","2"
+"Electra","SD-1613","Firewall Log check","Jack Lau","2022/08/10 11:11:00","* Analysing Azure firewall logs
+* Export logs and send it to the client","1.5"
+"Electra","SD-1613","Firewall Log check","David Woon","2022/08/26 08:58:00","* Troubleshoot TAG Dev Issue - meeting, research, check VM metrics","1"
+"Electra","SD-1611","VM Restore Test for Electra","Jack Lau","2022/10/17 18:08:53","* Restore VM backup to Isolated Non-Prod Network                    
+* Start VM                                                                              
+* Login Windows                                                                  
+* Check Windows Services                                               
+* Login SQL Server                                                               
+* Access SQL Table                                                              
+* Shutdown VM                                                                    
+* Delete VM
+* Emailed the client                                                                      ","1.5"
+"NZGT","SD-1609","FW: T20220720.0065 - Copy file from Sage to g drive","Jason Lee","2022/08/10 15:00:25","","0.25"
+"HDC","SD-1608","HDC - SecureFTX Failed to delete file","Jason Lee","2022/08/09 08:00:04","","0.25"
+,"SD-1607","FW: Azure WAF blocking application traffic","David Woon","2022/08/08 07:44:00","","2"
+,"SD-1607","FW: Azure WAF blocking application traffic","David Woon","2022/08/12 08:14:00","","1.5"
+"Southern Cross","SD-1603","RE: Azure WAF blocking application traffic","Jack Lau","2022/08/08 13:00:00","* Troubleshooting with the client","1"
+"Southern Cross","SD-1603","RE: Azure WAF blocking application traffic","Jack Lau","2022/08/08 16:10:38","* Analysing logs
+* Make suggestions to fine-tune the rules","2"
+"Southern Cross","SD-1603","RE: Azure WAF blocking application traffic","Jack Lau","2022/08/09 20:34:00","* Analyse logs
+* Update the app gateway","2"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/07/28 12:28:00","* SOBR & Hardened Linux Repo Design","4"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/07/29 11:29:00","* SOBR & Hardened Linux Repo Design","5"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/01 10:29:00","* SOBR & Hardened Linux Repo Deployment","6"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/02 10:29:00","* SOBR & Hardened Linux Repo Deployment","6"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/03 10:30:00","* AWS S3 bucket deployment & Terraform","6"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/04 14:31:00","* Validation & troubleshooting","2"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/05 14:32:00","* Validation & troubleshooting","2"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/08 10:00:00","* azure files secondary backup issue troubleshooting, lab veeam license","2"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/11 09:00:00","* NZGT Networking Questions with Simon, bastion standard SKU lab testing and recommendation","1.75"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/16 07:24:00","* backup troubleshooting meeting, change storage account large file and quota","2"
+"NZGT","SD-1601","[NZGT] Veeam Scale Out Repo Backup Design and Deployment","David Woon","2022/08/18 07:24:00","* Setup resource locks for backup servers and disks, create privatelink subnet, backup secondary NAS target troubleshooting","2"
+"NZGT","SD-1597","Newrelic reporting that servers are not reporting in","Jason Lee","2022/08/05 07:19:34","","1"
+"NZGT","SD-1596","FW: <Security Alert> VMware Authentication bypass","Jason Lee","2022/08/05 10:23:53","","0.25"
+"NZGT","SD-1594","[NZGT] Assist with troubleshooting of Zscaler issue with Meraki Client VPN","David Woon","2022/08/04 13:00:00","* Meeting to troubleshoot zscaler with craig, wendy, trunal","0.5"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/10/06 11:14:48","* Contact with Wendy for next step","0.25"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/11/02 04:17:15","* 20/09/2022 test and evaluate Veeam backup for SQL databases","4"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/11/02 08:04:05","* 12/10/2022 ask Wendy for Veeam backup approval","0.25"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/11/02 08:04:39","* 19/10/2022 ask Wendy for Veeam backup approval","0.25"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/11/02 08:08:19","* 24/10/2022 ask Wendy for Veeam backup approval","0.25"
+"NZGT","SD-1592","[NZGT] change NZGT Sql backup to veeam agent pushed out from VBR","Bo Xiao","2022/11/29 07:55:49","* Setup Veeam tasks for testing.","3"
+"LIC","SD-1591","Service Desk Ticket Edited: T20220802.0084 - FW: P150.79 output file (Livestock Improvement Corporation)","Jason Lee","2022/08/04 10:15:52","","0.5"
+"LIC","SD-1591","Service Desk Ticket Edited: T20220802.0084 - FW: P150.79 output file (Livestock Improvement Corporation)","Jason Lee","2022/08/11 07:56:00","","1"
+"LIC","SD-1590","Service Desk Ticket Edited: T20220706.0016 - Need Access to \\iceage\a1data-P31403\ and \\anvil\p1data-P15612 (Livestock Improvement Corporation)","Jason Lee","2022/08/04 10:22:22","","0.5"
+"LIC","SD-1590","Service Desk Ticket Edited: T20220706.0016 - Need Access to \\iceage\a1data-P31403\ and \\anvil\p1data-P15612 (Livestock Improvement Corporation)","Jason Lee","2022/08/04 12:33:09","","0.25"
+"Soar Communications","SD-1589","new WVD user to be added :Irene Critchley ","Jack Lau","2022/08/02 17:19:29","* Add new user to WVD","0.5"
+"LIC","SD-1588","FW: Open Tickets -- Please confirm by return email that these two tickets can be closed.  thanks","Jason Lee","2022/08/02 09:55:40","","0.25"
+"NZGT","SD-1586","NZGT: Patching and Issues Identified by Tenable Nessus","Jack Lau","2022/10/19 17:25:00","* Review and comment the scan report
+* Follow up with Bo and Fusion5","2"
+"NZGT","SD-1583","T20220728.0017 - NZGT: Team member who will be working from the Philippines","Jack Lau","2022/07/29 18:50:12","* Check the AVD current config
+* Prepare and Send the speed estimator info to Base2","0.5"
+"NZGT","SD-1580","T20220712.0110 Installing Anaplan plugin for NZGT user","Jack Lau","2022/08/05 14:26:51","* Check and test the Add-in on AVD
+* Provide instructions and screenshots for Base2","1"
+"Farmax","SD-1579","Housekeeping App deployment","Jason Lee","2022/08/05 15:47:00","","0.5"
+"Electra","SD-1578","Investigate patching issue on 2 VM's - Electra","Jack Lau","2022/08/02 16:56:54","* Investigate the agent issues with the DC servers","0.5"
+"Electra","SD-1578","Investigate patching issue on 2 VM's - Electra","Jack Lau","2022/08/08 14:03:16","* Update the update manager to exclude DCs from the patching scope.","0.5"
+"NZGT","SD-1577","NZGT Veeam monthly report automation for M365","Jack Lau","2022/08/02 14:53:20","* Build Powershell script
+* Create Github repo for NZGT monthly reports
+* Test the scripts
+* Generate reports","2.5"
+"NZGT","SD-1577","NZGT Veeam monthly report automation for M365","Jack Lau","2022/09/05 16:33:29","* Troubleshoot the Veeam cmdlet error
+* Fix the script and storage account key","1.5"
+"NZGT","SD-1577","NZGT Veeam monthly report automation for M365","Jack Lau","2022/09/13 14:46:15","* Test and Tidy up the script","1"
+"Sealink","SD-1575","Sealink File Permissions Issue","Jason Lee","2022/08/09 15:28:23","","1.5"
+"NZHL","SD-1574","High Memory usage alert over 85% on c360-microservices-plan-ae-pr","Jack Lau","2022/07/27 09:43:20","* Create a new rule for monitoring memory over 90% for c360-microservices-plan-ae-pr
+* Apply the same rule for test and dev of this resource","0.5"
+"Sealink","SD-1572","Sealink - Crash-consistent snapshot Has been Taken for SRV-SL-00","Jason Lee","2022/08/24 10:20:47","","1"
+"Sealink","SD-1572","Sealink - Crash-consistent snapshot Has been Taken for SRV-SL-00","Jason Lee","2022/08/25 13:52:15","","0.5"
+"Sealink","SD-1572","Sealink - Crash-consistent snapshot Has been Taken for SRV-SL-00","Jason Lee","2022/09/02 13:45:51","","0.5"
+"Sealink","SD-1572","Sealink - Crash-consistent snapshot Has been Taken for SRV-SL-00","Jason Lee","2022/09/05 08:51:40","","0.5"
+"ProCare","SD-1571","Procare DEVUAT aks-lin01-82287930-vmss000001 node rebooted","Jason Lee","2022/07/26 09:08:00","","0.5"
+"ProCare","SD-1571","Procare DEVUAT aks-lin01-82287930-vmss000001 node rebooted","Jason Lee","2022/07/27 10:30:42","","0.5"
+"LIC","SD-1570","FW: Firewall - Allow SMB connections from AOVPN clients to Batch","Jason Lee","2022/07/27 13:49:46","","0.75"
+"NZGT","SD-1567","Veeam M365 backup - Sync error with one archive mailbox","Jack Lau","2022/07/28 10:29:01","* Resync the archive mailbox","0.5"
+"NZGT","SD-1566","NZGT: Unable to open forms/create new records/update existing records in Dev/Stage instances","Jack Lau","2022/08/03 11:34:27","* Review SQL Server error messages with Bo.","0.5"
+"NZGT","SD-1566","NZGT: Unable to open forms/create new records/update existing records in Dev/Stage instances","Jack Lau","2022/08/02 09:35:00","* Check the vent and network rules between Dev and Staging VMs
+* Test open ports between Dev and Staging VMs
+* Test VMs Reboot
+* Review the error messages in Server logs","2.5"
+"NZGT","SD-1566","NZGT: Unable to open forms/create new records/update existing records in Dev/Stage instances","Jack Lau","2022/08/04 13:26:39","* Review logs with Bo
+* Arrange a meeting with Fusion5 Ian","1"
+"NZGT","SD-1566","NZGT: Unable to open forms/create new records/update existing records in Dev/Stage instances","Jack Lau","2022/08/05 13:06:00","* Troubleshooting session with Fusion5
+* Discussion about SQL Server patching","1.5"
+"NZGT","SD-1564","NZGT: Confirmation of Sage Backup","Jason Lee","2022/07/26 10:19:18","","0.5"
+"Electra","SD-1561","FW: BC Dev App Gateway check","Jack Lau","2022/07/25 20:13:43","* Analyse the app gateway firewall logs for MFA issue.","1"
+"Electra","SD-1561","FW: BC Dev App Gateway check","Jack Lau","2022/07/27 14:47:30","* Analyse the App Gateway logs
+* Add exclusion rules","2"
+"Farmax","SD-1559","Request for access","Jason Lee","2022/07/28 15:13:43","","0.75"
+"Electra","SD-1558","Review Azure Advisor recommendations - Electra","Jack Lau","2022/07/25 22:17:00","* Review Microsoft Advisor
+* Add comments and actions to Advisor","1.5"
+"NZGT","SD-1556","Investigate logs on VM's - C0001 & C0002","Jason Lee","2022/08/10 14:24:02","","0.75"
+"ProCare","SD-1554","Procare secret store driver upgrade to 1.2.0","Jason Lee","2022/07/21 08:41:00","","2"
+"ProCare","SD-1554","Procare secret store driver upgrade to 1.2.0","Jason Lee","2022/07/22 09:41:55","","1"
+"NZGT","SD-1553","FW: Azure VM Issue for Staging - Escalation needed please","Jack Lau","2022/07/21 14:27:33","* Troubleshoot the RDP issue with the VM
+* Identify the network rule conflict
+* Communicate with the team about the Defender setting - JIT VM access
+* Disable the rule since it is not the current standard for all VMs.","1.5"
+"NZGT","SD-1547","NZGT: Test Servers are meant to be inactive but seem to still be running","Jack Lau","2022/07/29 17:48:36","* Disable the monitoring alerts
+* Check last backup
+* Exclude from backup tasks
+* Shutdown VMs","0.75"
+"NZGT","SD-1545","T20220706.0142 - Teams call icon disappearing on AVD","Jack Lau","2022/07/21 14:26:00","* Troubleshoot AVD
+* Check Teams version and dependency
+* Schedule a change for software update first since the version needs to be updated and apply new fixes.","1.5"
+"NZGT","SD-1545","T20220706.0142 - Teams call icon disappearing on AVD","Jack Lau","2022/07/25 19:19:38","* Prepare software download and documents for the update.
+* Implement the update.
+* Test Teams calls on each host.
+* Inform the client when the system is resumed.","2"
+"Partners Life","SD-1543","FW: SSO setup for UAT2 (https://uat2-claims-webapp.partnerslife.fineos.com)","Matt Green","2022/07/20 09:26:41","","0.75"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/07/26 14:00:00","* Submit a ticket to Veeam","1"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/07/25 21:08:00","* Troubleshoot the reporting issue
+* Review the reporting script
+* Check the license records and M365 status","2"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/08/16 17:34:53","* Troubleshooting session with Veeam Engineer","1"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/08/17 20:59:27","* Backup the backup server
+* Fix the server authorisation error
+* Run backup test
+* Run restore test
+* Re-generate the backup report","4"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/08/18 20:51:00","* Generate License report
+* Audit the license records with M365 portal
+* Run backup test
+* Check logs","2"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/08/19 21:54:31","* Troubleshooting with Veeam Engineer","1"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/09/02 15:28:11","* Follow up issue with Lydia","0.5"
+"Metlifecare","SD-1542","FW: Veeam Managed Services Report for June 2022","Jack Lau","2022/09/28 12:36:00","* Follow up with Veeam to merge license file
+* Re-test the backup task
+* Review the license report","2"
+"NZGT","SD-1539","Amandeep Singh login issues ","Jason Lee","2022/07/19 14:00:00","","0.75"
+"NZGT","SD-1534","NZGT: Install Visual Studio in our Azure Environment to facilitate NZ Clear migration","Jack Lau","2022/07/28 17:10:45","* Design VM Build
+* Build Terraform code
+* Patch VM
+* Install and configure Azure and NR monitoring agents
+* Install additional software: Visual Studio 2017 and SSDT
+* Test VM login from AVD","6"
+"Electra","SD-1532","Add new rule to NSG","Jack Lau","2022/07/18 17:26:04","* Update Terraform code to match the current NSG rules","0.75"
+"NZHL","SD-1527","Investigate VPN host name security - NZHL ","Jack Lau","2022/07/18 22:30:07","* Communicate with the network team about the VPN security concern. Elena will update Steve about the security.","0.5"
+"NZHL","SD-1526","Azure policy to enforce incoming client certificates - NZHL ","Jack Lau","2022/07/22 13:42:39","* Build Json Custom Policy
+* Test  the resource audit and remediation task
+* Apply to the resource nzhl-websites-staging","2"
+"NZHL","SD-1525","Setup Azure policy to enforce FTPS ","Jack Lau","2022/07/20 12:47:00","* Build Json custom policy
+* Test the resource audit and remediation tasks
+* Apply to resources 27 function app","3"
+"NZHL","SD-1524","Investigate resources in Shared Services subscription - nzh-infra-ss-01-rg and disable if not required","Jack Lau","2022/07/15 22:57:00","* nzh-infra-ss-aue-01-la log workspace is not needed. Remove it by Terraform.","0.5"
+"NZHL","SD-1523","Server resource consumed by slow SQL queries - NZHL ","Jack Lau","2022/07/11 16:52:00","* Provide SQL indexes recommendation info to the client","0.5"
+"NZGT","SD-1522","T20220711.0210 - NZGT offboarded users","Jack Lau","2022/07/28 23:19:25","* Check mailboxes have archived
+* Check mailboxes not in current daily backup","0.25"
+"NZGT","SD-1516","Urgent - CRM Server down","Jack Lau","2022/09/07 10:36:50","* Remote session with Microsoft Support Engineer","1"
+"NZGT","SD-1516","Urgent - CRM Server down","Jack Lau","2022/10/11 19:47:29","* Check Non-Domain join VMs
+* Update Confluence Page
+* Follow up the status with the client","1.5"
+,"SD-1515","Duplicate Vulnerability scans email","Jack Lau","2022/07/18 23:10:00","* Update notification settings on 6 SQL Servers.","0.5"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Matt Green","2022/07/13 13:59:00","* Meeting to discuss approach with Mao and Steve","0.5"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Matt Green","2022/07/22 13:59:00","* Review Mao’s requirements doc and research appropriate solution in AAD","1"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Matt Green","2022/07/19 14:15:26","* Correspondence on requirements info","0.25"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Matt Green","2022/08/03 12:24:56","* Clarification around attribute requirements","0.5"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Jack Lau","2022/08/24 15:15:36","* Upgrade B2C to Premium P2","0.5"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Jack Lau","2022/08/03 20:27:00","* Configure and test the custom security attributes for B2C
+* Test the attributes with sample data","2"
+"NZHL","SD-1513","FW: Azure AD B2C and NZHL Azure AD SSO","Jack Lau","2022/08/05 21:29:00","* Demonstrate the custom security attributes with Steve and Deloitte Andy
+* Discuss the custom field options with Andy","1"
+"NZHL","SD-1512","Provision Home Drive","Donny Achmadi","2022/08/01 14:18:26","* Had a remote session with Steve to provision a new home drive in Azure File Share","0.75"
+"NZGT","SD-1511","RE: NZGT: 3x Security VMs Stopped.","Jason Lee","2022/07/19 09:25:00","","0.75"
+"NZHL","SD-1508","FW: NZHL Emissions","Jack Lau","2022/07/08 11:56:05","* Setup Power BI for M365
+* Setup AD access BI for M365
+* Configure and test Power BI for M365
+* Generate and send the reports to the client","2"
+"NZGT","SD-1507","Re: NZGT - T20220706.0146 - Slow WYSE","Jason Lee","2022/07/08 08:38:36","","0.25"
+"NZGT","SD-1503","Memory % . Average > 85.0 for at least 15 minutes on NZCRMDEV01 ","Jack Lau","2022/07/06 22:50:00","* The server is non-prod.
+* Reduce the memory usage by ending the disconnected sessions.","0.5"
+"Electra","SD-1500","Ednar VM support","Jack Lau","2022/07/04 13:22:00","* Check Domain setup
+* Troubleshoot the join Domain error
+* Update Routing Tables on Azure DC and Vnet GW
+* Join Domain with Azure DC Servers","2"
+"Electra","SD-1500","Ednar VM support","Jack Lau","2022/07/05 14:28:27","* New request - Add Extra 500GB disk to the EDNAR VM.
+* Update Terraform on new NSG rules for Ednar and allowing Domain join with Azure DC servers. ","2"
+"Kordia","SD-1496","Delegat - Monitoring - Zscaler has stop sending log for more than 4 hours","Jack Lau","2022/07/04 10:35:00","* Check the Zscaler connector status. No data stream in the last few hours.
+* Check the service status on Zscaler website. No outage reported.
+* Check the data traffic on Zscaler portal. Data traffic looks okay.
+* Troubleshoot the problem with CEF and NSS. CEF and NSS were functioning normal.
+* Submit a ticket with Zscaler.
+* Communicate with Zscaler engineer.","3"
+"LIC","SD-1495","Service Desk Ticket Edited: T20220701.0065 - URGENT : SCP and SSH access lost for linux servers licazsbatchd01,licazsbatcha01, licazsbatchp01 (Livestock Improvement Corporation)","Jason Lee","2022/07/04 10:00:52","","4"
+"NZGT","SD-1490","Deploy Windows 10 VM for Dev/Test of InTune and GPO policy","Jack Lau","2022/09/24 01:21:08","* Deploy VM with TF
+* Install Sentinel one agent","2"
+"NZGT","SD-1490","Deploy Windows 10 VM for Dev/Test of InTune and GPO policy","Jack Lau","2022/09/24 03:08:23","* Configure patching with Automation account
+* Add to Veeam backup Low-VM-policy
+* Add to New Relic Monitoring","0.5"
+"NZGT","SD-1490","Deploy Windows 10 VM for Dev/Test of InTune and GPO policy","Jack Lau","2022/09/24 04:03:10","* join domain
+* configure OU","0.5"
+"NZGT","SD-1490","Deploy Windows 10 VM for Dev/Test of InTune and GPO policy","Jack Lau","2022/10/27 12:44:57","* Follow up with Base2 moving it to AD OU.","0.25"
+"NZHL","SD-1489","Vulnerability scans","Jack Lau","2022/07/01 11:34:15","* Help to check the baseline settings for c360 database
+* Review the scheduling of SQL vulnerability scans","1.5"
+"NZHL","SD-1489","Vulnerability scans","Jack Lau","2022/07/01 15:02:37","* Check and run the SQL baseline task
+* Troubleshooting the SQL server issue.
+* Initial investigation. The database settings were on-demand mode (Auto pause and resume). The problem might relate to on-demand resourcing.","1.5"
+"NZHL","SD-1489","Vulnerability scans","Jack Lau","2022/07/04 12:27:00","* Configure the Scheduling all SQL vulnerability scans on Monday evening as Paul wants to receive the weekly reports on Tuesday for all scan results.
+* Update 6 SQL Servers
+* c360-sql-ae-pr
+* datahub-sql-ae-dv
+* nzh-commissiontool-pd-aue-01-sql
+* nzh-dn-pd-aue-01-sql
+* nzhlsql02
+* rlzing6nbx","1"
+"Electra","SD-1475","[New Relic] Disk Used % > 85 for at least 5 minutes on 'elbcappdvaue01 (C:)'","Jason Lee","2022/06/28 11:03:16","","0.25"
+"Farmax","SD-1474","Devops Pipeline Brownout","Jason Lee","2022/06/28 12:10:17","* Research changing pipeline and troubleshooting access","1.5"
+"Farmax","SD-1474","Devops Pipeline Brownout","Jack Lau","2022/06/28 15:01:57","* Fix the update issue with access right settings
+* Update the pipeline agent to “windows-latest”","1"
+"Farmax","SD-1474","Devops Pipeline Brownout","Jack Lau","2022/06/30 14:43:03","* Update pipelines agent to windows-latest","1"
+"Electra","SD-1473","[New Relic] Disk Used % > 85 for at least 5 minutes on 'elbcappdvaue01 (C:)'","Jack Lau","2022/06/27 20:39:22","* Login the server and check the disk usage
+* Email the client","0.5"
+"NZGT","SD-1472","[New Relic] Memory Used % > 80 for at least 5 minutes on 'NZ-Print01'","Jack Lau","2022/06/27 19:52:38","* Troubleshoot the memory usage issue
+* Identify the high memory usage apps
+* Discuss with the team about the apps","0.5"
+"NZGT","SD-1472","[New Relic] Memory Used % > 80 for at least 5 minutes on 'NZ-Print01'","Jack Lau","2022/06/28 22:40:00","* Reduce the usage of memory by ending the disconnected sessions.
+* The VM size should be reviewed. The current usage is very closed to the memory threshold.","0.5"
+"NZHL","SD-1469","Memory % . Average > 85.0 for at least 15 minutes on 'c360-microservices-plan-ae-pr' triggered by FACET MzI0NTg4N3xJTkZSQXxOQXwtMzM2MjE0NDUzNjE2NTMwMDYxOQ","Jack Lau","2022/06/24 17:40:10","* Investigate the high memory usage alert
+* Check logs and usage pattern
+* The high memory usage pattern is usually between 12pm and 1pm everyday.
+* Need to check with Deloitte or the client about the usage.","0.5"
+"NZHL","SD-1469","Memory % . Average > 85.0 for at least 15 minutes on 'c360-microservices-plan-ae-pr' triggered by FACET MzI0NTg4N3xJTkZSQXxOQXwtMzM2MjE0NDUzNjE2NTMwMDYxOQ","Jack Lau","2022/07/12 21:58:31","* Review the VM utilization.
+* Report the VM current usage in the monthly report.
+* Advise the app service plan should be scaled out when the memory usage is high.","1"
+"NZGT","SD-1468","Review the alert policy - NZCRMFPRDCT01 violated VM - Memory Utilisation","Jack Lau","2022/06/24 17:14:00","* Review the health status of the resource. It looks good.
+* The memory usage alert >80% was less than 10 mins.
+* Will discuss the alert with the team on Monday.","0.5"
+"NZGT","SD-1468","Review the alert policy - NZCRMFPRDCT01 violated VM - Memory Utilisation","Jack Lau","2022/07/12 22:21:48","* Check the VM utilization and running processes. The VM utilization is generally high. VM Size should be reviewed.
+* Sign off the disconnected sessions to release memory resources.","0.5"
+"Southern Cross","SD-1467","A spike in security events has been detected for southerncross.co.nz on Southern Cross Health Society NZ.","Jack Lau","2022/06/24 16:31:38","* Review the alert message from Opsgenie
+* Check the Sentinel events
+* Identify two high event alerts but they are still under investigation. Other event categories were at normal level","0.75"
+"Southern Cross","SD-1467","A spike in security events has been detected for southerncross.co.nz on Southern Cross Health Society NZ.","Jack Lau","2022/08/08 16:37:53","* Analysing the log
+* Identify the false positive events","1"
+"ETP","SD-1466","Generate - Deploy NSS and associated Azure resources","Jack Lau","2022/06/29 22:20:21","* Setup NSS profile on the portal
+* Setup Storage account with Zscaler image
+* Deploy NSS VM
+* Configure NSS VM
+* Test and verify the NSS health status","3"
+"ETP","SD-1465","Generate - Deploy CEF log forwarder and associated Azure resources","Donny Achmadi","2022/06/28 09:30:57","* Deployed CEF Forwarder and all related resources in Azure via Terraform","3"
+"ETP","SD-1465","Generate - Deploy CEF log forwarder and associated Azure resources","Donny Achmadi","2022/06/28 03:00:00","* Troubleshoot Zscaler for not showing NSS option","1.5"
+"ETP","SD-1465","Generate - Deploy CEF log forwarder and associated Azure resources","Donny Achmadi","2022/06/30 11:54:09","* Installed the OMS agent and enabling the integration between Zscaler > NSS > CEF Forwarder server","3"
+"ETP","SD-1464","Generate - Deploy Sentinel workspace","Jack Lau","2022/06/23 22:01:56","* Create Terraform SP account and saved in lastpass
+* Create Github repo under Emrge
+* Create Terrform Workspace
+* Deploy Resource group
+* Deploy Log Analytics Workspace","2"
+"NZHL","SD-1463","Backup error with Humanresources share ","Jack Lau","2022/06/23 17:08:36","* Check the backup status
+* Analyze the log history
+* Rescan the backup repo
+* Re-run the backup task","1"
+"NZHL","SD-1462","FW: NZHL Emissions","Jack Lau","2022/07/13 11:02:03","* Setup PowerBI account
+* Configure Emission Dashboard","1.5"
+"LIC","SD-1461","Service Desk Ticket Edited: T20220623.0038 - LIC Newstead Nutanix Cluster Capacity and Access. (Livestock Improvement Corporation)","Jack Lau","2022/06/23 14:13:00","* Confirm that We have capacity alerts setup to email 
+* CloudAndInfrastructure@lic.co.nz
+* Email current storage usage to Andy","0.5"
+"NZGT","SD-1459","Update session limit on hp-avd-auseast-001","Matt Green","2022/06/22 17:25:32","","0.25"
+"Kordia","SD-1457","Unable to log into dev-athena.kordia.co.nz - Athena","Jason Lee","2022/06/22 10:02:14","","2.5"
+"ProCare","SD-1456","Remove ProfusionSteppedCare and ProfusionWebApp containers from the stack - Procare","Jason Lee","2022/07/27 16:27:00","","0.5"
+"HDC","SD-1454","SecureFTX notification message","Jason Lee","2022/06/21 11:56:03","","0.5"
+"HDC","SD-1454","SecureFTX notification message","Jason Lee","2022/06/22 08:40:30","","0.5"
+"NZHL","SD-1447","Investigate DMARC reports monitoring/alerting - NZHL","Jack Lau","2022/09/13 10:11:00","* Review and check the current settings of DMARC","2"
+"NZHL","SD-1447","Investigate DMARC reports monitoring/alerting - NZHL","Jack Lau","2022/09/30 11:17:00","* Review alert messages in the shared mailbox
+* Review the 365 setup","1.5"
+"NZHL","SD-1443","VM Restore Test for NZHL ","Jack Lau","2022/06/30 09:35:42","* Configure the restore and test resource in Azure
+* Configure the VM settings to isolate the VM environment
+* Test the VM services
+* Send screenshot to Steve","1.5"
+"NZHL","SD-1443","VM Restore Test for NZHL ","Jack Lau","2022/06/29 10:38:00","* Plan and check the VM restore test
+* Plan the test and isolating the test VM","0.5"
+"NZHL","SD-1442","[New Relic] Memory Used % > 80 for at least 5 minutes on 'nzhbkupssaue01'","Jack Lau","2022/06/27 15:08:35","* Troubleshoot the memory resource issue
+* Close Open Apps to release the resources","0.5"
+"Metlifecare","SD-1435","Veeam Backup Warning MLC O365 ","Jack Lau","2022/06/10 15:06:34","* Review the log history for the backup warning for unlicensed users.
+* Troubleshooting
+* Check and review the system settings and any resolution from Veeam.","2"
+"Metlifecare","SD-1435","Veeam Backup Warning MLC O365 ","Jack Lau","2022/06/14 14:21:43","* Troubleshoot the warning messages with unlicensed users
+* Review the backup logs
+* Generate reports and communicate with the client about the current M365 groups settings ","2"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/18 11:11:00","* Review BC Prod Design","2"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/19 09:13:00","* Develop BC Prod TF code","4"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/20 09:13:00","* Deploy BC Prod TF code","4"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/21 12:13:00","* BC Prod Firewall rules","1"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/25 12:14:21","* BC Prod FW Rules","1"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/07/27 07:30:00","* WAFv2 research and terraform template development and testing.","4"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/08/08 14:04:00","* App Gateway v2 with WAF policy Terraform code development & testing","3"
+"Electra","SD-1432","Replicate BC/TAG DEV setup to PROD ","David Woon","2022/08/09 12:05:00","* App Gateway v2 with WAF policy, key vault Terraform deployment","5"
+"Southern Cross","SD-1430","SCHS - Azure WAF: High Number of ""Execution error - PCRE limits exceeded (-8): (null)"" Log Matches","David Woon","2022/08/04 09:13:00","","0.5"
+"Southern Cross","SD-1430","SCHS - Azure WAF: High Number of ""Execution error - PCRE limits exceeded (-8): (null)"" Log Matches","David Woon","2022/08/12 08:44:00","","1"
+"LIC","SD-1428","Veeam Backup Restore Test - LIC","Jason Lee","2022/08/18 11:18:44","","4"
+"LIC","SD-1426","Service Desk Ticket Edited: T20220607.0091 - Emrge - please copy NZL from prod batch to dev server (Livestock Improvement Corporation)","Jason Lee","2022/06/09 17:00:00","","1.5"
+"Electra","SD-1423","New VM for Network project of Switching Schedule tool EDNAR","Jack Lau","2022/06/09 23:45:16","* Checked and reviewed current azure setup","0.5"
+"Electra","SD-1423","New VM for Network project of Switching Schedule tool EDNAR","Jack Lau","2022/06/10 20:08:56","* Review the current Azure configuration
+* Design Network Resources for New VM (e.g. vNet, subnet, NSG rules)
+* Build VM Specification and configuration","1.5"
+"Electra","SD-1423","New VM for Network project of Switching Schedule tool EDNAR","Jack Lau","2022/06/21 10:20:00","* Review the current Firewall Policy","0.5"
+"Electra","SD-1423","New VM for Network project of Switching Schedule tool EDNAR","Jack Lau","2022/06/22 08:51:58","* Configure Firewall Rules to control Ednar’s outbound traffic
+* Update Network Rules
+* Test RDP access from restricted source IP address
+* Test Bastion access ","2"
+"Electra","SD-1423","New VM for Network project of Switching Schedule tool EDNAR","Jack Lau","2022/06/16 07:55:00","* IAC - Setup Terraform Workspace 
+* Build the VM config with Terraform
+* Assign Public IP and test RDP from the restricted IP address","4"
+"Atlas Gentech","SD-1422","Atlas Gentech - Mellanox Switch Upgrade to 3.9.3220","Jason Lee","2022/09/09 12:48:52","","0.5"
+"Atlas Gentech","SD-1422","Atlas Gentech - Mellanox Switch Upgrade to 3.9.3220","Jason Lee","2022/09/12 12:00:00","","3"
+"Atlas Gentech","SD-1422","Atlas Gentech - Mellanox Switch Upgrade to 3.9.3220","Jason Lee","2022/09/09 12:00:00","","2"

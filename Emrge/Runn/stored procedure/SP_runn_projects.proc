@@ -1,0 +1,77 @@
+IF OBJECT_ID ('emr_runn.SP_runn_projects') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_projects
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_projects 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <19012023>
+-- Update date: <19012023>
+-- Description:	<SP_runn_projects>
+-- Target table: emr_runn.runn_projects
+-- Source table: emr_runn.runn_projects_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_projects  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_projects
+               (
+                project_id                           
+                ,project_name 
+                ,archived          
+                ,wbs_external_id                           
+                ,confirmed                           
+                ,client_name                     
+                ,client_id           
+                ,team_id             
+                ,budget              
+                ,price_model                   
+                ,rate_card_id                  
+                ,rate_type                    
+                ,items                     
+               )
+         select
+                coalesce(id,'')                                          as project_id
+                ,coalesce(name,'')                                       as project_name
+                ,coalesce(archived,'')                                   as archived
+                ,coalesce(external_id,'')                                as wbs_external_id
+                ,coalesce(confirmed,'')                                  as confirmed
+                ,coalesce(client_name,'')                                as client_name
+                ,coalesce(client_id,'')                                  as client_id
+                ,coalesce(team_id,'')                                    as team_id                   
+                ,coalesce(budget,'')                                     as budget
+                ,case when coalesce(pricing_model,'') = 'fp' then 'Fixed Price'
+                      when coalesce(pricing_model,'') = 'nb' then 'Non-Billable'
+                      when coalesce(pricing_model,'') = 'tm' then 'Time and Materials'
+                      end                                                as pricing_model
+                ,coalesce(rate_card_id,'')                               as rate_card_id
+                ,coalesce(rate_type,'')                                  as rate_type
+                ,coalesce(items,'')                                      as items
+           from emr_runn.runn_projects_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_projects_tmp
+;
+      
+
+END
+
+
+
+
+
+
+GO
+

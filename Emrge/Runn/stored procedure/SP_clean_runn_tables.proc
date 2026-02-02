@@ -1,0 +1,46 @@
+IF OBJECT_ID ('emr_runn.SP_clean_runn_tables') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_clean_runn_tables
+GO
+
+CREATE PROCEDURE emr_runn.SP_clean_runn_tables
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20230919>
+-- Update date: <20230919>
+-- Description:	<SP_clean_runn_tables>
+-- Source table: emr_runn.runn_assignments_tmp 
+-- Source table: emr_runn.runn_actuals_tmp 
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+IF OBJECT_ID ('emr_runn.runn_actuals_tmp') IS NOT NULL
+     drop table emr_runn.runn_actuals_tmp
+;
+
+
+IF OBJECT_ID ('emr_runn.runn_assignments_tmp') IS NOT NULL
+     drop table emr_runn.runn_assignments_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_person_tmp') IS NOT NULL
+     drop table emr_runn.runn_person_tmp
+;
+
+IF OBJECT_ID ('emr_runn.runn_projects_tmp') IS NOT NULL
+     drop table emr_runn.runn_projects_tmp
+;
+
+END
+
+
+
+
+
+
+GO

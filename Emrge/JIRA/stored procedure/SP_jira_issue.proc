@@ -1,0 +1,68 @@
+IF OBJECT_ID ('emr_jira.SP_jira_issue') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_issue
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_issue 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20230919>
+-- Update date: <20250311>
+-- Description:	<SP_jira_issue>
+-- Target table: emr_jira.jira_issue
+-- Source table: emr_jira.jira_issue_tmp 
+-- =============================================
+   
+-- Delete latest data for re-run --
+
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_jira.jira_issue
+               (
+                issue_id
+                ,issue_key
+                ,resolution
+                ,issue_status
+                ,issue_type
+                ,created_date
+                ,resolution_date
+                ,description
+                ,organisation
+                ,label
+                ,load_date   
+               )
+         select
+                coalesce(issue_id,'')                 as issue_id
+                ,coalesce(issue_key,'')               as issue_key
+                ,coalesce(resolution,'')              as resolution
+                ,coalesce(issue_status,'')            as issue_status
+                ,coalesce(issue_type,'')              as issue_type
+                ,created_date                         as created_date
+                ,resolution_date                      as resolution_date
+                ,coalesce(description,'')             as description
+                ,coalesce(organisation,'')            as organisation
+                ,coalesce(label,'')                   as label                                --add label column 20240523
+                ,convert(varchar(10),getdate(),23)    as load_date
+           from emr_jira.jira_issue_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_jira.jira_issue_tmp
+;
+
+
+END
+
+
+
+
+
+
+GO
+

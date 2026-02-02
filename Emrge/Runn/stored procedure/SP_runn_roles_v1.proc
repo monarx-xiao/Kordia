@@ -1,0 +1,59 @@
+IF OBJECT_ID ('emr_runn.SP_runn_roles_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_roles_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_roles_v1 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251126>
+-- Update date: <20251126>
+-- Description:	<SP_runn_roles_v1>
+-- Target table: emr_runn.runn_roles_v1
+-- Source table: emr_runn.runn_roles_v1_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_roles_v1  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_roles_v1
+               (
+                role_id 
+                ,role_name
+                ,person_id        
+                ,created_at     
+                ,updated_at
+                ,isArchived                      
+               )
+         select
+                coalesce(role_id,'')                                                               as role_id
+                ,coalesce(role_name,'')                                                            as role_name  
+                ,coalesce(person_id ,'')                                                           as person_id       
+                ,substring(coalesce(created_at,''),1,10)                                           as created_at
+                ,substring(coalesce(updated_at,''),1,10)                                           as updated_at
+                ,coalesce(isArchived,'')                                                           as isArchived
+           from emr_runn.runn_roles_v1_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_roles_v1_tmp
+;
+
+END
+
+
+
+
+
+
+GO
+

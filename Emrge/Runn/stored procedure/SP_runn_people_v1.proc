@@ -1,0 +1,72 @@
+IF OBJECT_ID ('emr_runn.SP_runn_people_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_people_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_people_v1 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251125>
+-- Update date: <20251125>
+-- Description:	<SP_runn_people_v1>
+-- Target table: emr_runn.runn_person_v1
+-- Source table: emr_runn.runn_people_v1_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_person_v1  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_person_v1
+               (
+                person_id 
+                ,first_name
+                ,last_name 
+                ,email 
+                ,teamid  
+                ,created_at 
+                ,updated_at  
+                ,reference_name 
+                ,sap_external_id 
+                ,tags  
+                ,manager
+                ,isArchived                        
+               )
+         select
+                coalesce(person_id,'')                                                             as person_id 
+                ,coalesce(first_name,'')                                                           as first_name
+                ,coalesce(last_name,'')                                                            as last_name 
+                ,coalesce(email,'')                                                                as email 
+                ,coalesce(teamid,'')                                                               as teamid  
+                ,substring(coalesce(created_at,''),1,10)                                           as created_at 
+                ,substring(coalesce(updated_at,''),1,10)                                           as updated_at  
+                ,coalesce(referencename,'')                                                        as reference_name 
+                ,coalesce(externalid,'')                                                           as sap_external_id 
+                ,coalesce(tags,'')                                                                 as tags  
+                ,coalesce(managers,'')                                                             as manager  
+                ,coalesce(isArchived,'')                                                           as isArchived
+           from emr_runn.runn_people_v1_tmp  
+
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_people_v1_tmp
+;
+
+END
+
+
+
+
+
+
+GO
+

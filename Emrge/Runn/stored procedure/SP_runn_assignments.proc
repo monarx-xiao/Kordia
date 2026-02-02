@@ -1,0 +1,79 @@
+IF OBJECT_ID ('emr_runn.SP_runn_assignments') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_assignments
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_assignments 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20240304>
+-- Update date: <20240304>
+-- Description:	<SP_runn_assignments>
+-- Target table: emr_runn.runn_assignments 
+-- Source table: emr_runn.runn_assignments_tmp 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_runn.runn_assignments
+          where load_date = convert(varchar(10),getdate(),23) 
+;
+
+    insert into emr_runn.runn_assignments
+                (
+                 assignment_id
+                 ,start_date
+                 ,end_date
+                 ,minutes_per_day
+                 ,total_minutes
+                 ,is_billable
+                 ,note
+                 ,non_working_day
+                 ,person_id
+                 ,is_placeholder
+                 ,role_id
+                 ,project_id
+                 ,client_id
+                 ,phase_id
+                 ,load_date      
+                )
+         select
+                 coalesce(id,'')                      
+                 ,coalesce(start_date,'')                 
+                 ,coalesce(end_date,'')                    
+                 ,coalesce(minutes_per_day,'')                    
+                 ,coalesce(total_minutes,'')                     
+                 ,coalesce(is_billable,'')                        
+                 ,coalesce(note,'')                           
+                 ,coalesce(non_working_day,'')                    
+                 ,coalesce(person_id,'')                      
+                 ,coalesce(is_placeholder,'')                   
+                 ,coalesce(role_id,'')                         
+                 ,coalesce(project_id,'')                     
+                 ,coalesce(client_id,'')                       
+                 ,coalesce(phase_id,'')                      
+                 ,convert(varchar(10),getdate(),23)            
+          from emr_runn.runn_assignments_tmp
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+     drop table emr_runn.runn_assignments_tmp 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

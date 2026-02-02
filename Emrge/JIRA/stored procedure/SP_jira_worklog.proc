@@ -1,0 +1,63 @@
+IF OBJECT_ID ('emr_jira.SP_jira_worklog') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_worklog
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_worklog 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20230912>
+-- Update date: <20250311>
+-- Description:	<SP_jira_worklog>
+-- Target table: emr_jira.jira_worklog
+-- Source table: emr_jira.jira_worklog_tmp 
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_jira.jira_worklog
+               (
+                issue_id
+                ,resource
+                ,created_at
+                ,updated_at
+                ,started_at
+                ,time_spent
+                ,comment
+                ,load_date                     
+               )
+         select
+                coalesce(issue_id,'')                                 as issue_id
+                ,coalesce(resource,'')                                as resource
+                ,coalesce(created_at,'')                              as created_at
+                ,coalesce(updated_at,'')                              as updated_at
+                ,coalesce(started_at,'')                              as started_at
+                ,coalesce(convert(float,timespentseconds)/3600,'')    as time_spent
+                ,coalesce(comment,'')                                 as comment
+                ,convert(varchar(10),getdate(),23)                    as load_date
+           from emr_jira.jira_worklog_tmp  
+
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_jira.jira_worklog_tmp
+;
+
+
+END
+
+
+
+
+
+
+GO
+

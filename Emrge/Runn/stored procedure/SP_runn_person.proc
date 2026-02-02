@@ -1,0 +1,111 @@
+IF OBJECT_ID ('emr_runn.SP_runn_person') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_person
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_person 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <19012023>
+-- Update date: <19012023>
+-- Description:	<SP_runn_person>
+-- Target table: emr_runn.runn_person
+-- Source table: emr_runn.runn_person_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_person  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_person
+               (
+                person_id                       
+                ,person_name
+                ,archived                 
+                ,sap_external_id
+                ,first_name
+                ,last_name
+                ,email
+                ,roleid
+                ,role_id
+                ,role_name
+                ,role_archived
+                ,teamid
+                ,team_id
+                ,team_name
+                ,current_contractid
+                ,current_contract_id
+                ,current_contract_person_id
+                ,current_contract_roleid
+                ,current_contract_start_date
+                ,current_contract_end_date
+                ,current_contract_minutes_per_day
+                ,current_contract_employment_type
+                ,current_contract_rostered_days
+                ,current_contract_cost_per_hour
+                ,current_contract_role_id
+                ,current_contract_role_name
+                ,current_contract_role_archived
+                ,projects
+                ,skills
+                ,skills_unstable
+                ,tags
+                ,is_placeholder                        
+               )
+         select
+                coalesce(id,'')                                                     as person_id
+                ,coalesce(name,'')                                                  as person_name
+                ,coalesce(archived,'')                                              as archived
+                ,coalesce(external_id,'')                                           as sap_external_id
+                ,coalesce(first_name,'')                                            as first_name
+                ,coalesce(last_name,'')                                             as last_name
+                ,coalesce(email,'')                                                 as email
+                ,coalesce(roleid,'')                                                as roleid
+                ,coalesce(role_id,'')                                               as role_id
+                ,coalesce(role_name,'')                                             as role_name
+                ,coalesce(role_archived,'')                                         as role_archived
+                ,coalesce(teamid,'')                                                as teamid
+                ,coalesce(team_id,'')                                               as team_id
+                ,coalesce(team_name,'')                                             as team_name
+                ,coalesce(current_contractid,'')                                    as current_contractid
+                ,coalesce(current_contract_id,'')                                   as current_contract_id
+                ,coalesce(current_contract_person_id,'')                            as current_contract_person_id
+                ,coalesce(current_contract_roleid,'')                               as current_contract_roleid
+                ,coalesce(current_contract_start_date,'')                           as current_contract_start_date
+                ,coalesce(current_contract_end_date,'')                             as current_contract_end_date
+                ,coalesce(current_contract_minutes_per_day,'')                      as current_contract_minutes_per_day
+                ,coalesce(current_contract_employment_type,'')                      as current_contract_employment_type
+                ,coalesce(current_contract_rostered_days,'')                        as current_contract_rostered_days
+                ,coalesce(current_contract_cost_per_hour,'')                        as current_contract_cost_per_hour
+                ,coalesce(current_contract_role_id,'')                              as current_contract_role_id
+                ,coalesce(current_contract_role_name,'')                            as current_contract_role_name
+                ,coalesce(current_contract_role_archived,'')                        as current_contract_role_archived
+                ,coalesce(projects,'')                                              as projects
+                ,coalesce(skills,'')                                                as skills
+                ,coalesce(skills_unstable,'')                                       as skills_unstable
+                ,coalesce(tags,'')                                                  as tags
+                ,coalesce(is_placeholder,'')                                        as is_placeholder
+           from emr_runn.runn_person_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_person_tmp
+;
+
+END
+
+
+
+
+
+
+GO
+

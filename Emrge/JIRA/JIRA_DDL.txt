@@ -1,0 +1,207 @@
+--drop schema emr_jira;
+Create schema emr_jira;
+
+#--drop table emr_jira.jira_issue;
+#create table emr_jira.jira_issue
+#(
+#issue_id                             varchar(10)  not null 
+#,issue_key                           varchar(10)  not null
+#,resolution                          varchar(50)  not null
+#,issue_status                        varchar(50)  not null
+#,issue_type                          varchar(50)  not null
+#,created_date                        varchar(30)  null
+#,resolution_date                     varchar(30)  null
+#,description                         varchar(max) not null
+#,organisation                        varchar(100) not null
+#,label                               varchar(50)  not null
+#,load_date                           varchar(10)  not null
+#)
+#go
+#;
+
+
+--Jira worklog V3
+--drop table emr_jira.jira_worklog;
+  create table emr_jira.jira_worklog
+(
+               issue_id                        varchar(10)  not null 
+               ,resource                       varchar(50)  null
+               ,worklog_created_at             varchar(50)  null
+               ,worklog_updated_at             varchar(50)  null
+               ,worklog_started_at             varchar(50)  null
+               ,worklog_time_spent             varchar(10)  null
+               ,worklog_comment                varchar(max) null
+               ,load_date                      varchar(10)  not null
+)
+go
+;
+
+--Jira Issues V3
+--drop table emr_jira.jira_issue;
+create table emr_jira.jira_issue
+(
+             issue_id                            varchar(10)  not null 
+             ,issue_key                          varchar(10)  not null
+             ,resolution                         varchar(50)  null
+             ,issue_status                       varchar(50)  null
+     	   ,issue_type                         varchar(50)  null
+             ,jira_created_date                  varchar(30)  null
+             ,jira_resolution_date               varchar(30)  null
+             ,jira_description                   varchar(max) null
+             ,organisation                       varchar(100) null
+             ,label                              varchar(50)  null
+             ,resource                           varchar(50)  null
+             ,worklog_created_at                 varchar(50)  null
+             ,worklog_updated_at                 varchar(50)  null
+             ,worklog_started_at                 varchar(50)  null
+             ,worklog_time_spent                 varchar(10)  null
+             ,worklog_comment                    varchar(max) null
+             ,load_date                          varchar(10)  not null    
+)  
+go
+;
+
+--Jira Issues V3
+--drop table emr_jira.jira_issue_h;
+create table emr_jira.jira_issue_h
+(
+             issue_id                            varchar(10)  not null 
+             ,issue_key                          varchar(10)  not null
+             ,resolution                         varchar(50)  null
+             ,issue_status                       varchar(50)  null
+     	   ,issue_type                         varchar(50)  null
+             ,jira_created_date                  varchar(30)  null
+             ,jira_resolution_date               varchar(30)  null
+             ,jira_description                   varchar(max) null
+             ,organisation                       varchar(100) null
+             ,label                              varchar(50)  null
+             ,resource                           varchar(50)  null
+             ,worklog_created_at                 varchar(50)  null
+             ,worklog_updated_at                 varchar(50)  null
+             ,worklog_started_at                 varchar(50)  null
+             ,worklog_time_spent                 varchar(10)  null
+             ,worklog_comment                    varchar(max) null
+             ,load_date                          varchar(10)  not null      
+)
+go
+;
+
+#--drop table emr_jira.jira_worklog_tmp;
+#CREATE TABLE emr_jira.jira_worklog_tmp
+#(
+#    resource                         varchar(max) NULL
+#    ,comment                         varchar(max) NULL
+#    ,created_at                      varchar(max) NULL
+#    ,updated_at                      varchar(max) NULL
+#    ,started_at                      varchar(max) NULL
+#    ,timeSpentSeconds                varchar(max) NULL
+#    ,issue_Id                        varchar(max) NULL
+#) 
+#go
+#;
+
+--drop view emr_jira.v_jira_issue_v3;
+create view emr_jira.v_jira_issue_v3
+         as
+     SELECT 
+            a.issue_id                                                                               as issue_id
+            ,a.issue_key                                                                             as issue_key
+            ,coalesce(a.resolution,'')                                                               as resolution
+            ,coalesce(a.issue_status,'')                                                             as issue_status
+            ,coalesce(a.issue_type,'')                                                               as issue_type
+            ,coalesce(a.label,'')                                                                    as label
+            ,coalesce(a.jira_description,'')                                                         as description
+            ,SUBSTRING(coalesce(a.jira_created_date,'2999-12-31'), 1, 10)                            as jira_created_date
+            ,SUBSTRING(coalesce(a.jira_resolution_date,'2999-12-31'), 1, 10)                         as jira_resolution_date
+            ,coalesce(a.organisation,'')                                                             as organisation
+            ,coalesce(b.resource,'')                                                                 as resource
+            ,coalesce(b.worklog_comment,'')                                                          as worklog_description
+            ,SUBSTRING(b.worklog_created_at, 1, 10)                                                  as worklog_created_at
+            ,SUBSTRING(coalesce(b.worklog_started_at,'2999-12-31'), 1, 10)                           as worklog_started_at         
+            ,SUBSTRING(b.worklog_updated_at, 1, 10)                                                  as worklog_updated_at
+            ,coalesce(convert(float,b.worklog_time_spent)/3600,0)                                    as worklog_time_spent            
+       FROM emr_jira.jira_issue a
+  left join emr_jira.jira_worklog b
+         on a.issue_id = b.issue_id
+        and a.load_date = b.load_date
+;
+
+
+#--drop view emr_jira.v_jira_worklog;
+#create view emr_jira.v_jira_worklog
+#         as
+#     SELECT        
+#            a.issue_key                                                                            as issue_key
+#            , a.issue_status                                                                       as issue_status
+#            , a.issue_type                                                                         as issue_type
+#            , b.issue_id                                                                           as issue_id
+#            , b.resource                                                                           as resource
+#            , b.comment                                                                            as worklog_description
+#            , SUBSTRING(b.created_at, 1, 10)                                                       as created_at
+#            , SUBSTRING(b.started_at, 1, 10)                                                       as started_at
+#            , SUBSTRING(b.updated_at, 1, 10)                                                       as updated_at
+#            , coalesce(b.time_spent,'0')                                                           as time_spent
+#       FROM emr_jira.jira_issue  a 
+#  LEFT JOIN emr_jira.jira_worklog  b 
+#         ON a.issue_id = b.issue_id
+#;
+
+--drop view emr_jira.v_jira_issue_created_relotion_last_month;
+create view emr_jira.v_jira_issue_created_relotion_last_month
+as
+     select 
+	    issue_id
+	    , issue_key
+    	    , resolution
+	    , issue_status
+	    , issue_type
+	    , created_date
+	    , resolution_date
+	    , description
+	    , organisation
+	    , label
+	    , load_date
+       from emr_jira.jira_issue 
+      where substring(created_date,1,7) = substring(convert(varchar,DATEADD(month,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23),1,7)
+         or substring(coalesce(resolution_date,'9999-12-31T00:00:00.000+1300'),1,7) = substring(convert(varchar,DATEADD(month,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23),1,7)
+;
+
+--drop table emr_jira.jira_organization;
+create table emr_jira.jira_organization
+(
+             organisation                        varchar(100) not null
+             ,prepaied_hours                     float        null
+             ,oncall_flag                        char(1)      not null
+)
+go
+;
+
+--drop view emr_jira.v_jira_worklog_hours_used;
+create view emr_jira.v_jira_worklog_hours_used
+as 
+   with query1 (
+                organisation
+                ,submitted_hours
+                ,worklog_started_at
+                ,label
+               ) 
+            as (
+                  select 
+                         coalesce(organisation,'')                                                 as organisation
+                         ,sum(worklog_time_spent)                                                  as submitted_hours
+                         ,substring(worklog_started_at,1,7)                                        as worklog_started_at
+                         ,coalesce(label,'')                                                       as label
+                    from emr_jira.v_jira_issue_v3
+                group by coalesce(organisation,''),substring(worklog_started_at,1,7),label
+               )
+        select 
+               b.organisation                                                                      as organisation
+               ,coalesce(a.submitted_hours,0)                                                      as submitted_hours
+               ,coalesce(b.prepaied_hours,0)                                                       as prepaied_hours
+               ,coalesce(a.submitted_hours,0) - coalesce(b.prepaied_hours,0)                       as hours_needed 
+               ,a.worklog_started_at                                                               as worklog_month
+               ,coalesce(a.label,'')                                                                            as label
+          from emr_jira.jira_organization b
+     left join query1 a
+            on a.organisation = b.organisation
+;

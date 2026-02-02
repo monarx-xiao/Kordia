@@ -1,0 +1,165 @@
+[
+  {
+    "startAt": 0,
+    "maxResults": 5000,
+    "total": 4,
+    "worklogs": [
+      {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/13595/worklog/14242",
+        "author": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3A0afc585c-bfc0-4084-a791-721912efe9bb",
+          "accountId": "712020:0afc585c-bfc0-4084-a791-721912efe9bb",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png"
+          },
+          "displayName": "Phat Truong",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "updateAuthor": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3A0afc585c-bfc0-4084-a791-721912efe9bb",
+          "accountId": "712020:0afc585c-bfc0-4084-a791-721912efe9bb",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png"
+          },
+          "displayName": "Phat Truong",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "comment": "Write the CR for test restore Sd-3824",
+        "created": "2023-08-29T02:23:34.997+00:00",
+        "updated": "2023-08-29T02:23:34.997+00:00",
+        "started": "2023-08-29T01:53:15.577+00:00",
+        "timeSpent": "30m",
+        "timeSpentSeconds": 1800,
+        "id": "14242",
+        "issueId": "13595"
+      },
+      {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/13595/worklog/14260",
+        "author": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3A0afc585c-bfc0-4084-a791-721912efe9bb",
+          "accountId": "712020:0afc585c-bfc0-4084-a791-721912efe9bb",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png"
+          },
+          "displayName": "Phat Truong",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "updateAuthor": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3A0afc585c-bfc0-4084-a791-721912efe9bb",
+          "accountId": "712020:0afc585c-bfc0-4084-a791-721912efe9bb",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/90982a9e1218b5bdabac5630d701d94c?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FPT-3.png"
+          },
+          "displayName": "Phat Truong",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "comment": "Do the restore test and confirm all working ",
+        "created": "2023-08-30T00:40:44.846+00:00",
+        "updated": "2023-08-30T00:41:33.669+00:00",
+        "started": "2023-08-29T23:10:24.737+00:00",
+        "timeSpent": "1h 45m",
+        "timeSpentSeconds": 6300,
+        "id": "14260",
+        "issueId": "13595"
+      },
+      {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/13595/worklog/14261",
+        "author": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=62b5201bb065974c3e25a69b",
+          "accountId": "62b5201bb065974c3e25a69b",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "24x24": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "16x16": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "32x32": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png"
+          },
+          "displayName": "Bo Xiao",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "updateAuthor": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=62b5201bb065974c3e25a69b",
+          "accountId": "62b5201bb065974c3e25a69b",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "24x24": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "16x16": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png",
+            "32x32": "https://secure.gravatar.com/avatar/e2c59c461cabb1357c6741910e23829b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBX-2.png"
+          },
+          "displayName": "Bo Xiao",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "comment": "restore test for VM",
+        "created": "2023-08-30T02:45:36.911+00:00",
+        "updated": "2023-08-30T02:45:36.911+00:00",
+        "started": "2023-08-30T01:45:21.285+00:00",
+        "timeSpent": "1h",
+        "timeSpentSeconds": 3600,
+        "id": "14261",
+        "issueId": "13595"
+      },
+      {
+        "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/issue/13595/worklog/14287",
+        "author": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3Ad9cd83ed-daca-47d1-b57d-8b2aa7bbbe4e",
+          "accountId": "712020:d9cd83ed-daca-47d1-b57d-8b2aa7bbbe4e",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png"
+          },
+          "displayName": "Chunyuan Chen",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "updateAuthor": {
+          "self": "https://emergingtechnologypartners.atlassian.net/rest/api/2/user?accountId=712020%3Ad9cd83ed-daca-47d1-b57d-8b2aa7bbbe4e",
+          "accountId": "712020:d9cd83ed-daca-47d1-b57d-8b2aa7bbbe4e",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/326d25a891c53654927b129451688fd5?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCC-3.png"
+          },
+          "displayName": "Chunyuan Chen",
+          "active": true,
+          "timeZone": "Pacific/Auckland",
+          "accountType": "atlassian"
+        },
+        "comment": "Azure File restore test",
+        "created": "2023-08-31T23:28:00.722+00:00",
+        "updated": "2023-08-31T23:28:00.722+00:00",
+        "started": "2023-08-31T21:27:47.606+00:00",
+        "timeSpent": "2h",
+        "timeSpentSeconds": 7200,
+        "id": "14287",
+        "issueId": "13595"
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+using namespace System.Net
+
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "Processing Jira worklogs on all issues."
+
+$client_id = 'svc_jira_api@emrge.co.nz'
+$client_secret = 'lgzerx1F4RxT2QOtmKtyC570'
+$base64_auth_info = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $client_id,$client_secret)))
+
+
+#$date = (get-date).AddDays(-7)
+#$start_date = $date.getdatetimeformats()[22]
+$Url = "https://emergingtechnologypartners.atlassian.net/rest/api/3/search?jql=project=SD&startAt=$($start_at)&maxResults=100"
+
+
+$start_at = 0
+$issue_list = (Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64_auth_info)} "https://emergingtechnologypartners.atlassian.net/rest/api/3/search?jql=project=SD&startAt=$($start_at)&updated>$start_date&maxResults=100").issues
+

@@ -1,0 +1,68 @@
+IF OBJECT_ID ('emr_runn.SP_runn_projects_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_projects_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_projects_v1 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251125>
+-- Update date: <20251125>
+-- Description:	<SP_runn_projects_v1>
+-- Target table: emr_runn.runn_projects_v1
+-- Source table: emr_runn.runn_projects_v1_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_projects_v1  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_projects_v1
+               (                         
+                project_id
+                ,project_name 
+                ,pricing_model   
+                ,rate_type    
+                ,team_id    
+                ,client_id  
+                ,created_at      
+                ,updated_at
+                ,externalId
+                ,isArchived                
+               )
+         select
+                coalesce(project_id,'')                                                            as project_id
+                ,coalesce(project_name,'')                                                         as project_name 
+                ,coalesce(pricingmodel,'')                                                         as pricing_model   
+                ,coalesce(rateType,'')                                                             as rate_type    
+                ,coalesce(teamid,'')                                                               as team_id    
+                ,coalesce(clientid,'')                                                             as client_id  
+                ,substring(coalesce(created_at,''),1,10)                                           as created_at      
+                ,substring(coalesce(updated_at,''),1,10)                                           as updated_at   
+                ,coalesce(externalId,'')                                                           as externalId
+                ,coalesce(isArchived,'')                                                           as isArchived  
+           from emr_runn.runn_projects_v1_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_projects_v1_tmp
+;
+      
+
+END
+
+
+
+
+
+
+GO
+

@@ -1,0 +1,99 @@
+IF OBJECT_ID ('emr_jira.SP_jira_worklog') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_worklog
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_worklog 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <12062023>
+-- Update date: <12062023>
+-- Description:	<SP_jira_worklog>
+-- Target table: emr_jira.jira_worklog
+-- Source table: emr_jira.jira_worklog_tmp 
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+    delete from emr_jira.jira_worklog
+          where load_dt = convert(varchar(10),getdate(),23) 
+;
+
+-- Fetch all the crossing data -- 
+
+         select 
+                coalesce(a.organisation,'')                     as organisation
+                ,coalesce(a.ticket_id,'')                       as ticket_id 
+                ,coalesce(a.ticket_summary,'')                  as ticket_summary
+                ,coalesce(a.resource,'')                        as resource
+                ,coalesce(a.started_at,'')                      as started_at
+                ,coalesce(a.worklog_desc,'')                    as worklog_desc
+                ,coalesce(a.time_spent,'')                      as time_spent
+          into emr_jira.jira_worklog_tmp01
+          from emr_jira.jira_worklog_tmp a
+    inner join emr_jira.jira_worklog b
+            on a.organisation = b.organisation
+           and a.ticket_id = b.ticket_id
+           and a.ticket_summary = b.ticket_summary
+           and a.resource = b.resource
+           and a.started_at = b.started_at
+           and a.worklog_desc = b.worklog_desc
+           and a.time_spent = b.time_spent 
+;
+
+-- Delete all crossing data in target table --
+
+    delete from emr_jira.jira_worklog
+          where organisation + ticket_id + ticket_summary + resource + started_at + worklog_desc + time_spent 
+             in (
+                   select                                
+                          organisation + ticket_id + ticket_summary + resource + started_at + worklog_desc + time_spent         
+                     from emr_jira.jira_worklog_tmp01
+                ) 
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_jira.jira_worklog
+               (
+                organisation 
+                ,ticket_id                        
+                ,ticket_summary           
+                ,resource                      
+                ,started_at                 
+                ,worklog_desc            
+                ,time_spent               
+                ,load_dt                                        
+               )
+         select
+                coalesce(organisation,'')                       as organisation
+                ,coalesce(ticket_id,'')                         as ticket_id 
+                ,coalesce(ticket_summary,'')                    as ticket_summary
+                ,coalesce(resource,'')                          as resource
+                ,coalesce(started_at,'')                        as started_at
+                ,coalesce(worklog_desc,'')                      as worklog_desc
+                ,coalesce(time_spent,'')                        as time_spent              
+                ,convert(varchar(10),getdate(),23)              as load_dt    
+           from emr_jira.jira_worklog_tmp  
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_jira.jira_worklog_tmp
+;
+     drop table emr_jira.jira_worklog_tmp01
+;
+
+END
+
+
+
+
+
+
+GO
+

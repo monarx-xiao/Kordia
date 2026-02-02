@@ -1,0 +1,45 @@
+IF OBJECT_ID ('emr_runn.SP_runn_export') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_export
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_export @start_date varchar(10), @end_date varchar(10)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251205>
+-- Update date: <20251205>
+-- Description:	<SP_runn_export>
+-- Target table: 
+-- Source table: emr_runn.runn_report_v1 
+-- =============================================
+   
+-- Delete all data in target table --
+
+         select
+                replace(TRANSACTION_DATE,'-','')                                                   as TRANSACTION_DATE
+                ,SAP_EMPLOYEE_NO                                                                   as SAP_EMPLOYEE_NO
+                ,REC_ORDER                                                                         as REC_ORDER
+                ,WBS                                                                               as WBS
+                ,ABS_ATT_TYPE                                                                      as ABS_ATT_TYPE
+                ,CATSHOURS                                                                         as CATSHOURS
+                ,SCHEDULED_HOURS                                                                   as SCHEDULED_HOURS
+                ,x                                                                                 as x
+                ,PROJECT_NAME                                                                      as PROJECT_NAME
+                ,PERSON_NAME                                                                       as PERSON_NAME
+                ,COMMENTS                                                                          as COMMENTS
+                ,load_date                                                                         as load_date
+           from emr_runn.runn_report_v1  
+          where cast(TRANSACTION_DATE as date) >= cast(@start_date as date)
+            and cast(TRANSACTION_DATE as date) <= cast(@end_date as date)
+       order by TRANSACTION_DATE asc
+;
+
+END
+
+
+GO
+

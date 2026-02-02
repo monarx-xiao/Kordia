@@ -1,0 +1,66 @@
+IF OBJECT_ID ('emr_runn.SP_runn_person_contracts_v1') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_person_contracts_v1
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_person_contracts_v1 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251219>
+-- Update date: <20251219>
+-- Description:	<SP_runn_person_contracts_v1>
+-- Target table: emr_runn.runn_person_contracts_v1
+-- Source table: emr_runn.runn_person_contracts_v1_tmp 
+-- =============================================
+   
+-- Delete all data in target table --
+
+ truncate table emr_runn.runn_person_contracts_v1  
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_person_contracts_v1
+               (
+                contract_id                         
+                ,employment_type                
+                ,start_at                      
+                ,end_at                        
+                ,created_at                 
+                ,updated_at                       
+                ,person_id                         
+                ,role_id                          
+                ,job_title                                      
+               )
+         select
+                coalesce(contract_id,'')                                                           as contract_id                        
+                ,coalesce(employmenttype,'')                                                       as employmenttype                
+                ,coalesce(start_at,'')                                                             as start_at                      
+                ,coalesce(end_at,'')                                                               as end_at                        
+                ,coalesce(created_at,'')                                                           as created_at                 
+                ,coalesce(updated_at,'')                                                           as updated_at                       
+                ,coalesce(person_id,'')                                                            as person_id                         
+                ,coalesce(role_id,'')                                                              as role_id                          
+                ,coalesce(job_title,'')                                                            as job_title 
+           from emr_runn.runn_person_contracts_v1_tmp  
+
+;                  
+
+-- Drop temp table for rerun --       
+ 
+     drop table emr_runn.runn_person_contracts_v1_tmp
+;
+
+END
+
+
+
+
+
+
+GO
+

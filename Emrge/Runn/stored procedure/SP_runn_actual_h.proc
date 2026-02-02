@@ -1,0 +1,64 @@
+IF OBJECT_ID ('emr_runn.SP_runn_actuals_h') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_actuals_h
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_actuals_h @txdate varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <19012023>
+-- Update date: <19012023>
+-- Description:	<SP_runn_actuals_h>
+-- Target table: emr_runn.runn_actuals_h 
+-- Source table: emr_runn.runn_actuals_tmp 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_runn.runn_actuals_h  
+          where tx_date = @txdate
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_actuals_h
+               (
+                tx_date                             
+                ,person_id                         
+                ,project_id                        
+                ,billable_minutes                   
+                ,nonbillable_minutes               
+                ,billable_note                    
+                ,nonbillable_note                 
+                ,load_date                        
+               )
+         select
+                date
+                ,person_id
+                ,project_id
+                ,cast(billable_minutes    as int)
+                ,cast(nonbillable_minutes as int)
+                ,coalesce(billable_note,'')
+                ,coalesce(nonbillable_note,'')
+                ,getdate()
+           from emr_runn.runn_actuals_tmp  
+;                  
+
+-- Drop temp table for rerun --   
+    
+     drop table emr_runn.runn_actuals_tmp 
+;      
+
+END
+
+
+
+
+
+
+GO
+

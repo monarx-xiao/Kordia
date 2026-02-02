@@ -1,0 +1,93 @@
+IF OBJECT_ID ('emr_runn.SP_runn_report') IS NOT NULL
+	DROP PROCEDURE emr_runn.SP_runn_report
+GO
+
+CREATE PROCEDURE emr_runn.SP_runn_report @txdate varchar(8) 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20230119>
+-- Update date: <20240708>
+-- Description:	<SP_runn_report>
+-- Target table: emr_runn.runn_report
+-- Source table: emr_runn.runn_actuals_h
+--               emr_runn.runn_person
+--               emr_runn.runn_projects
+--               emr_runn.runn_assignments
+-- =============================================
+   
+-- Delete data of current day in target table for rerun--
+
+    delete from emr_runn.runn_report  
+     where TRANSACTION_DATE = @txdate
+;    
+
+-- Insert all data to target table from source table --
+ 
+    insert into emr_runn.runn_report
+               (
+                TRANSACTION_DATE               
+                ,SAP_EMPLOYEE_NO                
+                ,REC_ORDER                      
+                ,WBS                            
+                ,ABS_ATT_TYPE    
+                ,SCHEDULED_HOURS              
+                ,CATSHOURS  
+                ,x                   
+                ,PROJECT_NAME                    
+                ,PERSON_NAME
+                ,TEAM_NAME                     
+                ,COMMENTS  
+                ,load_date                         
+               )
+         select
+                a.tx_date                                                            as TRANSACTION_DATE    
+                ,b.sap_external_id                                                   as SAP_EMPLOYEE_NO         
+                ,''                                                                  as REC_ORDER
+                ,c.wbs_external_id                                                   as WBS    
+                ,'8000'                                                              as ABS_ATT_TYPE
+                ,convert(float,coalesce(d.minutes_per_day,0))/60                                                
+                                                                                     as SCHEDULED_HOURS
+                ,(cast(a.billable_minutes as float) + cast(a.nonbillable_minutes as float))/60 
+                                                                                     as CATSHOURS 
+                ,null                   
+                ,c.project_name                                                      as PROJECT_NAME
+                ,b.person_name                                                       as PERSON_NAME
+                ,b.team_name                                                         as TEAM_NAME
+                ,replace(coalesce(a.billable_note,'') + coalesce(a.nonbillable_note,''),char(10),'')      
+                                                                                     as COMMENTS   
+                ,a.load_date
+           from emr_runn.runn_actuals_h a
+      left join emr_runn.runn_person b
+             on a.person_id = b.person_id
+      left join emr_runn.runn_projects c
+             on a.project_id = c.project_id
+      left join (
+                  select * 
+                    from emr_runn.runn_assignments
+                   where load_date = convert(varchar(10),getdate() - DATEPART(WEEKDAY, GETDATE()) + 1,23) 
+                ) d
+             on a.person_id = d.person_id
+            and a.project_id = d.project_id
+            and a.tx_date between d.start_date and d.end_date             
+          where a.tx_date =@txdate
+--            and (cast(a.billable_minutes as float) + cast(a.nonbillable_minutes as float))/60  <> 0                   -- Rohan ask to remove filter on 20240708 
+            
+;                  
+
+
+      
+
+END
+
+
+
+
+
+
+GO
+
