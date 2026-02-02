@@ -1,0 +1,222 @@
+--drop schema emr_backup;
+Create schema emr_backup;
+
+--drop table emr_backup.veeam_BackupJobSessions;
+CREATE TABLE emr_backup.veeam_BackupJobSessions
+(
+	id                                         varchar(50)  not null
+	,is_retry                                  varchar(10)  NULL
+	,total_objects                             int          NULL
+	,parent_id                                 varchar(50)  null
+	,backup_policy_name                        varchar(max) NULL
+      ,project                                   varchar(50)  not NULL
+) 
+GO
+;
+
+--drop table emr_backup.veeam_jobsessions;
+CREATE TABLE emr_backup.veeam_jobsessions
+           (
+	       job_id                              varchar(50)  not NULL
+	       ,job_name                           varchar(max) NULL
+	       ,job_type                           varchar(10)  NULL
+	       ,creation_time                      datetime     NULL
+	       ,end_time                           datetime     NULL
+	       ,state                              char(5)      NULL
+	       ,result                             char(5)      NULL
+	       ,control                            char(5)      NULL
+	       ,description                        varchar(max) NULL
+	       ,operation                          varchar(max) NULL
+	       ,progress                           char(5)      NULL
+	       ,app_group_fail                     char(5)      NULL
+	       ,orig_session_id                    varchar(50)  NULL
+	       ,run_manually                       varchar(10)  NULL
+	       ,reason                             varchar(max) NULL
+	       ,stop_details                       varchar(max) NULL
+	       ,initiator_name                     varchar(50)  NULL
+	       ,logs_folder                        varchar(max) NULL
+	       ,session_tag                        varchar(max) NULL
+	       ,platform                           char(5)      NULL
+	       ,tracked_by_vbr                     char(5)      NULL
+	       ,db_log_type                        char(1)      NULL
+             ,project                            varchar(50)  not NULL
+) 
+GO
+;
+
+--drop table emr_backup.veeam_BackupTaskSessions;
+CREATE TABLE emr_backup.veeam_BackupTaskSessions
+(
+	session_id                                 varchar(50)  not null
+	,creation_time                             datetime     NULL
+	,object_name                               varchar(max) NULL
+	,status                                    char(1)      NULL
+	,reason                                    varchar(max) NULL
+	,object_id                                 varchar(50)  NULL
+	,end_time                                  datetime     NULL
+	,project                                   varchar(50)  not NULL
+) 
+GO
+;
+
+--drop table emr_backup.veeam_jobstate;
+CREATE TABLE emr_backup.veeam_jobstate
+(
+	job_id                                     varchar(50)  not null
+	,next_run_type                             varchar(5)   NULL
+	,next_run_time                             datetime     NULL
+	,latest_run_time                           datetime     NULL
+      ,project                                   varchar(50)  not NULL
+) 
+GO
+;
+
+--drop table emr_backup.veeam_job_details;
+create table emr_backup.veeam_job_details
+(
+      job_name                                 varchar(100) not null
+      ,job_type                                varchar(50)  null
+      ,creation_time                           datetime     null
+      ,end_time                                datetime     null
+      ,object_name                             varchar(100) null
+      ,state                                   varchar(5)   not null
+      ,run_manually                            char(1)      not null
+      ,next_run_time                           datetime     null
+      ,status                                  varchar(50)  null
+      ,is_retry                                char(1)      null
+      ,total_objects                           int          null
+      ,reason                                  varchar(max) null
+      ,project                                 varchar(50)  not null
+
+)
+go
+;
+
+
+--drop view emr_backup.veeam_daily_jobs;
+Create view emr_backup.veeam_daily_jobs
+as
+                   select 
+                          a.project
+                          ,a.job_name
+                          ,coalesce(max(cast(b.status as int)),-1)                            as status
+                          ,coalesce(convert(varchar,b.creation_time,23),'')                 as creation_time
+                          ,coalesce(convert(varchar,b.end_time,23),'')                       as end_time
+                     from emr_backup.veeam_jobs a
+				 left join 
+				 (   select * 
+                                       from emr_backup.veeam_job_details
+				      where convert(varchar,creation_time,23) =convert(varchar,dateadd(day,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23)
+				        and job_type = '15000'
+	                         )b
+				       on a.project = b.project
+				      and a.job_name = b.job_name
+			         group by a.project,a.job_name, convert(varchar,b.creation_time,23), convert(varchar,b.end_time,23)
+;
+
+
+        select 
+               bb.project
+               ,sum(case when aa.status is null then 0
+			             else 1 end) as total_jobs
+               ,sum(case when aa.status = '0' then 1
+                         else 0 end) as Success_Jobs
+               ,sum(case when aa.status in ('2','3') then 1
+                         else 0 end) as Failed_Warning_Jobs
+               ,sum(case when aa.status not in ('0','2','3') then 1
+                         else 0 end) as Other_Jobs
+               ,convert(varchar,aa.creation_time,23) as Job_date
+       --        ,convert(varchar,aa.end_time,23) as Job_end
+		  into emr_backup.veeam_daily_check
+	      from (
+		       select distinct project
+			   from emr_backup.veeam_job_details
+		       )bb
+     left join 
+			   (
+                   select distinct
+                          project
+                          ,job_name
+                          ,status as status
+                          ,convert(varchar,creation_time,23) as creation_time
+                          ,convert(varchar,end_time,23) as end_time
+                     from emr_backup.veeam_job_details
+                    where convert(varchar,creation_time,23) =convert(varchar,dateadd(day,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23)
+--                    where convert(varchar,creation_time,23) =convert(varchar,getdate(),23)
+                      and job_type = '15000'
+               ) aa
+			   on aa.project = bb.project
+      group by bb.project, convert(varchar,aa.creation_time,23),convert(varchar,aa.end_time,23)
+; 
+
+
+
+--drop table emr_backup.veeam_jobs;
+create table emr_backup.veeam_jobs
+(
+      project                                  varchar(50)  not null
+      ,job_name                                varchar(100)  null
+)
+go
+;
+
+insert into emr_backup.veeam_jobs select distinct project,job_name from emr_backup.veeam_jobsessions where job_type = '15000';
+
+
+--drop table emr_backup.veeam_code_mapping;
+create table emr_backup.veeam_code_mapping
+(
+      code_type                                varchar(50)  not null
+      ,code                                    varchar(50)  null
+      ,value                                   varchar(50)  not null
+)
+go
+;
+
+insert into emr_backup.veeam_code_mapping (code_type,code,value) values ('job_type','15000','Snapshot policy');
+insert into emr_backup.veeam_code_mapping (code_type,code,value) values ('job_type','15001',' Backup policy');
+insert into emr_backup.veeam_code_mapping (code_type,code,value) values ('job_status','0',' Success');
+insert into emr_backup.veeam_code_mapping (code_type,code,value) values ('job_status','2',' Failed');
+insert into emr_backup.veeam_code_mapping (code_type,code,value) values ('job_status','3',' Warning');
+
+
+--drop table emr_backup.veeam_backup_control;
+create table emr_backup.veeam_backup_control
+(
+      source_linked_service                      varchar(50)  not null
+      ,source_dataset                            varchar(50)  not null
+      ,sink_linked_service                       varchar(50)  not null
+      ,sink_dataset                              varchar(50)  not null
+      ,SP_schema                                 varchar(10)  null
+      ,SP_name                                   varchar(50)  null
+      ,is_done                                   char(1)      not null
+      ,project                                   varchar(50)  not null
+)
+go
+;
+
+--drop table emr_backup.email_messages;
+create table emr_backup.email_messages
+(
+      message_type                               varchar(50)  Not null
+      ,project                                   varchar(50)  Not null
+      ,job_name                                  varchar(100) Not null
+      ,object_name                               varchar(50)  Not null
+      ,status                                    varchar(20)  Not null
+      ,creation_time                             datetime     Not null
+      ,end_time                                  datetime     Not null
+      ,received_time                             date         Not null
+)
+go
+;
+
+--drop table emr_backup.email_messages_ld;
+create table emr_backup.email_messages_ld
+(
+      subject                                    varchar(100) Not null
+      ,email_from                                varchar(100) Not null
+      ,body                                      varchar(max) Not null
+      ,received_time                             varchar(50)  Not null
+)
+go
+;

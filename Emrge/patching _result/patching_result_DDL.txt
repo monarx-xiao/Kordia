@@ -1,0 +1,144 @@
+--drop table emr_update.azure_virtual_machine;
+CREATE TABLE emr_update.azure_virtual_machine
+(
+	SubscriptionName                            varchar(200) NULL
+     ,tenant_id                                  varchar(40)  NULL
+	,name                                       varchar(100) NULL
+	,resourcegroup                              varchar(200) NULL
+	,location                                   varchar(50)  NULL
+	,Vm_size                                    varchar(50)  NULL
+	,OS_type                                    varchar(50)  NULL
+	,Tags                                       varchar(max) NULL
+	,Status                                     varchar(20)  NULL
+     ,load_month                                 varchar(7)   not NULL
+) 
+GO
+;
+
+--drop table emr_update.patching_result;
+CREATE TABLE emr_update.patching_result
+(
+	machineName                                 varchar(100) NULL
+	,maintenance_Run_Id                         varchar(200) NULL
+	,status                                     varchar(100) NULL
+	,operationStatusReason                      varchar(max) NULL
+	,installedPatchCount                        int          not NULL
+	,notSelectedPatchCount                      int          not NULL
+	,excludedPatchCount                         int          not NULL
+	,pendingPatchCount                          int          not NULL
+	,failedPatchCount                           int          not NULL
+	,updateOperation                            varchar(50)  NULL
+	,operationType                              varchar(50)  NULL
+	,operationStartTime                         varchar(30)  NULL
+	,resourceType                               varchar(50)  NULL
+	,lastAssessedTime                           varchar(30)  NULL
+     ,load_month                                 varchar(7)   Not NULL
+) 
+GO
+;
+
+
+--drop view emr_update.v_azure_update_manager_report;
+create view emr_update.v_azure_update_manager_report
+         as
+     select 
+            a.machineName                                                                          as machineName
+            ,Case when a.updateOperation = 'Install Updates' then a.maintenance_Run_Id
+                  when a.updateOperation = 'Assessment'      then 'N/A'
+                  else '' end                                                                      as maintenance_Run_Id
+            ,a.status                                                                              as status
+            ,a.operationStatusReason                                                               as operationStatusReason
+            ,cast(a.installedPatchCount as varchar(20))+' out of '+cast(a.installedPatchCount+a.notSelectedPatchCount+a.excludedPatchCount+a.pendingPatchCount+a.failedPatchCount as varchar(20)) 
+                                                                                                   as UpdateInstalled
+            ,a.updateOperation                                                                     as updateOperation
+            ,a.operationType                                                                       as operationType
+            ,substring(a.operationStartTime,1,19)                                                  as operationStartTime   
+            ,a.resourceType                                                                        as resourceType
+            ,substring(a.lastAssessedTime,1,19)                                                    as lastAssessedTime                                                                            
+            ,b.tags                                                                                as tags
+            ,b.subscriptionname                                                                    as subscriptionname
+            ,case when b.subscriptionname like 'ProCare%' then 'ProCare'
+                  when b.subscriptionname like 'Southern Cross Health%' then 'Southern Cross Health'
+                  when b.subscriptionname like 'NZGT%' then 'NZGT'
+                  else c.company_name end                                                          as tenant_name
+            ,a.load_month                                                                          as load_month
+       from emr_update.patching_result a
+  left join emr_update.azure_virtual_machine b
+         on a.machineName = b.name
+        and a.load_month = b.load_month
+  left join emr_update.tenants c
+         on b.tenant_id = c.microsoft_id
+;
+GO
+
+--drop view emr_update.v_azure_virtual_machine;
+create view emr_update.v_azure_virtual_machine
+         as
+     select 
+            case 
+                 when a.subscriptionname like 'Southern Cross Health%' then 'Southern Cross Health'
+                 when a.subscriptionname = 'EMRGE Azure Sponsorship' then 'Kordia Group'
+                 when a.subscriptionname = 'Pay-As-You-Go Dev/Test(Converted to EA)' then 'Farmax Ltd'
+                 else b.company_name end                                                          as company_name
+            ,a.SubscriptionName           
+	       ,a.name                   
+	       ,a.resourcegroup         
+	       ,a.location                 
+	       ,a.Vm_size                       
+	       ,a.OS_type                         
+	       ,a.Tags                          
+	       ,a.Status                     
+       from emr_update.azure_virtual_machine a
+  left join emr_update.tenants b
+         on a.tenant_id = b.microsoft_id
+      where a.load_month = substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7) 
+;
+
+--drop view emr_update.v_azure_sql_server;
+create view emr_update.v_azure_sql_server
+         as
+     select
+            case 
+                 when a.Subscription_Name like 'Southern Cross Health%' then 'Southern Cross Health'
+                 when a.Subscription_Name = 'EMRGE Azure Sponsorship' then 'Kordia Group'
+                 when a.Subscription_Name = 'Pay-As-You-Go Dev/Test(Converted to EA)' then 'Farmax Ltd'
+                 else b.company_name end                                                          as company_name
+            ,a.Subscription_Name
+            ,a.tenant_id 
+	       ,a.sql_server_name 
+	       ,a.sql_database_name
+            ,a.resource_group_name
+	       ,a.location          
+	       ,a.Status               
+       from emr_update.azure_sql_server a
+  left join emr_update.tenants b
+         on a.tenant_id = b.microsoft_id
+      where a.load_month = substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7) 
+;
+
+--drop table emr_update.tenants;
+CREATE TABLE emr_update.tenants
+(
+	microsoft_id                                varchar(100) not NULL
+	,company_name                               varchar(max) not NULL
+	,Primary_domain                             varchar(max) NULL
+	,Relationship                               varchar(max) NULL
+	,Tags                                       varchar(max) NULL
+     ,is_managed_service                         char(1)      not NULL
+) 
+GO
+
+--drop table emr_update.azure_sql_server;
+CREATE TABLE emr_update.azure_sql_server
+(
+	Subscription_Name                           varchar(200) NULL
+     ,tenant_id                                  varchar(40)  NULL
+	,sql_server_name                            varchar(100) NULL
+	,sql_database_name                          varchar(100) NULL
+     ,resource_group_name                        varchar(200) not NULL
+	,location                                   varchar(50)  NULL
+	,Status                                     varchar(20)  NULL
+     ,load_month                                 varchar(7)   not NULL
+) 
+GO
+;

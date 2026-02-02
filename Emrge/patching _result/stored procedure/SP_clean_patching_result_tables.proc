@@ -1,0 +1,38 @@
+IF OBJECT_ID ('emr_update.SP_clean_patching_result_tables') IS NOT NULL
+	DROP PROCEDURE emr_update.SP_clean_patching_result_tables
+GO
+
+CREATE PROCEDURE emr_update.SP_clean_patching_result_tables
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date:     <20250516>
+-- Update date:     <20250516>
+-- Description:	<SP_clean_patching_result_tables>
+-- Source table: emr_update.azure_virtual_machine 
+--               emr_update.patching_result
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+IF OBJECT_ID ('emr_update.azure_virtual_machine') IS NOT NULL
+     drop table emr_update.azure_virtual_machine
+;
+
+IF OBJECT_ID ('emr_update.patching_result') IS NOT NULL
+     drop table emr_update.patching_result
+;
+
+
+END
+
+
+
+
+
+
+GO

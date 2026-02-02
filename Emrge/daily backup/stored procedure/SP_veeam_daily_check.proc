@@ -1,0 +1,200 @@
+IF OBJECT_ID ('emr_backup.SP_veeam_daily_check') IS NOT NULL
+	DROP PROCEDURE emr_backup.SP_veeam_daily_check
+GO
+
+CREATE PROCEDURE emr_backup.SP_veeam_daily_check
+           
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20241209>
+-- Update date: <20241223>
+-- Description:	<SP_veeam_daily_check>
+-- Target table: emr_backup.veeam_daily_check
+--               emr_backup.veeam_job_details
+-- Source table: emr_backup.veeam_jobsessions
+--               emr_backup.veeam_BackupJobSessions
+--               emr_backup.veeam_BackupTaskSessions
+--               emr_backup.veeam_jobstate
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+    delete from emr_backup.veeam_daily_check
+          where job_date = convert(varchar,dateadd(day,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23)
+;
+
+ truncate table emr_backup.veeam_job_details
+;
+
+
+-- Insert all data to target table from source table --
+
+    insert into emr_backup.veeam_job_details
+               (
+                job_name                 
+                ,job_type                       
+                ,creation_time                   
+                ,end_time                      
+                ,object_name                   
+                ,state                         
+                ,run_manually                      
+                ,next_run_time                    
+                ,status                          
+                ,is_retry                     
+                ,total_objects                
+                ,reason                       
+                ,project                          
+               )
+        select 
+               a.job_name                                              as job_name
+               ,case when a.job_type = '15000' then 'Snapshot policy'
+                     when a.job_type = '15001' then 'Backup policy'
+                     when a.job_type = '13001' then 'File Backup'
+                     when a.job_type = '13000' then 'File Backup'
+                     else a.job_type end                               as job_type 
+               ,a.creation_time                                        as creation_time
+	        ,a.end_time                                             as end_time
+               ,c.object_name                                          as object_name
+	        ,a.state                                                as state
+	        ,case when a.run_manually = 'True' then 'T'
+                     when a.run_manually = 'False' then 'F'
+                     else a.run_manually end                           as run_manually
+               ,d.next_run_time                                        as next_run_time
+	        ,case when a.result = '0' then 'Succeeded'
+                     when a.result = '2' then 'Failed'
+                     when a.result = '1' then 'Warning'
+                     when a.result is null then 'Incompleted'
+                     else a.result end                                 as status                  
+	        ,case when b.is_retry = 'True' then 'T'
+                     when b.is_retry = 'False' then 'F'
+                     else b.is_retry end                               as is_retry
+               ,b.total_objects                                        as total_objects
+	        ,coalesce(a.reason,'')                                  as reason
+	        ,a.project                                              as project
+          from [emr_backup].[veeam_jobsessions] a
+     left join [emr_backup].[veeam_BackupJobSessions] b
+            on b.parent_id = a.orig_session_id
+     left join [emr_backup].[veeam_BackupTaskSessions] c
+            on b.id = c.session_id
+     left join [emr_backup].[veeam_jobstate]  d
+            on a.job_id = d.job_id
+;		 
+           
+    insert into emr_backup.veeam_job_details
+               (
+                job_name                 
+                ,job_type                       
+                ,creation_time                   
+                ,end_time                      
+                ,object_name                   
+                ,state                         
+                ,run_manually                      
+                ,next_run_time                    
+                ,status                          
+                ,is_retry                     
+                ,total_objects                
+                ,reason                       
+                ,project                          
+               )
+         select 
+                job_name                                                                           as job_name
+                ,message_type                                                                      as job_type
+                ,creation_time                                                                     as creation_time                   
+                ,end_time                                                                          as end_time                      
+                ,object_name                                                                       as object_name                   
+                ,''                                                                                as state                         
+                ,'F'                                                                               as run_manually                      
+                ,case when job_name = 'Datto WINDBT41_daily02' then DATEADD(MINUTE,1260,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBT41 DATAMART_daily' then DATEADD(MINUTE,1230,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBT40 DATAMART_daily' then DATEADD(MINUTE,1230,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBT40_daily' then DATEADD(MINUTE,1260,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBP40 daily' then DATEADD(MINUTE,1260,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBP40 DATAMART daily' then DATEADD(MINUTE,1230,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBT41 DATAMART_daily' then DATEADD(MINUTE,1230,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBT41_daily02' then DATEADD(MINUTE,1260,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBP41 daily' then DATEADD(MINUTE,1260,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      when job_name = 'Datto WINDBP41 DATAMART daily' then DATEADD(MINUTE,1230,dateadd(DAY, datediff(day, 0, getdate()),0))
+                      else null end                                                                as next_run_time                    
+                ,status                                                                            as status                          
+                ,'F'                                                                               as is_retry                     
+                ,0                                                                                 as total_objects                
+                ,''                                                                                as reason                       
+                ,project                                                                           as project  
+           from emr_backup.email_messages
+;
+
+    insert into emr_backup.veeam_daily_check
+               (
+                project                                   
+                ,total_jobs
+                ,Success_Jobs
+                ,failed_Warning_Jobs
+                ,Other_Jobs
+                ,Job_date
+               )
+        select 
+               bb.project
+               ,sum(case when aa.status is null then 0
+			             else 1 end)                          as total_jobs
+               ,sum(case when aa.status = 'Succeeded' then 1
+                         else 0 end)                                   as Success_Jobs
+               ,sum(case when aa.status in ('Failed','Warning','Incompleted') then 1
+                         else 0 end)                                   as failed_Warning_Jobs
+               ,sum(case when aa.status not in ('Succeeded','Failed','Warning','Incompleted') then 1
+                         else 0 end)                                   as Other_Jobs
+               ,coalesce(convert(varchar,aa.creation_time,23),convert(varchar,dateadd(day,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23)) 
+			                                                  as Job_date
+	      from (
+		       select distinct project
+			   from emr_backup.veeam_job_details
+		       )bb
+     left join 
+			   (
+                   select distinct
+                          project
+                          ,job_name
+                          ,status as status
+                          ,convert(varchar,creation_time,23) as creation_time
+                          ,convert(varchar,end_time,23) as end_time
+                     from emr_backup.veeam_job_details
+                    where convert(varchar,creation_time,23) =convert(varchar,dateadd(day,-1,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time'),23)
+--                    where convert(varchar,creation_time,23) =convert(varchar,getdate(),23)
+                      and job_type in ('Backup policy','SQL Server Message','File Backup')
+               ) aa
+			   on aa.project = bb.project
+      group by bb.project, convert(varchar,aa.creation_time,23),convert(varchar,aa.end_time,23)
+
+;      
+--    insert into emr_backup.veeam_daily_check
+--               (
+--                project                                   
+--                ,total_jobs
+--                ,Success_Jobs
+--                ,Failed_Warning_Jobs
+--                ,Other_Jobs
+--                ,Job_date
+--               )
+--         select 
+--                project                                                                            as project
+--                ,count(1)                                                                          as total_jobs
+--                ,sum(case when status = 'Succeeded' then 1 
+--                          else 0 end)                                                              as Success_Jobs
+--                ,sum(case when status in ('Failed','Warning','Incompleted') then 1
+--                          else 0 end)                                                              as unsuccess_Jobs
+--                ,sum(case when status not in ('Succeeded','Failed','Warning','Incompleted') then 1
+--                          else 0 end)                                                              as Other_Jobs
+--                ,convert(varchar,received_time,23)                                                 as Job_date
+--           from emr_backup.email_messages 
+--       group by project, convert(varchar,received_time,23)
+;
+
+-- Drop temp table for rerun --       
+ 
+;
+
+
+END
+

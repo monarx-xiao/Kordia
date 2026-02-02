@@ -1,0 +1,47 @@
+IF OBJECT_ID ('emr_backup.SP_veeam_daily_start') IS NOT NULL
+	DROP PROCEDURE emr_backup.SP_veeam_daily_start
+GO
+
+CREATE PROCEDURE emr_backup.SP_veeam_daily_start
+           
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20241223>
+-- Update date: <20241223>
+-- Description:	<SP_veeam_daily_start>
+-- Target table: emr_backup.veeam_BackupJobSessions
+--               emr_backup.veeam_BackupTaskSessions
+--               emr_backup.veeam_jobsessions
+--               emr_backup.veeam_jobstate
+-- Source table: 
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+ truncate table emr_backup.veeam_BackupJobSessions
+;
+
+ truncate table emr_backup.veeam_BackupTaskSessions
+;
+
+ truncate table emr_backup.veeam_jobsessions
+;
+
+ truncate table emr_backup.veeam_jobstate
+;
+
+
+-- Insert all data to target table from source table --
+
+;                  
+
+-- Drop temp table for rerun --       
+ 
+;
+
+
+END
+

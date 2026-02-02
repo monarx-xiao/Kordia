@@ -1,0 +1,66 @@
+IF OBJECT_ID ('emr_update.SP_azure_virtual_machine') IS NOT NULL
+	DROP PROCEDURE emr_update.SP_azure_virtual_machine
+GO
+
+CREATE PROCEDURE emr_update.SP_azure_virtual_machine
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date:     <20250530>
+-- Update date:     <20250530>
+-- Description:	<SP_azure_virtual_machine>
+-- Source table: emr_update.azure_virtual_machine_ld
+-- Target table: emr_update.azure_virtual_machine
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+    delete from emr_update.azure_virtual_machine 
+          where load_month = substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7)
+
+;
+
+    insert into emr_update.azure_virtual_machine
+                (
+	            SubscriptionName    
+                ,tenant_id         
+	            ,name                 
+	            ,resourcegroup            
+	            ,location                 
+	            ,Vm_size                    
+	            ,OS_type                   
+	            ,Tags                      
+	            ,Status        
+                ,load_month  
+                )
+         select 
+	            SubscriptionName                                                                   as SubscriptionName
+                ,Tenant_id                                                                         as tenant_name
+          	    ,name                                                                              as name           
+	            ,resourcegroup                                                                     as resourcegroup
+	            ,location                                                                          as location
+	            ,Vm_size                                                                           as Vm_size
+	            ,OS_type                                                                           as OS_type             
+	            ,Tags                                                                              as Tags              
+	            ,Status                                                                            as Status          
+                ,substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7)                
+                                                                                                   as load_month  
+           from emr_update.azure_virtual_machine_ld
+;
+
+     drop table emr_update.azure_virtual_machine_ld
+;
+
+
+END
+
+
+
+
+
+
+GO

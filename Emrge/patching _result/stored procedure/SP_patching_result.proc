@@ -1,0 +1,76 @@
+IF OBJECT_ID ('emr_update.SP_patching_result') IS NOT NULL
+	DROP PROCEDURE emr_update.SP_patching_result
+GO
+
+CREATE PROCEDURE emr_update.SP_patching_result
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date:     <20250530>
+-- Update date:     <20250530>
+-- Description:	<SP_patching_result>
+-- Source table: emr_update.patching_result_ld
+-- Target table: emr_update.patching_result
+-- =============================================
+   
+-- Delete all temp tables for current date for rerun --
+
+    delete from emr_update.patching_result 
+          where load_month = substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7)
+
+;
+
+    insert into emr_update.patching_result
+                (
+	           machineName              
+	           ,maintenance_Run_Id          
+	           ,status                            
+	           ,operationStatusReason               
+	           ,installedPatchCount                   
+	           ,notSelectedPatchCount             
+	           ,excludedPatchCount               
+	           ,pendingPatchCount              
+	           ,failedPatchCount               
+	           ,updateOperation               
+	           ,operationType                    
+	           ,operationStartTime                 
+	           ,resourceType                  
+	           ,lastAssessedTime               
+                ,load_month
+                )
+         select 
+ 	           machineName                                                                        as machineName
+	           ,maintenance_Run_Id                                                                as maintenance_Run_Id
+	           ,status                                                                            as status
+	           ,operationStatusReason                                                             as operationStatusReason
+	           ,cast(coalesce(installedPatchCount,0) as int)                                      as installedPatchCount
+	           ,cast(coalesce(notSelectedPatchCount,0) as int)                                    as notSelectedPatchCount
+	           ,cast(coalesce(excludedPatchCount,0) as int)                                       as excludedPatchCount
+	           ,cast(coalesce(pendingPatchCount,0) as int)                                        as pendingPatchCount
+	           ,cast(coalesce(failedPatchCount,0) as int)                                         as failedPatchCount
+	           ,updateOperation                                                                   as updateOperation
+	           ,operationType                                                                     as operationType
+	           ,operationStartTime                                                                as operationStartTime
+	           ,resourceType                                                                      as resourceType
+	           ,lastAssessedTime                                                                  as lastAssessedTime
+                ,substring(convert(varchar,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'New Zealand Standard Time',23),1,7)                
+                                                                                                   as load_month  
+           from emr_update.patching_result_ld
+;
+
+     drop table emr_update.patching_result_ld
+;
+
+
+END
+
+
+
+
+
+
+GO

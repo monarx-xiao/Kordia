@@ -1,0 +1,68 @@
+IF OBJECT_ID ('emr_backup.SP_email_messages') IS NOT NULL
+	DROP PROCEDURE emr_backup.SP_email_messages
+GO
+
+CREATE PROCEDURE emr_backup.SP_email_messages
+           
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20250307>
+-- Update date: <20250307>
+-- Description:	<SP_email_messages>
+-- Target table: emr_backup.email_messages
+-- Source table: emr_backup.email_messages_ld
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+    delete from emr_backup.email_messages
+          where convert(varchar,dateadd(day,-1,received_time),23) = convert(varchar,dateadd(day,-1,getdate()),23)
+;
+
+
+-- Insert all data to target table from source table --
+
+    insert into emr_backup.email_messages
+               (
+                message_type                      
+                ,project                          
+                ,job_name  
+                ,object_name                        
+                ,status
+                ,creation_time
+                ,end_time                           
+                ,received_time                         
+               )
+        select 
+                subject                                                                            As message_type          
+                ,Case when email_from like '%@kordia.co.nz' then 'Kordia Corporate'
+                 else email_from
+                 end                                                                               As email_from   
+                ,substring(body,charindex('Maintenance Plan:',body)+18,charindex('Duration:',body) - charindex('Maintenance Plan:',body)-20)     
+                                                                                                   As job_name
+                ,substring(body,charindex('was generated on',body)+18,charindex('Maintenance Plan:',body) - charindex('was generated on',body)-22)
+                                                                                                   As object_name                                                                                   
+                ,substring(body,charindex('Status:',body)+8,charindex('Details:',body) - charindex('Status:',body)-11)
+                                                                                                   As status  
+                ,substring(body,charindex('Append existing',body)+29,charindex('Command:BACKUP DATABASE',body) - charindex('Append existing',body)-73)
+                                                                                                   As creation_time
+                ,substring(body,charindex('Append existing',body)+61,charindex('Command:BACKUP DATABASE',body) - charindex('Append existing',body)-73)        
+                                                                                                   As end_time                                                                                                                                                                                                                                                                 
+                ,convert(date,received_time)                                                       As received_time                  
+          from emr_backup.email_messages_ld
+
+;		 
+            
+
+-- Clean temp table for rerun --       
+
+truncate table emr_backup.email_messages_ld
+
+;
+
+
+END
+
