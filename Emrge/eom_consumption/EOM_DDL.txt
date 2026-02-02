@@ -1,0 +1,700 @@
+--drop schema emr_eom;
+create schema emr_eom;
+
+
+--drop table emr_eom.license_and_reserved_instances_FOCUS;
+create table emr_eom.license_and_reserved_instances_FOCUS
+      ( 
+             BilledCost                                                                            float        null,
+             BillingAccountId                                                                      varchar(500) not null,
+             BillingAccountName                                                                    varchar(100) not null,
+             BillingAccountType                                                                    varchar(50)  not null,
+             BillingCurrency                                                                       char(3)      not null,
+             BillingPeriodEnd                                                                      date         null,
+             BillingPeriodStart                                                                    date         null,
+             ChargeCategory                                                                        varchar(50)  not null,
+             ChargeClass                                                                           varchar(50)  not null,
+             ChargeDescription                                                                     varchar(max) not null,
+             ChargeFrequency                                                                       varchar(50)  not null,   
+             ChargePeriodEnd                                                                       date         null,
+             ChargePeriodStart                                                                     date         null,
+             CommitmentDiscountCategory                                                            varchar(100) not null,
+             CommitmentDiscountId                                                                  varchar(max) not null,                                          
+             CommitmentDiscountName                                                                varchar(max) not null,
+             CommitmentDiscountStatus                                                              varchar(100) not null,
+             CommitmentDiscountType                                                                varchar(100) not null,
+             ConsumedQuantity                                                                      float        null,
+             ConsumedUnit                                                                          varchar(100) not null,
+             ContractedCost                                                                        float        null,
+             ContractedUnitPrice                                                                   float        null,
+             EffectiveCost                                                                         float        null,
+             InvoiceIssuerName                                                                     varchar(100) not null,
+             ListCost                                                                              float        null,
+             ListUnitPrice                                                                         float        null,
+             PricingCategory                                                                       varchar(50)  not null,
+             PricingQuantity                                                                       int          null,                                           
+             PricingUnit                                                                           varchar(50)  not null,
+             ProviderName                                                                          varchar(50)  not null,
+             PublisherName                                                                         varchar(50)  not null,
+             RegionId                                                                              varchar(50)  not null,                                           
+             RegionName                                                                            varchar(50)  not null,                                
+             ResourceId                                                                            varchar(500) not null,                    
+             ResourceName                                                                          varchar(200) not null,                      
+             ResourceType                                                                          varchar(100) not null,                      
+             ServiceCategory                                                                       varchar(50)  not null,                         
+             ServiceName                                                                           varchar(200) not null,                     
+             SkuId                                                                                 varchar(50)  not null,               
+             SkuPriceId                                                                            varchar(200) not null,                    
+             SubAccountId                                                                          varchar(100) not null,                      
+             SubAccountName                                                                        varchar(100) not null,                        
+             SubAccountType                                                                        varchar(50)  not null,                        
+             Tags                                                                                  varchar(max) not null,              
+             x_AccountId                                                                           varchar(50)  not null,                      
+             x_AccountName                                                                         varchar(50)  not null,                        
+             x_AccountOwnerId                                                                      varchar(50)  not null,                           
+             x_BilledCostInUsd                                                                     float        null,                           
+             x_BilledUnitPrice                                                                     float        null,                           
+             x_BillingAccountId                                                                    varchar(500) not null,                              
+             x_BillingAccountName                                                                  varchar(50)  not null,                               
+             x_BillingExchangeRate                                                                 float        null,                                
+             x_BillingExchangeRateDate                                                             date         null,                                   
+             x_BillingProfileId                                                                    varchar(50)  not null,                             
+             x_BillingProfileName                                                                  varchar(50)  not null,                               
+             x_ContractedCostInUsd                                                                 float        null,                               
+             x_CostAllocationRuleName                                                              varchar(50)  not null,                                   
+             x_CostCenter                                                                          varchar(50)  not null,                       
+             x_CustomerId                                                                          varchar(100) not null,                       
+             x_CustomerName                                                                        varchar(200) not null,                         
+             x_EffectiveCostInUsd                                                                  float        null,                               
+             x_EffectiveUnitPrice                                                                  float        null,                               
+             x_InvoiceId                                                                           varchar(50)  not null,                     
+             x_InvoiceIssuerId                                                                     varchar(100) not null,                           
+             x_InvoiceSectionId                                                                    varchar(50)  not null,                            
+             x_InvoiceSectionName                                                                  varchar(100) not null,                              
+             x_ListCostInUsd                                                                       float        null,                         
+             x_PartnerCreditApplied                                                                varchar(10)  not null,                              
+             x_PartnerCreditRate                                                                   float        null,                                
+             x_PricingBlockSize                                                                    float        null,                               
+             x_PricingCurrency                                                                     char(3)      not null,                           
+             x_PricingSubcategory                                                                  varchar(50)  not null,                              
+             x_PricingUnitDescription                                                              varchar(max) not null,                                  
+             x_PublisherCategory                                                                   varchar(50)  not null,                             
+             x_PublisherId                                                                         varchar(50)  not null,                       
+             x_ResellerId                                                                          varchar(50)  not null,                      
+             x_ResellerName                                                                        varchar(50)  not null,                        
+             x_ResourceGroupName                                                                   varchar(200)  not null,                             
+             x_ResourceType                                                                        varchar(100) not null,                        
+             x_ServicePeriodEnd                                                                    date         null,                           
+             x_ServicePeriodStart                                                                  date         null,                              
+             x_SkuDescription                                                                      varchar(max) not null,                          
+             x_SkuDetails                                                                          varchar(max) not null,                      
+             x_SkuIsCreditEligible                                                                 char(1)      null,                                
+             x_SkuMeterCategory                                                                    varchar(100) not null,                             
+             x_SkuMeterId                                                                          varchar(200) not null,                       
+             x_SkuMeterName                                                                        varchar(200) not null,                         
+             x_SkuMeterSubcategory                                                                 varchar(100) not null,                                
+             x_SkuOfferId                                                                          varchar(50)  not null,                      
+             x_SkuOrderId                                                                          varchar(100) not null,                      
+             x_SkuOrderName                                                                        varchar(max) not null,                         
+             x_SkuPartNumber                                                                       varchar(100) not null,                         
+             x_SkuRegion                                                                           varchar(50)  not null,                      
+             x_SkuServiceFamily                                                                    varchar(50)  not null,                            
+             x_SkuTerm                                                                             int          null,                   
+             x_SkuTier                                                                             varchar(100) not null,
+             eom_period                                                                            varchar(8)   not null                                              
+	  )
+
+;
+
+--drop table emr_eom.azure_consumption_FOCUS;
+CREATE TABLE emr_eom.azure_consumption_FOCUS
+      (
+	       BilledCost	                                                                           float        NULL,
+	       BillingAccountId	                                                                     varchar(500) Not NULL,
+	       BillingAccountName	                                                               varchar(100) Not NULL,
+	       BillingAccountType	                                                               varchar(50)  Not NULL,
+	       BillingCurrency	                                                                     char(3)      Not NULL,
+	       BillingPeriodEnd	                                                                     date         NULL,
+	       BillingPeriodStart	                                                               date         NULL,
+	       ChargeCategory	                                                                     varchar(50)  Not NULL,
+	       ChargeClass	                                                                     varchar(50)  Not NULL,
+	       ChargeDescription	                                                               varchar(max) Not NULL,
+	       ChargeFrequency	                                                                     varchar(50)  Not NULL,
+	       ChargePeriodEnd	                                                                     date  NULL,
+	       ChargePeriodStart	                                                               date  NULL,
+	       CommitmentDiscountCategory	                                                         varchar(100) Not NULL,
+	       CommitmentDiscountId	                                                               varchar(max) Not NULL,
+	       CommitmentDiscountName	                                                               varchar(max) Not NULL,
+	       CommitmentDiscountStatus	                                                         varchar(100) Not NULL,
+	       CommitmentDiscountType	                                                               varchar(100) Not NULL,
+	       ConsumedQuantity	                                                                     float        NULL,
+	       ConsumedUnit	                                                                     varchar(100) Not NULL,
+	       ContractedCost	                                                                     float        NULL,
+	       ContractedUnitPrice	                                                               float        NULL,
+	       EffectiveCost	                                                                     float        NULL,
+	       InvoiceIssuerName	                                                               varchar(100) Not NULL,
+	       ListCost	                                                                           float        NULL,
+	       ListUnitPrice	                                                                     float        NULL,
+	       PricingCategory	                                                                     varchar(50)  Not NULL,
+	       PricingQuantity	                                                                     int          NULL,
+	       PricingUnit	                                                                     varchar(50)  Not NULL,
+	       ProviderName	                                                                     varchar(50)  Not NULL,
+	       PublisherName	                                                                     varchar(50)  Not NULL,
+	       RegionId	                                                                           varchar(50)  Not NULL,
+	       RegionName	                                                                           varchar(50)  Not NULL,
+	       ResourceId	                                                                           varchar(500) Not NULL,
+	       ResourceName	                                                                     varchar(200) Not NULL,
+	       ResourceType	                                                                     varchar(100) Not NULL,
+	       ServiceCategory	                                                                     varchar(50)  Not NULL,
+	       ServiceName	                                                                     varchar(200) Not NULL,
+	       SkuId	                                                                           varchar(50)  Not NULL,
+	       SkuPriceId	                                                                           varchar(200) Not NULL,
+	       SubAccountId	                                                                     varchar(100) Not NULL,
+	       SubAccountName	                                                                     varchar(100) Not NULL,
+	       SubAccountType	                                                                     varchar(50)  Not NULL,
+	       Tags	                                                                                 varchar(max) Not NULL,
+	       x_AccountId	                                                                     varchar(50)  Not NULL,
+	       x_AccountName	                                                                     varchar(50)  Not NULL,
+	       x_AccountOwnerId	                                                                     varchar(50)  Not NULL,
+	       x_BilledCostInUsd	                                                               float        NULL,
+	       x_BilledUnitPrice	                                                               float        NULL,
+	       x_BillingAccountId	                                                               varchar(500) Not NULL,
+	       x_BillingAccountName	                                                               varchar(50)  Not NULL,
+	       x_BillingExchangeRate	                                                               float        NULL,
+	       x_BillingExchangeRateDate	                                                         date  NULL,
+	       x_BillingProfileId	                                                               varchar(50)  Not NULL,
+	       x_BillingProfileName	                                                               varchar(50)  Not NULL,
+	       x_ContractedCostInUsd	                                                               float        NULL,
+	       x_CostAllocationRuleName	                                                         varchar(50)  Not NULL,
+	       x_CostCenter	                                                                     varchar(50)  Not NULL,
+	       x_CustomerId	                                                                     varchar(100) Not NULL,
+	       x_CustomerName	                                                                     varchar(200) Not NULL,
+	       x_EffectiveCostInUsd	                                                               float        NULL,
+	       x_EffectiveUnitPrice	                                                               float        NULL,
+	       x_InvoiceId	                                                                     varchar(50)  Not NULL,
+	       x_InvoiceIssuerId	                                                               varchar(100) Not NULL,
+	       x_InvoiceSectionId	                                                               varchar(50)  Not NULL,
+	       x_InvoiceSectionName	                                                               varchar(100) Not NULL,
+	       x_ListCostInUsd	                                                                     float        NULL,
+	       x_PartnerCreditApplied	                                                               varchar(10)  Not NULL,
+	       x_PartnerCreditRate	                                                               float        NULL,
+	       x_PricingBlockSize	                                                               float        NULL,
+	       x_PricingCurrency	                                                               char(3)      Not NULL,
+	       x_PricingSubcategory	                                                               varchar(50)  Not NULL,
+	       x_PricingUnitDescription	                                                         varchar(max) Not NULL,
+	       x_PublisherCategory	                                                               varchar(50)  Not NULL,
+	       x_PublisherId	                                                                     varchar(50)  Not NULL,
+	       x_ResellerId	                                                                     varchar(50)  Not NULL,
+	       x_ResellerName	                                                                     varchar(50)  Not NULL,
+	       x_ResourceGroupName	                                                               varchar(200)  Not NULL,
+	       x_ResourceType	                                                                     varchar(100) Not NULL,
+	       x_ServicePeriodEnd	                                                               date         NULL,
+	       x_ServicePeriodStart	                                                               date         NULL,
+	       x_SkuDescription	                                                                     varchar(max) Not NULL,
+	       x_SkuDetails	                                                                     varchar(max) Not NULL,
+	       x_SkuIsCreditEligible	                                                               char(1)      Not NULL,
+	       x_SkuMeterCategory	                                                               varchar(100) Not NULL,
+	       x_SkuMeterId	                                                                     varchar(200) Not NULL,
+	       x_SkuMeterName	                                                                     varchar(200) Not NULL,
+	       x_SkuMeterSubcategory	                                                               varchar(100) Not NULL,
+	       x_SkuOfferId	                                                                     varchar(50)  Not NULL,
+	       x_SkuOrderId	                                                                     varchar(100) Not NULL,
+	       x_SkuOrderName	                                                                     varchar(max) Not NULL,
+	       x_SkuPartNumber	                                                                     varchar(100) Not NULL,
+	       x_SkuRegion	                                                                     varchar(50)  Not NULL,
+	       x_SkuServiceFamily	                                                               varchar(50)  Not NULL,
+	       x_SkuTerm	                                                                           int          NULL,
+	       x_SkuTier	                                                                           varchar(100) Not NULL,
+             eom_period                                                                            varchar(8)   not null              
+      )
+
+;
+
+--drop table emr_eom_test.license_and_reserved_instances_test;
+create table emr_eom_test.license_and_reserved_instances_test
+      ( 
+	        invoiceId                                                                              varchar(50) NULL,
+	        previousInvoiceId                                                                      varchar(50) NULL,
+	        billingAccountId                                                                       varchar(50) NULL,
+	        billingAccountName                                                                     varchar(20) NULL,
+	        billingProfileId                                                                       varchar(50) NULL,
+	  	    billingProfileName                                                                     varchar(20) NULL,
+		    invoiceSectionId                                                                       varchar(50) NULL,
+		    invoiceSectionName                                                                     varchar(200) NULL,
+		    partnerTenantId                                                                        varchar(50) NULL,
+			partnerName                                                                            varchar(100) NULL,
+			resellerName                                                                           varchar(50) NULL,
+			resellerMpnId                                                                          varchar(50) NULL,
+			customerTenantId                                                                       varchar(50) NULL,
+			customerName                                                                           varchar(200) NULL,
+			costCenter                                                                             varchar(50) NULL,
+			billingPeriodEndDate                                                                   date NULL,
+			billingPeriodStartDate                                                                 date NULL,
+			servicePeriodEndDate                                                                   date NULL,
+			servicePeriodStartDate                                               	         	   date NULL,
+			date                                                       							   date NULL,
+			serviceFamily                                                        	  			   varchar(100) NULL,
+			productOrderId                                                      	 			   varchar(50) NULL,
+			productOrderName                                                  					   varchar(100) NULL,
+			consumedService                                                        				   varchar(50) NULL,
+			meterId                                                                				   varchar(50) NULL,
+			meterName                                                                              varchar(200) NULL,
+			meterCategory                                                                          varchar(50) NULL,
+			meterSubCategory                                                                       varchar(100) NULL,
+			meterRegion                                                                            varchar(50) NULL,
+			ProductId                                                          		   		       varchar(50) NULL,
+			ProductName                                                              			   varchar(200) NULL,
+			SubscriptionId                                                        		  	       varchar(50) NULL,
+			subscriptionName                                                         		       varchar(100) NULL,
+			publisherType                                                          				   varchar(100) NULL,
+			publisherId                                                             			   varchar(50) NULL,
+			publisherName                                                         			       varchar(200) NULL,
+			resourceGroupName                                                       		       varchar(200) NULL,
+			ResourceId                                                            				   varchar(500) NULL,
+			resourceLocation                                                   		 		       varchar(50) NULL,
+			location                                                           		  		       varchar(50) NULL,
+			effectivePrice                                                        	               float NULL,
+			quantity                                                                               float NULL,
+			unitOfMeasure                                                                          varchar(50) NULL,
+			chargeType                                                                             varchar(20) NULL,
+			billingCurrency                                                                        char(3) NULL,
+			pricingCurrency                                                                        char(3) NULL,
+			costInBillingCurrency                                                                  float NULL,
+			costInPricingCurrency                                                                  float NULL,
+			costInUsd                                                                              float NULL,
+			paygCostInBillingCurrency                                                              float NULL,
+			paygCostInUsd                                                                		   float NULL,
+			exchangeRatePricingToBilling                                                           float NULL,
+			exchangeRateDate                                                                       date NULL,
+			isAzureCreditEligible                                                                  char(1) NULL,
+			serviceInfo1                                                                           varchar(max) NULL,
+			serviceInfo2                                                                           varchar(max) NULL,
+			additionalInfo                                                                         varchar(max) NULL,
+			tags                                                                                   varchar(max) NULL,
+			partnerEarnedCreditRate                                                                float NULL,
+			partnerEarnedCreditApplied                                                             char(1) NULL,
+			PayGPrice                                                                              float NULL,
+			frequency                                                                              varchar(20) NULL,
+			term                                                                                   varchar(20) NULL,
+			reservationId                                                                          varchar(50) NULL,
+			reservationName                                                                        varchar(200) NULL,
+			pricingModel                                                                           varchar(20) NULL,
+			unitPrice                                                                              float NULL,
+			benefitId                                                                              varchar(200) NULL,
+			benefitName                                                                            varchar(200) NULL,
+	      	provider                                                                               varchar(20) NULL,
+			eom_period                                                                             varchar(8) not null                                           
+	  )
+
+;
+
+--drop table emr_eom_test.azure_consumption_test;
+CREATE TABLE emr_eom_test.azure_consumption_test
+      (
+	      	invoiceId                                                                              varchar(50) NULL,
+	      	previousInvoiceId                                                                      varchar(50) NULL,
+	      	billingAccountId                                                                       varchar(50) NULL,
+	      	billingAccountName                                                                     varchar(20) NULL,
+	      	billingProfileId                                                                       varchar(50) NULL,
+			billingProfileName                                                                     varchar(20) NULL,
+			invoiceSectionId                                                                       varchar(50) NULL,
+			invoiceSectionName                                                                     varchar(200) NULL,
+			partnerTenantId                                                                        varchar(50) NULL,
+			partnerName                                                                            varchar(100) NULL,
+			resellerName                                                                           varchar(50) NULL,
+			resellerMpnId                                                                          varchar(50) NULL,
+			customerTenantId                                                                       varchar(50) NULL,
+			customerName                                                                           varchar(200) NULL,
+			costCenter                                                                             varchar(50) NULL,
+			billingPeriodEndDate                                                                   date NULL,
+			billingPeriodStartDate                                                                 date NULL,
+			servicePeriodEndDate                                                                   date NULL,
+			servicePeriodStartDate                                                       	 	   date NULL,
+			date                                                       							   date NULL,
+			serviceFamily                                                          				   varchar(100) NULL,
+			productOrderId                                                       				   varchar(50) NULL,
+			productOrderName                                                  					   varchar(100) NULL,
+			consumedService                                                        				   varchar(50) NULL,
+			meterId                                                                				   varchar(50) NULL,
+			meterName                                                                              varchar(200) NULL,
+			meterCategory                                                                          varchar(50) NULL,
+			meterSubCategory                                                                       varchar(100) NULL,
+			meterRegion                                                                            varchar(50) NULL,
+			ProductId                                                          		  		       varchar(50) NULL,
+			ProductName                                                              			   varchar(200) NULL,
+			SubscriptionId                                                        			       varchar(50) NULL,
+			subscriptionName                                                         		       varchar(100) NULL,
+			publisherType                                                          				   varchar(100) NULL,
+			publisherId                                                             			   varchar(50) NULL,
+			publisherName                                                         		 	       varchar(200) NULL,
+			resourceGroupName                                                       		       varchar(200) NULL,
+			ResourceId                                                            				   varchar(500) NULL,
+			resourceLocation                                                   		    		   varchar(50) NULL,
+			location                                                           		   		       varchar(50) NULL,
+			effectivePrice                                                        	               float NULL,
+			quantity                                                                               float NULL,
+			unitOfMeasure                                                                          varchar(50) NULL,
+			chargeType                                                                             varchar(20) NULL,
+			billingCurrency                                                                        char(3) NULL,
+			pricingCurrency                                                                        char(3) NULL,
+			costInBillingCurrency                                                                  float NULL,
+			costInPricingCurrency                                                                  float NULL,
+			costInUsd                                                                              float NULL,
+			paygCostInBillingCurrency                                                              float NULL,
+			paygCostInUsd                                                                		   float NULL,
+			exchangeRatePricingToBilling                                                           float NULL,
+			exchangeRateDate                                                                       date NULL,
+			isAzureCreditEligible                                                                  char(1) NULL,
+			serviceInfo1                                                                           varchar(max) NULL,
+			serviceInfo2                                                                           varchar(max) NULL,
+			additionalInfo                                                                         varchar(max) NULL,
+			tags                                                                                   varchar(max) NULL,
+			partnerEarnedCreditRate                                                                float NULL,
+			partnerEarnedCreditApplied                                                             char(1) NULL,
+			PayGPrice                                                                              float NULL,
+			frequency                                                                              varchar(20) NULL,
+			term                                                                                   varchar(20) NULL,
+			reservationId                                                                          varchar(50) NULL,
+			reservationName                                                                        varchar(200) NULL,
+			pricingModel                                                                           varchar(20) NULL,
+			unitPrice                                                                              float NULL,
+			benefitId                                                                              varchar(200) NULL,
+			benefitName                                                                            varchar(200) NULL,
+	  	    provider                                                                               varchar(20) NULL,
+			eom_period                                                                             varchar(8) not null    
+      )
+;
+
+--drop table emr_eom.billing_customers_master;
+create table emr_eom.billing_customers_master
+ (
+            customer_name                                                                          varchar(200) not null,
+			charge_type                                                                            varchar(20)  not null,
+			sap_accountid                                                                          varchar(10)  not null,
+			wbs                                                                                    varchar(20)  not null,
+			crm_ref                                                                                varchar(10)  not null,
+			po                                                                                     varchar(20)  not null,
+			run_number                                                                             varchar(20)  not null,
+			inv_number                                                                             varchar(20)  not null,
+            item                                                                                   varchar(5)   not null,
+			description                                                                            varchar(200) not null,
+			material                                                                               varchar(20)  not null,
+			currency                                                                               char(3)      not null,
+			payment_terms                                                                          varchar(10)  not null,
+			inv_order                                                                              varchar(10)  not null,
+            tax                                                                                    varchar(5)   not null,
+			consumption_customer_name                                                              varchar(200) not null,
+			customer_flag                                                                          varchar(10)  not null,
+			monthly_report                                                                         char(1)      not null,
+			prepaied_hours                                                                         float        null,
+			oncall_flag                                                                            char(1)      not null
+ )
+ ;
+
+insert into emr_eom.billing_customers_master values ('Ando Insurance','Consumption','1002066','NND.02804.001','45595','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Aroturuki Matariki ','Consumption','1002842','NND.02632.002','44995','PO# 112/2650','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Avanti Finance','Consumption','1002417','NND.02762.001','44276','PO3968','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Avanti Finance','M365','1002417','NND.02762.001','44276','PO3972','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Beef + Lamb','Consumption','1002259','NND.02815.001','47764','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Delegat','Consumption','1002122','NND.02544.001','33215','PO11228204','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Education Review Office','Consumption','1002637','NND.02632.001','40040','PO# 611/2650','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Electra','Consumption + RI','1002040','NND.02552.001','35589','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Employers Manufacturers Association','Consumption + RI','1002399','NND.02697.001','38003','POR00261','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Employers Manufacturers Association','M365','1002399','NND.02697.001','38003','POR00261','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Framecad','Consumption','1001585','NND.02538.001','35231','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Generate Wealth Kiwisaver','Consumption','1002585','NND.02675.001','36693','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Ideal Electrical Suppliers Limited','Consumption','1002739','NND.02986.001','56039','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Ideal Electrical Suppliers Limited','M365','1002739','NND.02986.001','56039','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Image Centre Group (Soar Communications Group)','Consumption','1002732','NND.02653.002','35165','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Infratec Limited','Consumption','1002961','NND.02898.002','53714','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('James & Wells (Head Office) Ltd','Consumption','1002839','NND.02761.001','48076','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Jarden ','Consumption','1002597','NND.02702.001','36505','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Kinetic NZHL','Consumption + RI','1002855','NND.02801.002','44753','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('KiwiRail','Consumption + RI','1000104','NND.02532.002','41818','4710114756','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Metlifecare ','Consumption + RI','1001797','NND.02522.001','35127','POMET000002876','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Net Express NZ Ltd','Consumption + RI','1002113','NND.02530.001','','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('NSQR Limited (NZ)','Consumption','1002771','NND.02806.001','47868','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Partners Life','Consumption','1001048','NND.02518.001','32742','','','',1,'','ETP_CLOUD','NZD','','','15','Partners Life Ltd','External','N');
+insert into emr_eom.billing_customers_master values ('Plant and Food Research','Consumption','1001881','NND.02775.001','41856','PFR2116136','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Radio New Zealand','Consumption','1000121','NND.02623.001','37496','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Sealink NZ','Consumption + RI','1001352','NND.02580.001','36616','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Sealink NZ','M365','1001352','NND.02580.001','36616','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Sentient Software','Consumption','1002258','NND.02813.001','44948','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Sentient Software','M365','1002258','NND.02813.001','44948','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Skyline','Consumption','1001177','NND.02536.001','34672','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Tauranga City Council','Consumption','1001872','NND.02542.001','24478','4500042010','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('The New Zealand Home Loan Company Limited','Consumption + RI','1001770','NND.02520.001','31292','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('The New Zealand Home Loan Company Limited','M365','1001770','NND.02520.001','31292','','','',1,'','ETP_CLOUD','NZD','','','15','','External','N');
+insert into emr_eom.billing_customers_master values ('Partners Life','Consumption','1001048','NND.02518.001','32742','','','',21,'','ETP_CLOUD','NZD','','','15','Partners Life UAT','External','N');
+insert into emr_eom.billing_customers_master values ('BCL','','','','','','','',0,'','','NZD','','','','BCL','Internal','N');
+insert into emr_eom.billing_customers_master values ('Emrge','','','','','','','',0,'','','NZD','','','','Emrge','Internal','N');
+insert into emr_eom.billing_customers_master values ('Kordia Cyber Academy','','','','','','','',0,'','','NZD','','','','Kordia Cyber Academy','Internal','N');
+insert into emr_eom.billing_customers_master values ('SecOps NZ Limited','','','','','','','',0,'','','NZD','','','','SecOps NZ Limited','Internal','N');
+insert into emr_eom.billing_customers_master values ('A Lab to Lab Labs','','','','','','','',0,'','','NZD','','','','A Lab to Lab Labs','Internal','N');
+insert into emr_eom.billing_customers_master values ('NZGT','','','','','','','',0,'','','NZD','','','','NZGT Holding Company Limited','External','Y');
+
+
+update emr_eom.billing_customers_master set consumption_customer_name = 'Ando Insurance Group Limited' where customer_name = 'Ando Insurance';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Aroturuki' where customer_name = 'Aroturuki Matariki ';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Avanti Finance Limited' where customer_name = 'Avanti Finance';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Beef + Lamb New Zealand' where customer_name = 'Beef + Lamb';
+update emr_eom.billing_customers_master set consumption_customer_name = 'DELEGAT''S GROUP LIMITED' where customer_name = 'Delegat';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Education Review Office' where customer_name = 'Education Review Office';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Electra Ltd' where customer_name = 'Electra';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Employers and Manufacturers Association' where customer_name = 'Employers Manufacturers Association';
+update emr_eom.billing_customers_master set consumption_customer_name = 'FrameCAD Ltd' where customer_name = 'Framecad';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Generate Investment Holdings Ltd' where customer_name = 'Generate Wealth Kiwisaver';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Ideal Electrical Suppliers Limited' where customer_name = 'Ideal Electrical Suppliers Limited';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Image Centre Ltd' where customer_name = 'Image Centre Group (Soar Communications Group)';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Infratec Limited' where customer_name = 'Infratec Limited';
+update emr_eom.billing_customers_master set consumption_customer_name = 'James and Wells (Head Office) Ltd' where customer_name = 'James & Wells (Head Office) Ltd';
+update emr_eom.billing_customers_master set consumption_customer_name = 'jarden.co.nz' where customer_name = 'Jarden ';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Kinetic NZHL' where customer_name = 'Kinetic NZHL';
+update emr_eom.billing_customers_master set consumption_customer_name = 'KiwiRail' where customer_name = 'KiwiRail';
+update emr_eom.billing_customers_master set consumption_customer_name = 'MetlifeCare Limited' where customer_name = 'Metlifecare ';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Net Express NZ Ltd ' where customer_name = 'Net Express NZ Ltd';
+update emr_eom.billing_customers_master set consumption_customer_name = 'NSQR Limited (NZ)' where customer_name = 'NSQR Limited (NZ)';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Plant and Food Research Limited' where customer_name = 'Plant and Food Research';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Radio New Zealand' where customer_name = 'Radio New Zealand';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Sealink NZ' where customer_name = 'Sealink NZ';
+update emr_eom.billing_customers_master set consumption_customer_name = 'sentientsoftware.co.nz' where customer_name = 'Sentient Software';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Skyline Enterprises' where customer_name = 'Skyline';
+update emr_eom.billing_customers_master set consumption_customer_name = 'Tauranga City Council' where customer_name = 'Tauranga City Council';
+update emr_eom.billing_customers_master set consumption_customer_name = 'The New Zealand Home Loan Company Limited' where customer_name = 'The New Zealand Home Loan Company Limited';
+update emr_eom.billing_customers_master set consumption_customer_name = 'BCL' where customer_name = 'BCL';
+
+update emr_eom.billing_customers_master set item = '0';
+
+update emr_eom.billing_customers_master set item = '1' where sap_accountid = '1000104';
+update emr_eom.billing_customers_master set item = '2' where sap_accountid = '1002113';
+update emr_eom.billing_customers_master set item = '3' where sap_accountid = '1002399';
+update emr_eom.billing_customers_master set item = '4' where sap_accountid = '1002739';
+update emr_eom.billing_customers_master set item = '5' where sap_accountid = '1002961';
+update emr_eom.billing_customers_master set item = '6' where sap_accountid = '1002066';
+update emr_eom.billing_customers_master set item = '7' where sap_accountid = '1001585';
+update emr_eom.billing_customers_master set item = '8' where sap_accountid = '1002585';
+update emr_eom.billing_customers_master set item = '9' where sap_accountid = '1002732';
+update emr_eom.billing_customers_master set item = '10' where sap_accountid = '1002839';
+update emr_eom.billing_customers_master set item = '11' where sap_accountid = '1002597';
+update emr_eom.billing_customers_master set item = '12' where sap_accountid = '1002855';
+update emr_eom.billing_customers_master set item = '13' where sap_accountid = '1001797';
+update emr_eom.billing_customers_master set item = '14' where sap_accountid = '1002842';
+update emr_eom.billing_customers_master set item = '15' where sap_accountid = '1002771';
+update emr_eom.billing_customers_master set item = '16' where sap_accountid = '1001048';
+update emr_eom.billing_customers_master set item = '17' where sap_accountid = '1001881';
+update emr_eom.billing_customers_master set item = '18' where sap_accountid = '1000121';
+update emr_eom.billing_customers_master set item = '19' where sap_accountid = '1001352';
+update emr_eom.billing_customers_master set item = '20' where sap_accountid = '1002258';
+update emr_eom.billing_customers_master set item = '21' where sap_accountid = '1001177';
+update emr_eom.billing_customers_master set item = '22' where sap_accountid = '1001872';
+update emr_eom.billing_customers_master set item = '23' where sap_accountid = '1002417';
+update emr_eom.billing_customers_master set item = '24' where sap_accountid = '1001770';
+update emr_eom.billing_customers_master set item = '25' where sap_accountid = '1002259';
+update emr_eom.billing_customers_master set item = '26' where sap_accountid = '1002122';
+update emr_eom.billing_customers_master set item = '27' where sap_accountid = '1002637';
+update emr_eom.billing_customers_master set item = '28' where sap_accountid = '1002040';
+
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Metlifecare ';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Electra';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'The New Zealand Home Loan Company Limited';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Image Centre Group (Soar Communications Group)';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'KiwiRail';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Sentient Software';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Kinetic NZHL';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Employers Manufacturers Association';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Radio New Zealand';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Avanti Finance';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Ideal Electrical Suppliers Limited';
+update emr_eom.billing_customers_master set monthly_report = 'Y' where customer_name = 'Sealink NZ';
+
+
+
+--test for parquet files
+--drop view emr_eom.v_azure_billing_cost;
+create view emr_eom.v_azure_billing_cost
+            as
+     select 
+	        a.customerName
+			,a.productOrderName
+			,a.productname
+			,a.billingCurrency
+			,a.paygCostInBillingCurrency
+			,a.costInBillingCurrency
+			,a.paygCostInBillingCurrency                                                           as margin
+			,a.paygCostInBillingCurrency*0.85                                                      as cost
+			,a.pricingModel
+			,a.eom_period
+			,a.subscriptionName
+			,a.quantity
+			,a.publisherName
+			,a.meterSubCategory
+			,a.date
+			,a.meterCategory
+			,a.resourceGroupName			
+			,b.sap_accountid
+			,'Consumption' as billing_flag 
+	   from emr_eom_test.azure_consumption_test a
+  left join emr_eom.billing_customers_master b
+         on a.customerName = b.consumption_customer_name
+	  where a.customerName <> ''
+	    and b.charge_type <> 'M365'
+  union all
+     select 
+	        a.customerName
+			,a.productOrderName
+			,a.productname			
+			,a.billingCurrency
+			,a.paygCostInBillingCurrency
+			,a.costInBillingCurrency
+			,case when a.publisherName = 'Microsoft' then a.costInBillingCurrency/0.95                                                                                   --Reserved Instance margin
+				  when a.publisherName in ('Microsoft Corporation','') then a.costInBillingCurrency/0.8*coalesce(c.discount,1)                                           --License margin	  
+				  else 0 
+				  end                                                                              as margin
+			,case when a.publisherName in ('Microsoft Corporation','Microsoft','') then a.costInBillingCurrency
+			      else 0
+				  end                                                                              as cost	  
+			,a.pricingModel
+			,a.eom_period
+			,a.subscriptionName
+			,a.quantity
+			,a.publisherName
+			,a.meterSubCategory	
+			,a.date
+			,a.meterCategory
+			,a.resourceGroupName						
+			,b.sap_accountid			
+			,case when a.publisherName = 'Microsoft' then 'Reserved Instances'
+			      when a.publisherName in ('Microsoft Corporation','') then 'Licenses'
+                  else 'unknown'  
+				  end                                                                              as billing_flag  
+	   from emr_eom_test.license_and_reserved_instances_test a
+  left join emr_eom.billing_customers_master b
+         on a.customerName = b.consumption_customer_name	
+  left join emr_eom.billing_customers_discount c
+         on a.customerName = c.customer_name
+		and start_date <= getdate()
+		and end_date >= getdate()
+  	    and c.billing_type = 'Licenses'
+	  where a.customerName <> ''
+	    and b.charge_type <> 'M365'
+
+;
+
+--drop view emr_eom.v_azure_billing_estimation
+create view emr_eom.v_azure_billing_estimation
+         as 
+	 select
+	        'Cost'                                                                                 as Estimation
+			,format(sum(case when a.billing_flag = 'Licenses'  then a.costInBillingCurrency
+			                 else 0 end),'N2')                                                     as Licenses
+			,format(sum(case when a.billing_flag = 'Reserved Instances' and a.customerName <> 'sentientsoftware.co.nz' and a.meterSubCategory <> 'Azure plan'  then a.costInBillingCurrency
+			                 else 0 end),'N2')                                                     as Reservations
+			,format(sum(case when a.billing_flag = 'Consumption'  then a.paygCostInBillingCurrency*0.85
+			                 else 0 end),'N2')                                                     as Consumption							 							 
+			,format(sum(case when a.billing_flag = 'Consumption' then a.paygCostInBillingCurrency*0.85
+			                 when a.billing_flag = 'Licenses'  then a.costInBillingCurrency
+							 when a.billing_flag = 'Reserved Instances' and a.customerName <> 'sentientsoftware.co.nz' and a.meterSubCategory <> 'Azure plan' then a.costInBillingCurrency 
+							 else 0 end),'N2')                                                     as Total
+			,substring(convert(varchar,dateadd(month,-1,getdate()),111),1,7)                       as eom_period
+	   from emr_eom.v_azure_billing_cost a
+  left join emr_eom.billing_customers_master b
+	     on a.customerName = b.consumption_customer_name
+	  where b.customer_flag = 'External'
+	    and b.charge_type <> 'M365'
+		and a.eom_period = substring(convert(varchar,dateadd(month,-1,getdate()),111),1,7)
+   group by a.eom_period
+union all
+	 select
+	        'Revenue'                                                                              as Estimation
+			,format(sum(case when a.billing_flag = 'Licenses'  then a.margin
+			                 else 0 end),'N2')                                                     as Licenses
+			,format(sum(case when a.billing_flag = 'Reserved Instances' and a.customerName <> 'sentientsoftware.co.nz' and a.meterSubCategory <> 'Azure plan'  then a.margin
+			                 else 0 end),'N2')                                                     as Reservations
+			,format(sum(case when a.billing_flag = 'Consumption'  then a.margin
+			                 else 0 end),'N2')                                                     as Consumption							 							 
+			,format(sum(case when a.billing_flag = 'Consumption' then a.margin
+			                 when a.billing_flag = 'Licenses'  then a.margin
+							 when a.billing_flag = 'Reserved Instances' and a.customerName <> 'sentientsoftware.co.nz' and a.meterSubCategory <> 'Azure plan' then a.margin 
+							 else 0 end),'N2')                                                     as Total
+			,substring(convert(varchar,dateadd(month,-1,getdate()),111),1,7)                       as eom_period							 
+	   from emr_eom.v_azure_billing_cost a
+  left join emr_eom.billing_customers_master b
+	     on a.customerName = b.consumption_customer_name
+	  where b.customer_flag = 'External'
+	    and b.charge_type <> 'M365'
+		and a.eom_period = substring(convert(varchar,dateadd(month,-1,getdate()),111),1,7)
+   group by a.eom_period
+;
+
+
+
+
+
+--drop view emr_eom.v_azure_billing_last_year
+create view emr_eom.v_azure_billing_last_year
+         as 
+	 select
+	        a.eom_period
+			,format(sum(case when a.billing_flag = 'Consumption' then a.margin			                 
+							 else 0 end),'N2')                                                     as CSP_Revenue
+			,format(sum(case when a.billing_flag = 'Licenses' then a.margin
+							 else 0 end),'N2')                                                     as License_Revenue
+			,format(sum(case when a.billing_flag = 'Reserved Instances' and a.customerName <> 'sentientsoftware.co.nz' and a.meterSubCategory <> 'Azure plan' then margin 
+							 else 0 end),'N2')                                                     as RI_Revenue
+	   from emr_eom.v_azure_billing_cost a
+  left join emr_eom.billing_customers_master b
+	     on a.customerName = b.consumption_customer_name
+	  where b.customer_flag = 'External'
+	    and b.charge_type <> 'M365'
+		and a.eom_period >= substring(convert(varchar,dateadd(month,-12,getdate()),111),1,7)
+   group by a.eom_period
+;
+
+--drop table emr_eom.billing_customers_discount;
+create table emr_eom.billing_customers_discount
+ (
+            customer_name                                                                          varchar(200) not null,
+			billing_type                                                                           varchar(20)  not null,
+            discount                                                                               float        not null,
+			start_date                                                                             date         not null,
+			end_date                                                                               date         not null
+ )
+ ;
+
+insert into emr_eom.billing_customers_discount values ('Avanti Finance Limited','Licenses',0.9,cast('2025-01-01' as date),cast('2999-12-31' as date));
+insert into emr_eom.billing_customers_discount values ('Ideal Electrical Suppliers Limited','Licenses',0.95,cast('2025-01-01' as date),cast('2999-12-31' as date));
+
+--drop view emr_eom.v_billing_report_monthly;
+create view emr_eom.v_billing_report_monthly
+         as
+     select 
+            substring(convert(char,getdate(),23),1,4) + '15' + substring(convert(char,getdate(),23),6,2)  
+			                                                                                       as RunNumber
+            ,ROW_NUMBER() over (order by b.item asc)                                               as INVNumber
+            ,b.sap_accountid                                                                       as Customer
+            ,convert(varchar,DATEADD(day,day(getdate())*-1+15,GETDATE()),103)                      as InvDate
+            ,b.item                                                                                as Item
+            ,'ETP_CLOUD'                                                                           as Material
+            ,case when a.billing_flag = 'Consumption' then 'Azure CSP Consumption Period Covered: '+format(dateadd(month,-1,getdate()),'MMMM yyyy')
+                  when a.billing_flag = 'Reserved Instances' then 'Azure Reserved Instances Period Covered: '+format(dateadd(month,-1,getdate()),'MMMM yyyy')
+	              when a.billing_flag = 'Licenses' then 'Microsoft M365 and Software Subscriptions Period Covered: '+format(dateadd(month,-1,getdate()),'MMMM yyyy')
+                  end                                                                              as Description
+            ,'NZD'                                                                                 as Curr
+            ,cast(sum(a.margin) as decimal(18,2))                                                  as NetValue
+            ,b.payment_terms                                                                       as PaymentTerms
+            ,b.po                                                                                  as PONumber
+            ,b.wbs                                                                                 as WBS_Element
+            ,b.inv_order                                                                           as inv_order
+            ,b.tax                                                                                 as Tax
+       from emr_eom.v_azure_billing_cost a
+  left join emr_eom.billing_customers_master b
+         on a.customerName = b.consumption_customer_name
+        and b.charge_type <> ''
+        and b.charge_type <> 'M365'
+      where b.customer_flag = 'external'
+        and a.eom_period = format(dateadd(month,-1,getdate()),'yyyy/MM')
+        and a.costInBillingCurrency > 0 
+   group by b.sap_accountid,b.item,a.billing_flag,b.payment_terms,b.po,b.wbs,b.inv_order,b.tax
+;
+
+

@@ -1,0 +1,64 @@
+IF OBJECT_ID ('emr_eom.SP_eom_azure_consumption_cost') IS NOT NULL
+	DROP PROCEDURE emr_eom.SP_eom_azure_consumption_cost
+GO
+
+CREATE PROCEDURE emr_eom.SP_eom_azure_consumption_cost @load_month varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20250304>
+-- Update date: <20250304>
+-- Description:	<SP_eom_azure_consumption_cost>
+-- Target table: emr_eom.azure_consumption_cost 
+-- Source table: emr_eom.azure_consumption 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_eom.azure_consumption_cost
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+;
+
+    insert into emr_eom.azure_consumption_cost
+                (
+                x_CustomerName                                                                      
+                ,SubAccountName                                                         
+                ,x_SkuMeterSubcategory                                            
+                ,PublisherName                                                    
+                ,listcost_total                                                                                       
+                ,eom_period                                                                                                                          
+                )
+         select
+                x_CustomerName                                                                     AS CustomerName
+                ,SubAccountName                                                                    AS SubAccountName
+                ,x_SkuMeterSubcategory                                                             AS x_SkuMeterSubcategory
+                ,PublisherName                                                                     AS publishname
+                ,SUM(ListCost)                                                                     AS listcost_total
+                ,substring(@load_month,1,4)+'/'+substring(@load_month,5,2)                         AS eom_period
+           from emr_eom.azure_consumption
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+       GROUP BY x_CustomerName, SubAccountName, x_SkuMeterSubcategory, PublisherName, eom_period
+         HAVING (COALESCE (x_CustomerName, '') <> '')
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

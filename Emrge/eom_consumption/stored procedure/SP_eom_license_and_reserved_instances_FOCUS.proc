@@ -1,0 +1,243 @@
+IF OBJECT_ID ('emr_eom.SP_eom_license_and_reserved_instances_FOCUS') IS NOT NULL
+	DROP PROCEDURE emr_eom.SP_eom_license_and_reserved_instances_FOCUS
+GO
+
+CREATE PROCEDURE emr_eom.SP_eom_license_and_reserved_instances_FOCUS @load_month varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20250204>
+-- Update date: <20251205>
+-- Description:	<SP_eom_license_and_reserved_instances_FOCUS>
+-- Target table: emr_eom.license_and_reserved_instances_FOCUS 
+-- Source table: emr_eom.license_and_reserved_instances_FOCUS_ld 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_eom.license_and_reserved_instances_FOCUS
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+;
+
+    insert into emr_eom.license_and_reserved_instances_FOCUS
+                (
+                BilledCost
+                ,BillingAccountId
+                ,BillingAccountName
+                ,BillingAccountType
+                ,BillingCurrency
+                ,BillingPeriodEnd
+                ,BillingPeriodStart
+                ,ChargeCategory
+                ,ChargeClass
+                ,ChargeDescription
+                ,ChargeFrequency
+                ,ChargePeriodEnd
+                ,ChargePeriodStart
+                ,CommitmentDiscountCategory
+                ,CommitmentDiscountId
+                ,CommitmentDiscountName
+                ,CommitmentDiscountStatus
+                ,CommitmentDiscountType
+                ,ConsumedQuantity
+                ,ConsumedUnit
+                ,ContractedCost
+                ,ContractedUnitPrice
+                ,EffectiveCost
+                ,InvoiceIssuerName
+                ,ListCost
+                ,ListUnitPrice
+                ,PricingCategory
+                ,PricingQuantity
+                ,PricingUnit
+                ,ProviderName
+                ,PublisherName
+                ,RegionId
+                ,RegionName
+                ,ResourceId
+                ,ResourceName
+                ,ResourceType
+                ,ServiceCategory
+                ,ServiceName
+                ,SkuId
+                ,SkuPriceId
+                ,SubAccountId
+                ,SubAccountName
+                ,SubAccountType
+                ,Tags
+                ,x_AccountId
+                ,x_AccountName
+                ,x_AccountOwnerId
+                ,x_BilledCostInUsd
+                ,x_BilledUnitPrice
+                ,x_BillingAccountId
+                ,x_BillingAccountName
+                ,x_BillingExchangeRate
+                ,x_BillingExchangeRateDate
+                ,x_BillingProfileId
+                ,x_BillingProfileName
+                ,x_ContractedCostInUsd
+                ,x_CostAllocationRuleName
+                ,x_CostCenter
+                ,x_CustomerId
+                ,x_CustomerName
+                ,x_EffectiveCostInUsd
+                ,x_EffectiveUnitPrice
+                ,x_InvoiceId
+                ,x_InvoiceIssuerId
+                ,x_InvoiceSectionId
+                ,x_InvoiceSectionName
+                ,x_ListCostInUsd
+                ,x_PartnerCreditApplied
+                ,x_PartnerCreditRate
+                ,x_PricingBlockSize
+                ,x_PricingCurrency
+                ,x_PricingSubcategory
+                ,x_PricingUnitDescription
+                ,x_PublisherCategory
+                ,x_PublisherId
+                ,x_ResellerId
+                ,x_ResellerName
+                ,x_ResourceGroupName
+                ,x_ResourceType
+                ,x_ServicePeriodEnd
+                ,x_ServicePeriodStart
+                ,x_SkuDescription
+                ,x_SkuDetails
+                ,x_SkuIsCreditEligible
+                ,x_SkuMeterCategory
+                ,x_SkuMeterId
+                ,x_SkuMeterName
+                ,x_SkuMeterSubcategory
+                ,x_SkuOfferId
+                ,x_SkuOrderId
+                ,x_SkuOrderName
+                ,x_SkuPartNumber
+                ,x_SkuRegion
+                ,x_SkuServiceFamily
+                ,x_SkuTerm
+                ,x_SkuTier
+                ,eom_period    
+                )
+         select
+                cast(BilledCost as float)                                                          as BilledCost
+                ,coalesce(BillingAccountId,'')                                                     as BillingAccountId
+                ,coalesce(BillingAccountName,'')                                                   as BillingAccountName
+                ,coalesce(BillingAccountType,'')                                                   as BillingAccountType
+                ,coalesce(BillingCurrency,'')                                                      as BillingCurrency
+                ,convert(date,BillingPeriodEnd)                                                    as BillingPeriodEnd
+                ,convert(date,BillingPeriodStart)                                                  as BillingPeriodStart
+                ,coalesce(ChargeCategory,'')                                                       as ChargeCategory
+                ,coalesce(ChargeClass,'')                                                          as ChargeClass
+                ,coalesce(ChargeDescription,'')                                                    as ChargeDescription
+                ,coalesce(ChargeFrequency,'')                                                      as ChargeFrequency
+                ,convert(date,ChargePeriodEnd)                                                     as ChargePeriodEnd
+                ,convert(date,ChargePeriodStart)                                                   as ChargePeriodStart
+                ,coalesce(CommitmentDiscountCategory,'')                                           as CommitmentDiscountCategory
+                ,coalesce(CommitmentDiscountId,'')                                                 as CommitmentDiscountId                      
+                ,coalesce(CommitmentDiscountName,'')                                               as CommitmentDiscountName
+                ,coalesce(CommitmentDiscountStatus,'')                                             as CommitmentDiscountStatus
+                ,coalesce(CommitmentDiscountType,'')                                               as CommitmentDiscountType
+                ,cast(ConsumedQuantity as float)                                                   as ConsumedQuantity
+                ,coalesce(ConsumedUnit,'')                                                         as ConsumedUnit
+                ,cast(ContractedCost as float)                                                     as ContractedCost
+                ,cast(ContractedUnitPrice as float)                                                as ContractedUnitPrice
+                ,cast(EffectiveCost as float)                                                      as EffectiveCost
+                ,coalesce(InvoiceIssuerName,'')                                                    as InvoiceIssuerName
+                ,cast(ListCost as float)                                                           as ListCost
+                ,cast(ListUnitPrice as float)                                                      as ListUnitPrice
+                ,coalesce(PricingCategory,'')                                                      as PricingCategory
+                ,cast(PricingQuantity as int)                                                      as PricingQuantity
+                ,coalesce(PricingUnit,'')                                                          as PricingUnit
+                ,coalesce(ProviderName,'')                                                         as ProviderName
+                ,coalesce(PublisherName,'')                                                        as PublisherName
+                ,coalesce(RegionId,'')                                                             as RegionId                                  
+                ,coalesce(RegionName,'')                                                           as RegionName                   
+                ,coalesce(ResourceId,'')                                                           as ResourceId     
+                ,coalesce(ResourceName,'')                                                         as ResourceName            
+                ,coalesce(ResourceType,'')                                                         as ResourceType         
+                ,coalesce(ServiceCategory,'')                                                      as ServiceCategory            
+                ,coalesce(ServiceName,'')                                                          as ServiceName       
+                ,coalesce(SkuId,'')                                                                as SkuId      
+                ,coalesce(SkuPriceId,'')                                                           as SkuPriceId       
+                ,coalesce(SubAccountId,'')                                                         as SubAccountId            
+                ,coalesce(SubAccountName,'')                                                       as SubAccountName                   
+                ,coalesce(SubAccountType,'')                                                       as SubAccountType                
+                ,coalesce(Tags,'')                                                                 as Tags  
+                ,coalesce(x_AccountId,'')                                                          as x_AccountId      
+                ,coalesce(x_AccountName,'')                                                        as x_AccountName                 
+                ,coalesce(x_AccountOwnerId,'')                                                     as x_AccountOwnerId          
+                ,cast(x_BilledCostInUsd as float)                                                  as x_BilledCostInUsd                    
+                ,cast(x_BilledUnitPrice as float)                                                  as x_BilledUnitPrice
+                ,coalesce(x_BillingAccountId,'')                                                   as x_BillingAccountId                 
+                ,coalesce(x_BillingAccountName,'')                                                 as x_BillingAccountName           
+                ,cast(x_BillingExchangeRate as float)                                              as x_BillingExchangeRate                                    
+                ,convert(date,x_BillingExchangeRateDate)                                           as x_BillingExchangeRateDate                  
+                ,coalesce(x_BillingProfileId,'')                                                   as x_BillingProfileId
+                ,coalesce(x_BillingProfileName,'')                                                 as x_BillingProfileName 
+                ,cast(x_ContractedCostInUsd as float)                                              as x_ContractedCostInUsd                
+                ,coalesce(x_CostAllocationRuleName,'')                                             as x_CostAllocationRuleName        
+                ,coalesce(x_CostCenter,'')                                                         as x_CostCenter
+                ,coalesce(x_CustomerId,'')                                                         as x_CustomerId    
+                ,coalesce(x_CustomerName,'')                                                       as x_CustomerName
+                ,cast(x_EffectiveCostInUsd as float)                                               as x_EffectiveCostInUsd                      
+                ,cast(x_EffectiveUnitPrice as float)                                               as x_EffectiveUnitPrice                       
+                ,coalesce(x_InvoiceId,'')                                                          as x_InvoiceId
+                ,coalesce(x_InvoiceIssuerId,'')                                                    as x_InvoiceIssuerId 
+                ,coalesce(x_InvoiceSectionId,'')                                                   as x_InvoiceSectionId             
+                ,coalesce(x_InvoiceSectionName,'')                                                 as x_InvoiceSectionName             
+                ,cast(x_ListCostInUsd as float)                                                    as x_ListCostInUsd                 
+                ,coalesce(x_PartnerCreditApplied,'')                                               as x_PartnerCreditApplied               
+                ,cast(x_PartnerCreditRate as float)                                                as x_PartnerCreditRate                  
+                ,cast(x_PricingBlockSize as float)                                                 as x_PricingBlockSize                          
+                ,coalesce(x_PricingCurrency,'')                                                    as x_PricingCurrency       
+                ,coalesce(x_PricingSubcategory,'')                                                 as x_PricingSubcategory              
+                ,coalesce(x_PricingUnitDescription,'')                                             as x_PricingUnitDescription                    
+                ,coalesce(x_PublisherCategory,'')                                                  as x_PublisherCategory             
+                ,coalesce(x_PublisherId,'')                                                        as x_PublisherId        
+                ,coalesce(x_ResellerId,'')                                                         as x_ResellerId
+                ,coalesce(x_ResellerName,'')                                                       as x_ResellerName    
+                ,coalesce(x_ResourceGroupName,'')                                                  as x_ResourceGroupName              
+                ,coalesce(x_ResourceType,'')                                                       as x_ResourceType       
+                ,convert(date,x_ServicePeriodEnd)                                                  as x_ServicePeriodEnd                 
+                ,convert(date,x_ServicePeriodStart)                                                as x_ServicePeriodStart                       
+                ,coalesce(x_SkuDescription,'')                                                     as x_SkuDescription
+                ,coalesce(x_SkuDetails,'')                                                         as x_SkuDetails  
+                ,coalesce(x_SkuIsCreditEligible,'')                                                as x_SkuIsCreditEligible    
+                ,coalesce(x_SkuMeterCategory,'')                                                   as x_SkuMeterCategory         
+                ,coalesce(x_SkuMeterId,'')                                                         as x_SkuMeterId    
+                ,coalesce(x_SkuMeterName,'')                                                       as x_SkuMeterName     
+                ,coalesce(x_SkuMeterSubcategory,'')                                                as x_SkuMeterSubcategory
+                ,coalesce(x_SkuOfferId,'')                                                         as x_SkuOfferId
+                ,coalesce(x_SkuOrderId,'')                                                         as x_SkuOrderId
+                ,coalesce(x_SkuOrderName,'')                                                       as x_SkuOrderName        
+                ,coalesce(x_SkuPartNumber,'')                                                      as x_SkuPartNumber
+                ,coalesce(x_SkuRegion,'')                                                          as x_SkuRegion
+                ,coalesce(x_SkuServiceFamily,'')                                                   as x_SkuServiceFamily    
+                ,cast(x_SkuTerm as int)                                                            as x_SkuTerm       
+                ,coalesce(x_SkuTier,'')                                                            as x_SkuTier
+                ,substring(@load_month,1,4)+'/'+substring(@load_month,5,2)                         as eom_period
+          from emr_eom.license_and_reserved_instances_FOCUS_ld
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+     drop table emr_eom.license_and_reserved_instances_FOCUS_ld 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

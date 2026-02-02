@@ -1,0 +1,191 @@
+IF OBJECT_ID ('emr_eom_test.SP_eom_azure_consumption_test') IS NOT NULL
+	DROP PROCEDURE emr_eom_test.SP_eom_azure_consumption_test
+GO
+
+CREATE PROCEDURE emr_eom_test.SP_eom_azure_consumption_test @load_month varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20250204>
+-- Update date: <20250204>
+-- Description:	<SP_eom_azure_consumption_test>
+-- Target table: emr_eom.azure_consumption_test 
+-- Source table: emr_eom.azure_consumption_test_ld 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_eom_test.azure_consumption_test
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+;
+
+    insert into emr_eom_test.azure_consumption_test
+                (
+	            invoiceId                                                                 
+	            ,previousInvoiceId                                                                
+	            ,billingAccountId                                                               
+	            ,billingAccountName                                                               
+	            ,billingProfileId                                                               
+		        ,billingProfileName                                                              
+		        ,invoiceSectionId                                                               
+		        ,invoiceSectionName                                                              
+		        ,partnerTenantId                                                                   
+		        ,partnerName                                                                   
+		        ,resellerName                                                      
+		        ,resellerMpnId                                                            
+		        ,customerTenantId                                                            
+		        ,customerName                                                                           
+		        ,costCenter                                                                       
+		        ,billingPeriodEndDate                                                              
+	        	,billingPeriodStartDate                                                         
+	        	,servicePeriodEndDate                                                            
+	        	,servicePeriodStartDate                                                        	   
+	        	,date                                                       					  
+	        	,serviceFamily                                                          			  
+	        	,productOrderId                                                       			   
+	        	,productOrderName                                                  			  
+	        	,consumedService                                                        		
+	        	,meterId                                                                	
+	        	,meterName                                                                      
+	        	,meterCategory                                                                  
+	        	,meterSubCategory                                                            
+	        	,meterRegion                                                                
+	        	,ProductId                                                          		  
+	        	,ProductName                                                              		
+	        	,SubscriptionId                                                        		    
+	        	,subscriptionName                                                         	         
+	        	,publisherType                                                          			
+	        	,publisherId                                                             		   
+	        	,publisherName                                                         		        
+	        	,resourceGroupName                                                       	        
+	        	,ResourceId                                                            			   
+	        	,resourceLocation                                                   		      
+	        	,location                                                           		     
+	        	,effectivePrice                                                        	         
+            	,quantity                                                                        
+	        	,unitOfMeasure                                                                   
+	        	,chargeType                                                                     
+	        	,billingCurrency                                                                 
+	        	,pricingCurrency                                                                 
+	        	,costInBillingCurrency                                                           
+	        	,costInPricingCurrency                                                              
+	        	,costInUsd                                                                    
+	        	,paygCostInBillingCurrency                                                           
+	        	,paygCostInUsd                                                                		
+	        	,exchangeRatePricingToBilling                                                      
+	        	,exchangeRateDate                                                                   
+	        	,isAzureCreditEligible                                                               
+		        ,serviceInfo1                                                                          
+		        ,serviceInfo2                                                                   
+	        	,additionalInfo                                                                        
+		        ,tags                                                                              
+	        	,partnerEarnedCreditRate                                                             
+	        	,partnerEarnedCreditApplied                                                      
+		        ,PayGPrice                                                                       
+	        	,frequency                                                                          
+	        	,term                                                                            
+	        	,reservationId                                                                        
+	        	,reservationName                                                                      
+	        	,pricingModel                               
+		        ,unitPrice                                                
+		        ,benefitId                                                          
+		        ,benefitName                                                                    
+	            ,provider                                                               
+		        ,eom_period                                    
+                )
+         select
+ 	            coalesce(invoiceId,'')                                                                            
+	            ,coalesce(previousInvoiceId,'')                                                                  
+	            ,coalesce(billingAccountId,'')                                                                   
+	            ,coalesce(billingAccountName,'')                                                              
+	            ,coalesce(billingProfileId,'')                                                                 
+		        ,coalesce(billingProfileName,'')                                                                  
+		        ,coalesce(invoiceSectionId,'')                                                                     
+		        ,coalesce(invoiceSectionName,'')                                                                 
+		        ,coalesce(partnerTenantId,'')                                                                     
+		        ,coalesce(partnerName,'')                                                                         
+		        ,coalesce(resellerName,'')                                                                         
+		        ,coalesce(resellerMpnId,'')                                                                     
+		        ,coalesce(customerTenantId,'')                                                                   
+		        ,coalesce(customerName,'')                                                                        
+		        ,coalesce(costCenter,'')                                                                          
+		        ,convert(date,billingPeriodEndDate)                                                                
+		        ,convert(date,billingPeriodStartDate)                           
+		        ,convert(date,servicePeriodEndDate)                                           
+		        ,convert(date,servicePeriodStartDate)                                             
+		        ,convert(date,date)                                                       	
+		        ,coalesce(serviceFamily,'')                                                          			 
+		        ,coalesce(productOrderId,'')                                                       			  
+		        ,coalesce(productOrderName,'')                                                  			  
+		        ,coalesce(consumedService,'')                                                        			 
+		        ,coalesce(meterId,'')                                                                			  
+		        ,coalesce(meterName,'')                                                                             
+		        ,coalesce(meterCategory,'')                                                                        
+		        ,coalesce(meterSubCategory,'')                                                                      
+		        ,coalesce(meterRegion,'')                                                                           
+		        ,coalesce(ProductId,'')                                                          		       
+		        ,coalesce(ProductName,'')                                                              		
+		        ,coalesce(SubscriptionId,'')                                                        		      
+		        ,coalesce(subscriptionName,'')                                                         	        
+		        ,coalesce(publisherType,'')                                                          			  
+		        ,coalesce(publisherId,'')                                                             		   
+		        ,coalesce(publisherName,'')                                                         		        
+		        ,coalesce(resourceGroupName,'')                                                       	       
+		        ,coalesce(ResourceId,'')                                                            			  
+		        ,coalesce(resourceLocation,'')                                                   		         
+		        ,coalesce(location,'')                                                           		         
+		        ,cast(effectivePrice as float)                                                        	            
+		        ,cast(quantity as float)                                                                             
+		        ,coalesce(unitOfMeasure,'')                                                                          
+		        ,coalesce(chargeType,'')                                                                             
+		        ,coalesce(billingCurrency,'')                                                                     
+		        ,coalesce(pricingCurrency,'')                                                                    
+		        ,cast(costInBillingCurrency as float)   
+		        ,cast(costInPricingCurrency as float)   
+		        ,cast(costInUsd as float)   
+		        ,cast(paygCostInBillingCurrency as float)   
+		        ,cast(paygCostInUsd as float)   
+		        ,cast(exchangeRatePricingToBilling as float)   
+		        ,convert(date,exchangeRateDate)                                                    
+		        ,coalesce(isAzureCreditEligible,'')                                                              
+		        ,coalesce(serviceInfo1,'')                                                                    
+		        ,coalesce(serviceInfo2,'')                                                                    
+		        ,coalesce(additionalInfo,'')                                                                   
+		        ,coalesce(tags,'')                                                                               
+		        ,cast(partnerEarnedCreditRate as float)   
+		        ,coalesce(partnerEarnedCreditApplied,'')                                                       
+		        ,cast(PayGPrice as float)   
+		        ,coalesce(frequency,'')                                                                        
+		        ,coalesce(term,'')                                                                            
+		        ,coalesce(reservationId,'')                                                                  
+		        ,coalesce(reservationName,'')                                                                 
+		        ,coalesce(pricingModel,'')                                                                        
+		        ,cast(unitPrice as float)   
+		        ,coalesce(benefitId,'')                                                                           
+		        ,coalesce(benefitName,'')                                                                           
+	            ,coalesce(provider,'')                                                                               
+                ,substring(@load_month,1,4)+'/'+substring(@load_month,5,2)                         as eom_period                                                                     
+           from emr_eom_test.azure_consumption_test_ld
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+     drop table emr_eom_test.azure_consumption_test_ld 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

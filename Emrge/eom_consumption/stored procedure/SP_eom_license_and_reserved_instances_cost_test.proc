@@ -1,0 +1,76 @@
+IF OBJECT_ID ('emr_eom.SP_eom_license_and_reserved_instances_cost') IS NOT NULL
+	DROP PROCEDURE emr_eom.SP_eom_license_and_reserved_instances_cost
+GO
+
+CREATE PROCEDURE emr_eom.SP_eom_license_and_reserved_instances_cost @load_month varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20250304>
+-- Update date: <20250304>
+-- Description:	<SP_eom_license_and_reserved_instances_cost>
+-- Target table: emr_eom.license_and_reserved_instances_cost 
+-- Source table: emr_eom.license_and_reserved_instances 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_eom.license_and_reserved_instances_cost
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+;
+
+    insert into emr_eom.license_and_reserved_instances_cost
+                (
+                x_CustomerName                
+                ,CommitmentDiscountType    
+                ,Subscriptiondesc    
+                ,x_SkuDescription              
+                ,PublisherName                    
+                ,ContractedCost
+                ,ContractedCost_discount   
+                ,quantity                                                                   
+                ,eom_period                                                                                                                            
+                )
+         select
+                x_CustomerName                                                                     AS CustomerName
+                ,CommitmentDiscountType                                                            AS CommitmentDiscountType
+                ,CommitmentDiscountId                                                              AS Subscriptiondesc
+                ,x_SkuOrderName                                                                    AS x_SkuDescription
+                ,PublisherName                                                                     AS publishname
+--                ,SUM(ContractedCost)                                                               AS ContractedCost
+                ,case when coalesce(CommitmentDiscountType,'') = 'Reservation' then SUM(BilledCost)
+                      else SUM(ContractedCost) 
+                      end                                                                          AS ContractedCost
+                ,Case when coalesce(CommitmentDiscountType,'') = 'Reservation' then SUM(BilledCost/0.95)
+                      when x_CustomerName = 'Avanti Finance Limited' and coalesce(CommitmentDiscountType,'') = ''  then SUM(ContractedCost/0.9)
+                      else SUM(ContractedCost/0.8)
+                      end                                                                          AS ContractedCost_discount
+                ,count(*)                                                                          AS quantity
+                ,substring(@load_month,1,4)+'/'+substring(@load_month,5,2)                         AS eom_period
+           from emr_eom.license_and_reserved_instances
+          where eom_period = substring(@load_month,1,4)+'/'+substring(@load_month,5,2)
+       GROUP BY x_CustomerName, CommitmentDiscountType, CommitmentDiscountId, x_SkuOrderName, PublisherName, eom_period
+         HAVING (COALESCE (x_CustomerName, '') <> '')
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+
+;
+  
+
+END
+
+
+
+
+
+
+GO
+
