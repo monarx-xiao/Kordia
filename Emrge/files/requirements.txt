@@ -1,0 +1,10 @@
+# Azure Automation Python Package Requirements
+# These packages need to be imported in your Azure Automation Account
+
+azure-identity>=1.15.0
+azure-storage-blob>=12.19.0
+pandas>=2.0.0
+
+# Optional dependencies (included with pandas in most cases)
+# numpy>=1.24.0
+# python-dateutil>=2.8.0
