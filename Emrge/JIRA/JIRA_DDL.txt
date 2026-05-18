@@ -205,3 +205,44 @@ as
      left join query1 a
             on a.organisation = b.organisation
 ;
+
+
+--drop view emr_jira.v_jira_support_hours;
+create view emr_jira.v_jira_support_hours
+         as
+      with cte_work_hours as
+        (
+         select organisation
+         ,label
+         ,sum(worklog_time_spent) as hours_submit
+         ,substring(worklog_started_at,1,7) + '-01' as worklog_started_at
+    from emr_jira.v_jira_issue_v3
+group by organisation,substring(worklog_started_at,1,7) + '-01',label
+        )
+     select
+            a.organisation
+            ,a.prepaied_hours
+            ,b.label
+            ,b.hours_submit
+            ,case when a.prepaied_hours = 0 then 0
+                  when a.prepaied_hours > 0 then b.hours_submit - a.prepaied_hours  
+	             else 0 
+                  end as hours_needed
+            ,b.worklog_started_at
+       from emr_jira.jira_organization a
+  left join cte_work_hours b
+         on a.organisation = b.organisation
+;
+
+--drop table emr_jira.jira_support_hours
+create table emr_jira.jira_support_hours
+(
+             organisation                        varchar(100) not null
+             ,prepaied_hours                     float        not null
+             ,label                              varchar(50)  not null
+             ,hours_submit                       float        not null
+             ,hours_needed                       float        not null
+             ,worklog_started_at                 char(10)     not null
+)
+go
+;

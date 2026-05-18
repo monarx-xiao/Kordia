@@ -1,0 +1,57 @@
+IF OBJECT_ID ('emr_jira.SP_jira_organization') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_organization
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_organization 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:	 <Bo Xiao>
+-- Create date: <20260429>
+-- Update date: <20260429>
+-- Description:	<SP_jira_organization>
+-- Target table: emr_jira.jira_organization
+-- Source table: emr_jira.jira_issue 
+-- =============================================
+   
+-- Delete latest data for re-run --
+
+
+-- Insert all data to target table from source table --
+
+    insert into emr_jira.jira_organization
+               (
+                organisation
+                ,prepaied_hours
+                ,oncall_flag    
+               )
+         select distinct organisation                                                              as organisation
+                ,0                                                                                 as prepaied_hours
+                ,'N'                                                                               as oncall_flag
+           from emr_jira.jira_issue
+          where organisation not in 
+                (
+                    select organisation 
+                      from emr_jira.jira_organization
+                )
+;
+                
+
+-- Drop temp table for rerun --       
+ 
+
+;
+
+
+END
+
+
+
+
+
+
+GO
+

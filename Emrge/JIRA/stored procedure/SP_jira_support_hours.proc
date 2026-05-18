@@ -1,0 +1,77 @@
+IF OBJECT_ID ('emr_jira.SP_jira_support_hours') IS NOT NULL
+	DROP PROCEDURE emr_jira.SP_jira_support_hours
+GO
+
+CREATE PROCEDURE emr_jira.SP_jira_support_hours 
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20260511>
+-- Update date: <20260511>
+-- Description:	<SP_jira_support_hours>
+-- Target table: emr_jira.jira_support_hours
+-- Source table: emr_jira.jira_organization
+--               emr_jira.v_jira_issue_v3 
+-- =============================================
+   
+-- Delete all data in target table of current date for re-run --
+
+    delete from emr_jira.jira_support_hours
+          where substring(worklog_started_at,1,7) = substring(convert(varchar,dateadd(month,-1,getdate()),23),1,7)
+             or cast(worklog_started_at as date) <  dateadd(month,-6,getdate())
+;
+ 
+
+-- Insert all data to target table from source table --
+ 
+           with cte_work_hours as
+               (
+                    select organisation
+                           ,label
+                           ,sum(worklog_time_spent) as hours_submit
+                           ,substring(worklog_started_at,1,7) + '-01'                              as worklog_started_at
+                      from emr_jira.v_jira_issue_v3
+                     where substring(worklog_started_at,1,7) = substring(convert(varchar,dateadd(month,-1,getdate()),23),1,7)
+                  group by organisation,substring(worklog_started_at,1,7) + '-01',label
+               )
+    insert into emr_jira.jira_support_hours
+               (
+                organisation
+                ,prepaied_hours 
+                ,label   
+                ,hours_submit 
+                ,hours_needed
+                ,worklog_started_at                        
+               )
+         select
+                coalesce(a.organisation,'')                                                        as organisation
+                ,coalesce(a.prepaied_hours,0)                                                      as prepaied_hours
+                ,coalesce(b.label,'')                                                              as label
+                ,coalesce(b.hours_submit,0)                                                        as hours_submit
+                ,case when a.prepaied_hours = 0 then 0
+                      when a.prepaied_hours > 0 then b.hours_submit - a.prepaied_hours  
+	                 else 0 
+                      end                                                                          as hours_needed
+                ,substring(convert(varchar,dateadd(month,-1,getdate()),23),1,7) + '-01'            as worklog_started_at
+           from emr_jira.jira_organization a
+      left join cte_work_hours b
+             on a.organisation = b.organisation
+;             
+
+-- Drop temp table for rerun --       
+ 
+;
+
+END
+
+
+
+
+
+
+GO
+
