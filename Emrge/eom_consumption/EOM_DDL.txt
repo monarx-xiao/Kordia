@@ -432,7 +432,7 @@ insert into emr_eom.billing_customers_master values ('Kordia Cyber Academy','','
 insert into emr_eom.billing_customers_master values ('SecOps NZ Limited','','','','','','','',0,'','','NZD','','','','SecOps NZ Limited','Internal','N');
 insert into emr_eom.billing_customers_master values ('A Lab to Lab Labs','','','','','','','',0,'','','NZD','','','','A Lab to Lab Labs','Internal','N');
 insert into emr_eom.billing_customers_master values ('NZGT','','','','','','','',0,'','','NZD','','','','NZGT Holding Company Limited','External','Y');
-
+insert into emr_eom.billing_customers_master values ('Northpower Ltd','MSSP','1001969','NND.02957.002','58766','','','',0,'','','NZD','','','','Northpower Ltd','External','Y','0','N');
 
 update emr_eom.billing_customers_master set consumption_customer_name = 'Ando Insurance Group Limited' where customer_name = 'Ando Insurance';
 update emr_eom.billing_customers_master set consumption_customer_name = 'Aroturuki' where customer_name = 'Aroturuki Matariki ';
@@ -546,7 +546,8 @@ create view emr_eom.v_azure_billing_cost
 			,a.billingCurrency
 			,a.paygCostInBillingCurrency
 			,a.costInBillingCurrency
-			,case when a.publisherName = 'Microsoft' then a.costInBillingCurrency/0.95                                                                                   --Reserved Instance margin
+			,case when a.meterCategory in ('SQL Server','Windows Server','Default Windows Perpetual Product Area') then a.costInBillingCurrency/0.8*coalesce(c.discount,1) --License margin
+			      when a.publisherName = 'Microsoft' then a.costInBillingCurrency/0.95                                                                                   --Reserved Instance margin
 				  when a.publisherName in ('Microsoft Corporation','') then a.costInBillingCurrency/0.8*coalesce(c.discount,1)                                           --License margin	  
 				  else 0 
 				  end                                                                              as margin
@@ -563,7 +564,8 @@ create view emr_eom.v_azure_billing_cost
 			,a.meterCategory
 			,a.resourceGroupName						
 			,b.sap_accountid			
-			,case when a.publisherName = 'Microsoft' then 'Reserved Instances'
+			,case when a.meterCategory in ('SQL Server','Windows Server','Default Windows Perpetual Product Area') then 'Licenses'
+			      when a.publisherName = 'Microsoft' then 'Reserved Instances'
 			      when a.publisherName in ('Microsoft Corporation','') then 'Licenses'
                   else 'unknown'  
 				  end                                                                              as billing_flag  
@@ -577,6 +579,32 @@ create view emr_eom.v_azure_billing_cost
   	    and c.billing_type = 'Licenses'
 	  where a.customerName <> ''
 	    and b.charge_type <> 'M365'
+  union all
+     select 
+	        a.account_pubname                                                                      as customerName
+			,''                                                                                    as productOrderName
+			,''                                                                                    as productname
+			,'NZD'                                                                                 as billingCurrency
+			,0                                                                                     as paygCostInBillingCurrency
+			,0                                                                                     as costInBillingCurrency
+			,a.pricing                                                                             as margin
+			,0                                                                                     as cost
+			,''                                                                                    as pricingModel
+			,a.period                                                                              as eom_period
+			,''                                                                                    as subscriptionName
+			,0                                                                                     as quantity
+			,''                                                                                    as publisherName
+			,''                                                                                    as meterSubCategory
+			,cast(a.period as date)                                                                as date
+			,''                                                                                    as meterCategory
+			,''                                                                                    as resourceGroupName			
+			,''                                                                                    as sap_accountid
+			,'MSSP'                                                                                as billing_flag 
+	   from emr_eom.mssp_consumption a
+  left join emr_eom.billing_customers_master b
+         on a.account_pubname = customer_name
+	  where a.account_pubname <> ''
+	   -- and b.charge_type <> 'M365'
 
 ;
 
@@ -646,7 +674,7 @@ create view emr_eom.v_azure_billing_last_year
 	     on a.customerName = b.consumption_customer_name
 	  where b.customer_flag = 'External'
 	    and b.charge_type <> 'M365'
-		and a.eom_period >= substring(convert(varchar,dateadd(month,-12,getdate()),111),1,7)
+		and a.eom_period >= substring(convert(varchar,dateadd(month,-6,getdate()),111),1,7)
    group by a.eom_period
 ;
 
@@ -693,8 +721,85 @@ create view emr_eom.v_billing_report_monthly
         and b.charge_type <> 'M365'
       where b.customer_flag = 'external'
         and a.eom_period = format(dateadd(month,-1,getdate()),'yyyy/MM')
-        and a.costInBillingCurrency > 0 
    group by b.sap_accountid,b.item,a.billing_flag,b.payment_terms,b.po,b.wbs,b.inv_order,b.tax
 ;
 
+--drop table emr_eom.mssp_consumption;
+create table emr_eom.mssp_consumption
+(
+            tenant_id                                                                              varchar(20) not null,
+			tenant_name                                                                            varchar(20) not null,
+			account_id                                                                             varchar(20) not null,
+			account_pubname                                                                        varchar(50) not null,
+			zone_name                                                                              varchar(50) not null,
+			rate_plan                                                                              varchar(10) not null,
+			total_requests                                                                         int         not null,
+			daily_data_transfer                                                                    decimal(16,8) not null,
+			Period                                                                                 varchar(10) not null,
+			quarter_year                                                                           varchar(10) not null,
+			pricing                                                                                decimal(16,2) not null
+)
+;
 
+--drop table emr_eom.consumption_nzgt_ld;
+CREATE TABLE emr_eom.consumption_nzgt_ld
+(
+	        InvoiceSectionName                                                                     varchar(30)  not NULL,
+	        AccountName                                                                            varchar(50)  not NULL,
+	        AccountOwnerId                                                                         varchar(200) not NULL,
+	        SubscriptionId                                                                         varchar(50)  not NULL,
+          	SubscriptionName                                                                       varchar(200) not NULL,
+          	ResourceGroup                                                                          varchar(100) not NULL,
+          	ResourceLocation                                                                       varchar(50)  not NULL,
+          	Date                                                                                   varchar(10)  not NULL,
+          	ProductName                                                                            varchar(200) not NULL,
+          	MeterCategory                                                                          varchar(200) not NULL,
+	        MeterSubCategory                                                                       varchar(200) not NULL,
+	        MeterId                                                                                varchar(50)  not NULL,
+	        MeterName                                                                              varchar(200) not NULL,
+	        MeterRegion                                                                            varchar(50)  not NULL,
+	        UnitOfMeasure                                                                          varchar(20)  not NULL,
+	        Quantity                                                                               decimal(18,6) not NULL,
+	        EffectivePrice                                                                         decimal(18,6) not NULL,
+	        CostInBillingCurrency                                                                  decimal(18,6) not NULL,
+	        CostCenter                                                                             varchar(20)  not NULL,
+	        ConsumedService                                                                        varchar(100) not NULL,
+	        ResourceId                                                                             varchar(max) not NULL,
+	        Tags                                                                                   varchar(max) not NULL,
+	        OfferId                                                                                varchar(20)  not NULL,
+	        AdditionalInfo                                                                         varchar(max) not NULL,
+	        ServiceInfo1                                                                           varchar(100) not NULL,
+          	ServiceInfo2                                                                           varchar(100) not NULL,
+	        ResourceName                                                                           varchar(200) not NULL,
+	        ReservationId                                                                          varchar(50)  not NULL,
+          	ReservationName                                                                        varchar(50)  not NULL,
+          	UnitPrice                                                                              decimal(18,6) not NULL,
+	        ProductOrderId                                                                         varchar(50)  not NULL,
+          	ProductOrderName                                                                       varchar(200) not NULL,
+          	Term                                                                                   varchar(5)   not NULL,
+	        PublisherType                                                                          varchar(20)  not NULL,
+	        PublisherName                                                                          varchar(30)  not NULL,
+          	ChargeType                                                                             varchar(10)  not NULL,
+          	Frequency                                                                              varchar(20)  not NULL,
+          	PricingModel                                                                           varchar(20)  not NULL,
+          	AvailabilityZone                                                                       varchar(10)  not NULL,
+          	BillingAccountId                                                                       varchar(10)  not NULL,
+          	BillingAccountName                                                                     varchar(50)  not NULL,
+          	BillingCurrencyCode                                                                    char(3)      not NULL,
+          	BillingPeriodStartDate                                                                 char(10)     not NULL,
+          	BillingPeriodEndDate                                                                   char(10)     not NULL,
+          	BillingProfileId                                                                       varchar(20)  not NULL,
+          	BillingProfileName                                                                     varchar(50)  not NULL,
+	        InvoiceSectionId                                                                       varchar(10)  not NULL,
+          	IsAzureCreditEligible                                                                  varchar(10)  not NULL,
+          	PartNumber                                                                             varchar(15)  not NULL,
+          	PayGPrice                                                                              decimal(18,6) not NULL,
+          	PlanName                                                                               varchar(50)  not NULL,
+          	ServiceFamily                                                                          varchar(20)  not NULL,
+          	CostAllocationRuleName                                                                 varchar(50)  not NULL,
+          	benefitId                                                                              varchar(max) not NULL,
+          	benefitName                                                                            varchar(max) not NULL,
+          	source_file                                                                            varchar(50)  not NULL,
+            load_date                                                                              char(10)     not NULL
+)
+;

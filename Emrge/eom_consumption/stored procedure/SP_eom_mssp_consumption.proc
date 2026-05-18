@@ -1,0 +1,70 @@
+IF OBJECT_ID ('emr_eom.SP_eom_mssp_consumption') IS NOT NULL
+	DROP PROCEDURE emr_eom.SP_eom_mssp_consumption
+GO
+
+CREATE PROCEDURE emr_eom.SP_eom_mssp_consumption @period varchar(8)
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20260421>
+-- Update date: <20260421>
+-- Description:	<SP_eom_mssp_consumption>
+-- Target table: emr_eom.mssp_consumption 
+-- Source table: emr_eom.mssp_consumption_ld 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from emr_eom.mssp_consumption
+          where period = convert(varchar,cast('01' + @period as date),23)
+		     or cast('01' + @period as date) < dateadd(month,-6,getdate())		  
+;
+
+    insert into emr_eom.mssp_consumption
+                (
+                tenant_id 
+			    ,tenant_name              
+			    ,account_id                         
+			    ,account_pubname                       
+			    ,zone_name                                 
+			    ,rate_plan                               
+			    ,total_requests                         
+			    ,daily_data_transfer                 
+			    ,Period                             
+			    ,quarter_year        
+			    ,pricing
+                )
+         select
+	            coalesce(tenant_id,'')                                                             as tenant_id
+	            ,coalesce(tenant_name,'')                                                          as tenant_name
+	            ,coalesce(account_id,'')                                                           as account_id 
+	            ,coalesce(account_pubname,'')                                                      as account_pubname
+	            ,coalesce(zone_name,'')                                                            as zone_name 
+	            ,coalesce(rate_plan,'')                                                            as rate_plan 
+	            ,coalesce(cast(total_requests as int),0)                                           as total_requests 
+	            ,coalesce(cast(daily_data_transfer_tb as decimal(16,8)),0)                         as daily_data_transfer 
+	            ,coalesce(period,'')                                                               as Period 
+	            ,coalesce(quarter_year,'')                                                         as quarter_year 
+	            ,coalesce(cast(tiered_pricing_based_on_dt as decimal(16,2)),0)                     as pricing                                 
+          from emr_eom.mssp_consumption_ld
+;
+        
+-- Drop temp table for rerun --       
+
+     drop table emr_eom.mssp_consumption_ld 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+
