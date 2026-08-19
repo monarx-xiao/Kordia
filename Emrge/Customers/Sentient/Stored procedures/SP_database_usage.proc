@@ -1,0 +1,62 @@
+IF OBJECT_ID ('Kordia_DBA.SP_database_usage') IS NOT NULL
+	DROP PROCEDURE Kordia_DBA.SP_database_usage
+GO
+
+CREATE PROCEDURE Kordia_DBA.SP_database_usage
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251024>
+-- Update date: <20251024>
+-- Description:	<SP_database_usage>
+-- Target table: kordia_dba.database_usage 
+-- Source table: 
+-- =============================================
+   
+-- Delete all data for current date for rerun --
+
+    delete from kordia_dba.database_usage
+          where convert(varchar,check_date,23) = convert(varchar,getdate(),23)
+             or convert(varchar,check_date,23) = convert(varchar,DATEADD(month,-3,getdate()),23)
+;
+
+    insert into kordia_dba.database_usage
+                (
+                DatabaseName        
+                ,LogicalFileName
+                ,PhysicalFileName
+                ,SizeGB
+                ,check_date                                                                                                             
+                )
+         select
+                DB_NAME(database_id)                                                               as DatabaseName
+                ,Name                                                                              as LogicalFileName
+                ,physical_name                                                                     as PhysicalFileName
+                ,(size * 8.0/1024/1024)                                                            as SizeGB
+                ,getdate()                                                                         as check_date
+           FROM sys.master_files
+          WHERE database_id > 4                                                                     -- Exclude system databases (master, model, msdb, tempdb)
+	          and type_desc = 'ROWS'
+;
+
+        
+
+-- Drop temp table for rerun --       
+
+
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

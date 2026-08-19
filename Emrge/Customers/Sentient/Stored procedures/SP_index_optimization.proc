@@ -1,0 +1,158 @@
+IF OBJECT_ID ('Kordia_DBA.SP_index_optimization') IS NOT NULL
+	DROP PROCEDURE Kordia_DBA.SP_index_optimization
+GO
+
+CREATE PROCEDURE Kordia_DBA.SP_index_optimization
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251120>
+-- Update date: <20260330>
+-- Description:	<SP_index_optimization>
+-- Target table:  kordia_dba.index_optimization
+-- Source table:  kordia_dba.index_data
+-- =============================================
+DECLARE @SQL               nvarchar(max),
+        @db_name           nvarchar(100),
+        @table_name        nvarchar(200),
+        @index_name        nvarchar(100),
+        @run_flag          nchar(1);
+
+
+-- Delete all data for current date for rerun --
+
+        delete from kordia_dba.index_optimization 
+              where load_date = convert(nvarchar,getdate(),23)
+;
+
+-- insert target indexes into optimization table --
+
+        insert into kordia_dba.index_optimization
+                  (
+                    table_name
+                    ,database_name
+                    ,index_name
+                    ,run_flag
+                    ,query
+                    ,load_date
+                  )
+             select distinct 
+                    replace(tablename,'[dbo].','')                                                 as table_name
+                    ,databasename                                                                  as database_name
+                    ,indexname                                                                     as index_name
+                    ,case when index_status = 'reorg'   then 'O'
+                          when index_status = 'rebuild' then 'B'
+	                    else '' end                                                              as run_flag
+                    ,case when index_status = 'reorg'   then  'Alter index '+ indexname + ' on ' + databasename + '.' + tablename +' REORGANIZE; UPDATE STATISTICS '+ databasename + '.' + tablename +';'                                             
+		              when index_status = 'rebuild' then  'Alter index '+ indexname + ' on ' + databasename + '.' + tablename +' REBUILD;'
+			        else '' end                                                              as query
+                    ,convert(nvarchar,getdate(),23)                                                as load_date
+               from kordia_dba.index_data 
+              where Used_page_count >= 1000 
+                and row_count >=10000 
+                and tablename not in ('[dbo].[BPM_Log]','[dbo].[Audit]','[dbo].[SCH_EventLog]','[dbo].[SCH_ScheduleHistory]') 
+                and convert(nvarchar,getdate(),23) = convert(nvarchar,load_date,23)
+
+;
+
+-- Start processing SQL index reorganizar and rebuild --
+
+DECLARE db_cursor CURSOR
+                     for 
+                  select 
+                         database_name
+                         ,table_name
+                         ,index_name
+                         ,run_flag
+                    from kordia_dba.index_optimization
+                   where run_flag in ('O','B') 
+
+; 
+
+           Open db_cursor
+;
+     fetch next
+           from db_cursor
+           into @db_name,@table_name,@index_name,@run_flag
+;
+  
+while @@fetch_status = 0
+      BEGIN
+            IF @run_flag = 'B'
+            BEGIN
+                  set @SQL = N'USE [' + @db_name + N'];
+				  if exists (select 1 from sys.tables t
+				                inner join sys.indexes i
+							      on t.object_id = i.object_id
+							   where i.name is not null
+							     and t.name + i.name = ''' + replace(replace(@table_name,'[dbo].[',''),']','') +'' +@index_name+ ''')                           
+				    begin
+                              ALTER INDEX [' + @index_name + N']
+                                       ON ' + @table_name + N'
+                                  REBUILD
+                 ;
+				 UPDATE STATISTICS ' + @table_name + N'; 
+				      end
+                         '
+                 ;
+
+            EXEC sp_executesql @SQL;
+             END
+       else if @run_flag = 'O'
+            BEGIN
+                  set @SQL = N'USE [' + @db_name + N'];
+				  if exists (select 1 from sys.tables t
+				                inner join sys.indexes i
+							      on t.object_id = i.object_id
+							   where i.name is not null
+							     and t.name + i.name = ''' + replace(replace(@table_name,'[dbo].[',''),']','') +'' +@index_name+ ''')   
+				    begin                  
+                              ALTER INDEX [' + @index_name + N']
+                                       ON ' + @table_name + N'
+                               REORGANIZE
+                 ;
+				 UPDATE STATISTICS ' + @table_name + N';
+                              end 
+				 '
+                 ;                 
+
+        EXEC sp_executesql @SQL;
+      END
+
+     fetch next
+           from db_cursor
+           into @db_name,@table_name,@index_name,@run_flag
+;
+ 
+ end
+;
+
+        close db_cursor
+;
+   deallocate db_cursor
+;
+
+--
+
+-- Set all optimization jobs to done --
+
+             update kordia_dba.index_optimization
+                set run_flag = 'D'
+              where load_date = convert(nvarchar,getdate(),23)
+ 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

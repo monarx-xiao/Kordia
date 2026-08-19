@@ -1,0 +1,121 @@
+IF OBJECT_ID ('Kordia_DBA.SP_index_data') IS NOT NULL
+	DROP PROCEDURE Kordia_DBA.SP_index_data
+GO
+
+CREATE PROCEDURE Kordia_DBA.SP_index_data
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251029>
+-- Update date: <20251029>
+-- Description:	<SP_index_data>
+-- Target table: kordia_dba.index_data 
+-- Source table: 
+-- =============================================
+
+DECLARE @database_name     as nvarchar(100)
+DECLARE @SQL               as nvarchar(max)
+DECLARE db_cursor CURSOR
+            for 
+         select distinct name 
+           from sys.databases
+          where cast(database_id as int) > 4 
+; 
+
+
+-- Delete all data for current date for rerun --
+
+    delete from kordia_dba.index_data
+          where convert(nvarchar,load_date,23) = convert(nvarchar,getdate(),23)
+             or convert(nvarchar,load_date,23) = convert(nvarchar,DATEADD(week,-4,getdate()),23)
+;
+
+           Open db_cursor
+;
+     fetch next
+           from db_cursor
+           into @database_name
+;
+  
+while @@fetch_status = 0
+      BEGIN
+-- Start compose SQL --
+    set @SQL = '  
+    insert into kordia_dba.index_data
+               (
+                tablename
+                ,databasename
+                ,indexname
+                ,index_type
+                ,Fragmentation_percent
+                ,Fragment_Count
+                ,page_space_used_percent
+                ,Avg_Fragment_Size
+                ,Page_Count
+                ,Used_page_count
+                ,row_count
+                ,index_status
+                ,is_pri_key
+                ,load_date                                                                                                     
+               )
+         SELECT 
+                QUOTENAME(SCHEMA_NAME(t.schema_id)) + N''.'' + QUOTENAME(t.name)                   AS tablename
+                ,''' + @database_name + '''                                                        AS databasename
+                ,ind.name                                                                          AS indexname
+                ,ips.index_type_desc                                                               AS index_Type
+                ,ips.avg_fragmentation_in_percent                                                  AS Fragmentation_percent
+                ,ips.fragment_count                                                                AS Fragment_Count
+                ,ips.avg_page_space_used_in_percent                                                AS page_space_used_percent
+                ,ips.avg_fragment_size_in_pages                                                    AS Avg_Fragment_Size
+                ,ips.page_count                                                                    AS PageCount
+                ,p.used_page_count                                                                 AS used_page_count
+                ,p.row_count                                                                       AS row_count
+                ,case when ips.avg_fragmentation_in_percent >= 30 then ''rebuild''
+                      when ips.avg_fragmentation_in_percent >= 5  then ''reorg''
+                      else ''no actions'' end                                                      AS index_status 
+                ,ind.is_primary_key                                                                AS is_pri_key      
+                ,getdate()                                                                         AS load_date
+           FROM [' + @database_name + '].sys.dm_db_index_physical_stats(DB_ID(''' + @database_name + '''), NULL, NULL, NULL, ''LIMITED'')   ips
+     inner JOIN [' + @database_name + '].sys.indexes ind
+             ON ips.object_id = ind.object_id 
+            AND ips.index_id = ind.index_id
+     inner join [' + @database_name + '].sys.tables t
+             on ind.object_id = t.object_id  
+      left join [' + @database_name + '].sys.dm_db_partition_stats p
+	         on ind.object_id = p.object_id
+		  and ind.index_id = p.index_id              
+          where coalesce(ips.avg_fragmentation_in_percent,0) >= 5
+            and ips.index_type_desc <> N''HEAP''
+                 '
+;
+    exec sp_executesql @SQL
+;
+
+     fetch next
+           from db_cursor
+           into @database_name
+;
+ 
+ end
+;
+
+        close db_cursor
+;
+   deallocate db_cursor
+;
+
+  
+
+END
+
+
+
+
+
+
+GO
+

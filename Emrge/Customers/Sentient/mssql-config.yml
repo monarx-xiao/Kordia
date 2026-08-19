@@ -1,0 +1,11 @@
+integrations:
+  - name: nri-mssql
+    env: 
+      HOSTNAME: HDB110-06
+      PORT: 1433
+      USERNAME: newrelic
+      PASSWORD: nyCORT2FzhHEuGS1
+    interval: 15
+    labels:
+      environment: UAT
+    inventory_source: config/mssql

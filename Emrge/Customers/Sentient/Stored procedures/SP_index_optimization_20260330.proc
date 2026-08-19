@@ -1,0 +1,112 @@
+IF OBJECT_ID ('Kordia_DBA.SP_index_optimization') IS NOT NULL
+	DROP PROCEDURE Kordia_DBA.SP_index_optimization
+GO
+
+CREATE PROCEDURE Kordia_DBA.SP_index_optimization
+
+       
+
+AS
+BEGIN
+-- =============================================
+-- Author:		<Bo Xiao>
+-- Create date: <20251120>
+-- Update date: <20251203>
+-- Description:	<SP_index_optimization>
+-- Target table:  kordia_dba.index_optimization
+-- Source table:  kordia_dba.index_data
+-- =============================================
+DECLARE @SQL               as nvarchar(max);
+
+
+-- Delete all data for current date for rerun --
+
+        delete from kordia_dba.index_optimization 
+              where load_date = convert(nvarchar,getdate(),23)
+;
+
+-- insert target indexes into optimization table --
+
+        insert into kordia_dba.index_optimization
+                  (
+                    table_name
+                    ,database_name
+                    ,index_name
+                    ,run_flag
+                    ,query
+                    ,load_date
+                  )
+             select distinct 
+                    tablename                                                                      as table_name
+                    ,databasename                                                                  as database_name
+                    ,indexname                                                                     as index_name
+                    ,case when index_status = 'reorg'   then 'O'
+                          when index_status = 'rebuild' then 'B'
+	                    else '' end                                                              as run_flag
+                    ,case when index_status = 'reorg'   then  'Alter index '+ indexname + ' on ' + databasename + '.' + tablename +' REORGANIZE; UPDATE STATISTICS '+ databasename + '.' + tablename +';'                                             
+		              when index_status = 'rebuild' then  'Alter index '+ indexname + ' on ' + databasename + '.' + tablename +' REBUILD;'
+			        else '' end                                                              as query
+                    ,convert(nvarchar,getdate(),23)                                                as load_date
+               from kordia_dba.index_data 
+              where Used_page_count >= 1000 
+                and row_count >=10000 
+                and tablename not in ('[dbo].[BPM_Log]','[dbo].[Audit]','[dbo].[SCH_EventLog]','[dbo].[SCH_ScheduleHistory]') 
+                and convert(nvarchar,getdate(),23) = convert(nvarchar,load_date,23)
+;
+
+-- Start processing SQL index reorganizar and rebuild --
+
+DECLARE db_cursor CURSOR
+                     for 
+                  select 
+                         query
+                    from kordia_dba.index_optimization
+                   where run_flag in ('O','B') 
+; 
+
+           Open db_cursor
+;
+     fetch next
+           from db_cursor
+           into @SQL
+;
+  
+while @@fetch_status = 0
+      BEGIN
+
+-- Start compose SQL --
+
+    exec sp_executesql @SQL
+;
+
+     fetch next
+           from db_cursor
+           into @SQL
+;
+ 
+ end
+;
+
+        close db_cursor
+;
+   deallocate db_cursor
+;
+    
+-- Set all optimization jobs to done --
+
+             update kordia_dba.index_optimization
+                set run_flag = 'D'
+              where load_date = convert(nvarchar,getdate(),23)
+ 
+;
+  
+
+END
+
+
+
+
+
+
+GO
+

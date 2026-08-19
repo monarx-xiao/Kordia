@@ -1,0 +1,45 @@
+--drop schema kordia_dba;
+create schema kordia_dba;
+
+--drop table kordia_dba.database_usage;
+create table kordia_dba.database_usage
+      (
+            DatabaseName                                                                           varchar(100) Not NULL,
+            LogicalFileName                                                                        varchar(100) Not NULL,
+            PhysicalFileName                                                                       varchar(200) Not NULL,
+            SizeGB                                                                                 float        Not Null,
+            check_date                                                                             date         Not Null
+      )
+;
+
+--drop table kordia_dba.index_data;
+create table kordia_dba.index_data
+      (
+             tablename                                                                             nvarchar(200) NULL,
+             databasename                                                                          nvarchar(100) NULL,
+             indexname                                                                             nvarchar(100) NULL,
+             index_type                                                                            nvarchar(50)  NULL,
+             Fragmentation_percent                                                                 float         NULL,
+             Fragment_Count                                                                        int           NULL,
+             page_space_used_percent                                                               float         NULL,
+             Avg_Fragment_Size                                                                     float         NULL,
+             Page_Count                                                                            int           NULL,
+             Used_page_count                                                                       int           NULL,
+             row_count                                                                             int           NULL,
+             index_status                                                                          nvarchar(20)  NULL,
+             is_pri_key                                                                            nchar(1)      NULL,
+             load_date                                                                             date          Not NULL
+      )
+;
+
+--drop table kordia_dba.index_optimization;
+create table kordia_dba.index_optimization
+      (
+             table_name                                                                            nvarchar(200) NULL,
+             database_name                                                                         nvarchar(100) NULL,
+             index_name                                                                            nvarchar(100) NULL,
+             run_flag                                                                              nchar(1)      Not NULL,
+             query                                                                                 nvarchar(max) NULL,
+             load_date                                                                             nvarchar(10)  Not NULL
+      )
+;

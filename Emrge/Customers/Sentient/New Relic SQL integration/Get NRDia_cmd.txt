@@ -1,0 +1,1 @@
+:\Program Files\New Relic\newrelic-infra\newrelic-integrations\bin\nri-mssql.exe -hostname HDB110-06  -username newrelic -password nyCORT2FzhHEuGS1  -port 1434 -pretty -verbose 
