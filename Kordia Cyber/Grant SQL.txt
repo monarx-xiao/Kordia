@@ -1,0 +1,75 @@
+Since your domain account already has sysadmin (via the Entra admin setup), you can grant access to other domain accounts directly with T-SQL — no portal changes needed for this part.
+
+1. Connect as your Entra admin account
+
+Connect via SSMS/Azure Data Studio/sqlcmd using Microsoft Entra authentication, as you already do.
+
+2. Create a login for the other domain account
+
+At the server level (connect to master database):
+
+sql
+CREATE LOGIN [otheruser@yourdomain.com] FROM EXTERNAL PROVIDER;
+
+This works for individual users. It's often better practice to add an Entra security group instead, so you can manage membership in Entra ID rather than SQL:
+
+sql
+CREATE LOGIN [MyTeamGroup] FROM EXTERNAL PROVIDER;
+
+(The group must already exist in Microsoft Entra ID.)
+
+3. If you want them to also be sysadmin
+sql
+ALTER SERVER ROLE sysadmin ADD MEMBER [otheruser@yourdomain.com];
+
+⚠️ Be cautious granting sysadmin broadly — it gives full control over the instance. Consider whether a narrower role is more appropriate (see below).
+
+4. If you want scoped (non-sysadmin) access instead
+
+Create a user in the specific database and assign a role:
+
+sql
+USE YourDatabase;
+CREATE USER [otheruser@yourdomain.com] FROM LOGIN [otheruser@yourdomain.com];
+ALTER ROLE db_datareader ADD MEMBER [otheruser@yourdomain.com]; -- read-only
+-- or
+ALTER ROLE db_owner ADD MEMBER [otheruser@yourdomain.com]; -- full db control
+5. Verify the login was created
+sql
+SELECT name, type_desc, create_date 
+FROM sys.server_principals 
+WHERE type IN ('E', 'X'); -- E = Entra user, X = Entra group
+Notes
+otheruser@yourdomain.com should be the user's User Principal Name (UPN) as it appears in Microsoft Entra ID — check in the Entra portal if unsure.
+The domain account doesn't need any special Entra role (like Global Admin) — the SQL-level grant is all that's required for them to log in and use the instance according to whatever permissions you assign.
+If using a group, any member of that Entra group can now log in with their own credentials, inheriting whatever role you granted the group.
+
+Do you want them to have full sysadmin like you, or more limited (e.g., read-only, or a specific database)?
+
+Do I need add these domain accounts role assignment via Azure Potal access control?
+
+No — Azure Portal Access Control (IAM) role assignments and SQL logins are two completely separate permission systems. You don't need IAM for what you're doing.
+
+The distinction
+	Azure RBAC (Portal IAM)	SQL Login (T-SQL, FROM EXTERNAL PROVIDER)
+Controls	Management plane — the Azure resource itself	Data plane — the databases/data inside it
+Examples	Restart the instance, change vCores, view metrics, delete the resource, manage firewall rules	Run queries, read/write tables, create logins, execute stored procedures
+Where	Azure Portal → MI resource → Access control (IAM)	SQL client (SSMS, ADS, sqlcmd) connected to the instance
+What you actually need
+
+Since you want other domain accounts to log in and query/manage data in the Managed Instance, the CREATE LOGIN ... FROM EXTERNAL PROVIDER + role assignment via T-SQL (as in my previous answer) is exactly and only what's required. IAM has no bearing on this.
+
+When you would need IAM
+
+Only if that person also needs to manage the Azure resource itself, e.g.:
+
+Scale compute/storage via the Portal
+Configure network/firewall rules
+View Azure Monitor metrics/alerts
+Manage backups, failover groups, etc. at the Azure infrastructure level
+
+For that, you'd assign an Azure role like SQL Managed Instance Contributor (or Reader, Contributor, etc.) at the resource/resource group level in Access control (IAM).
+
+Summary
+Just want them to query/use databases → T-SQL login only (what you're doing now). ✅ Done, no IAM needed.
+Also want them to manage the Azure resource in the Portal → additionally add an IAM role assignment.
